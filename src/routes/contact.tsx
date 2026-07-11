@@ -20,6 +20,7 @@ const schema = z.object({
   name: z.string().trim().min(2, "Please share your name").max(80),
   phone: z.string().trim().min(6, "Please share a valid phone").max(30),
   service: z.string().trim().min(2).max(60),
+  message: z.string().trim().min(1, "Please write a short message").max(1000),
 });
 
 function Contact() {
@@ -33,9 +34,9 @@ function Contact() {
       setState({ status: "err", msg: parsed.error.issues[0]?.message ?? "Please check the form" });
       return;
     }
-    const text = `Hello MENOVO,%0A%0AName: ${encodeURIComponent(parsed.data.name)}%0APhone: ${encodeURIComponent(parsed.data.phone)}%0AService: ${encodeURIComponent(parsed.data.service)}`;
+    const text = `Hello MENOVO,%0A%0AName: ${encodeURIComponent(parsed.data.name)}%0APhone: ${encodeURIComponent(parsed.data.phone)}%0AService: ${encodeURIComponent(parsed.data.service)}%0A%0AMessage:%0A${encodeURIComponent(parsed.data.message)}`;
     window.open(`https://wa.me/251946471234?text=${text}`, "_blank", "noopener");
-    setState({ status: "ok", msg: "Opening WhatsApp… we'll be in touch shortly." });
+    setState({ status: "ok", msg: "Opening WhatsApp… your message is ready to send." });
     (e.target as HTMLFormElement).reset();
   };
 
