@@ -131,19 +131,6 @@ function Home() {
         </div>
       </Section>
 
-      {/* Pricing preview */}
-      <Section eyebrow="Signature Packages" title={<>Honest pricing. <span className="text-gradient-gold">No surprises.</span></>} subtitle="A quick preview of our most-loved packages. See the full menu on the Services page.">
-        <div className="grid md:grid-cols-3 gap-6">
-          <PricingCard name="Digital Menu" price="$10" features={["Professional QR + Poster", "Photo menu", "Organized categories", "30 days of updates"]} />
-          <PricingCard name="Website + Menu" price="$29" highlight badge="Best Value" features={["Professional website", "Luxury QR menu", "Free QR poster", "30 days of free support"]} />
-          <PricingCard name="Premium Website" price="$39" features={["Unlimited pages", "Booking form", "Payment integration", "Unlimited updates"]} />
-        </div>
-        <div className="mt-10 text-center">
-          <Link to="/services" className="inline-flex items-center gap-2 rounded-full btn-ghost-gold px-6 py-3 text-sm">
-            View all packages <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </Section>
 
       {/* Portfolio preview */}
       <Section eyebrow="Selected Work" title={<>A quiet showcase of <span className="text-gradient-gold">craft.</span></>}>
