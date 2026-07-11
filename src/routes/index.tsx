@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { Hero } from "@/components/site/Hero";
 import { CTA } from "@/components/site/CTA";
-import { PricingCard } from "@/components/site/PricingCard";
+
 import {
   Globe, QrCode, LayoutGrid, BadgeDollarSign, Zap, Sparkles, Smartphone, Workflow, LifeBuoy,
   MessageSquare, Calendar, Hammer, Rocket, ArrowRight, ChevronDown,
@@ -60,26 +60,43 @@ function Home() {
       <Hero />
 
       {/* About */}
-      <Section id="about" eyebrow="About MENOVO" title={<>Great hospitality deserves to be <span className="text-gradient-gold">discovered.</span></>}>
+      <Section id="about" eyebrow="About MENOVO" title={<>We put every hospitality brand on the <span className="text-gradient-gold">map.</span></>}>
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
-            <img src={aboutImg} alt="Digital menu on a marble café table" width={1400} height={1400} loading="lazy" className="w-full h-auto object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
-          </div>
           <div className="space-y-6 text-foreground/85 leading-relaxed">
             <p>Too many great hotels, restaurants and cafeterias go unnoticed—not because their food is bad, but because nobody can find them online.</p>
             <p><span className="text-gold font-semibold">MENOVO exists to change that.</span> We make it simple and affordable for any restaurant, café, or hotel to have a professional digital presence.</p>
             <div className="grid grid-cols-2 gap-4 pt-4">
               <div className="glass rounded-xl p-4">
-                <div className="text-xs uppercase tracking-widest text-gold">Mission</div>
+                <div className="text-sm uppercase tracking-widest text-gold font-semibold">Mission</div>
                 <p className="mt-2 text-sm text-muted-foreground">Make every hospitality business digitally visible—simply and affordably.</p>
               </div>
               <div className="glass rounded-xl p-4">
-                <div className="text-xs uppercase tracking-widest text-gold">Vision</div>
+                <div className="text-sm uppercase tracking-widest text-gold font-semibold">Vision</div>
                 <p className="mt-2 text-sm text-muted-foreground">A future where no great café, restaurant or hotel goes undiscovered.</p>
               </div>
             </div>
           </div>
+          <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
+            <img src={aboutImg} alt="Digital menu on a marble café table" width={1400} height={1400} loading="lazy" className="w-full h-auto object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
+          </div>
+        </div>
+      </Section>
+
+      {/* Values */}
+      <Section eyebrow="What We Believe" title={<>Values that guide every <span className="text-gradient-gold">project.</span></>}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {[
+            { t: "Elegance", d: "Every design should feel luxurious, timeless and effortless." },
+            { t: "Clarity", d: "Simple processes and honest communication—no jargon, no surprises." },
+            { t: "Care", d: "We treat every brand as if it were our own, down to the smallest detail." },
+            { t: "Impact", d: "Real results: more bookings, more orders, more guests discovering you." },
+          ].map((v) => (
+            <div key={v.t} className="card-luxe p-6">
+              <div className="text-xs uppercase tracking-widest text-gold">{v.t}</div>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.d}</p>
+            </div>
+          ))}
         </div>
       </Section>
 
@@ -114,19 +131,6 @@ function Home() {
         </div>
       </Section>
 
-      {/* Pricing preview */}
-      <Section eyebrow="Signature Packages" title={<>Honest pricing. <span className="text-gradient-gold">No surprises.</span></>} subtitle="A quick preview of our most-loved packages. See the full menu on the Services page.">
-        <div className="grid md:grid-cols-3 gap-6">
-          <PricingCard name="Digital Menu" price="$10" features={["Professional QR + Poster", "Photo menu", "Organized categories", "30 days of updates"]} />
-          <PricingCard name="Website + Menu" price="$29" highlight badge="Best Value" features={["Professional website", "Luxury QR menu", "Free QR poster", "30 days of free support"]} />
-          <PricingCard name="Premium Website" price="$39" features={["Unlimited pages", "Booking form", "Payment integration", "Unlimited updates"]} />
-        </div>
-        <div className="mt-10 text-center">
-          <Link to="/services" className="inline-flex items-center gap-2 rounded-full btn-ghost-gold px-6 py-3 text-sm">
-            View all packages <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </Section>
 
       {/* Portfolio preview */}
       <Section eyebrow="Selected Work" title={<>A quiet showcase of <span className="text-gradient-gold">craft.</span></>}>
