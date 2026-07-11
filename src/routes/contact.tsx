@@ -56,8 +56,17 @@ function Contact() {
                 <option className="bg-navy" value="Not sure yet">Not sure yet</option>
               </select>
             </div>
+            <div>
+              <label className="text-xs uppercase tracking-widest text-gold">Your message</label>
+              <textarea
+                name="message"
+                rows={5}
+                placeholder="Tell us about your project…"
+                className="mt-2 w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none resize-y"
+              />
+            </div>
             <button type="submit" className="inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm">
-              Send message <Send className="h-4 w-4" />
+              Send via WhatsApp <Send className="h-4 w-4" />
             </button>
             {state.status !== "idle" && (
               <p className={`text-sm ${state.status === "ok" ? "text-gold" : "text-destructive"}`}>{state.msg}</p>
