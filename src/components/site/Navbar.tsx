@@ -46,18 +46,22 @@ export function Navbar() {
               <Link
                 key={l.to}
                 to={l.to}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  active ? "text-gold" : "text-foreground/80 hover:text-gold"
+                aria-current={active ? "page" : undefined}
+                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  active ? "text-gold bg-gold/10 ring-1 ring-gold/30" : "text-foreground/80 hover:text-gold"
                 }`}
               >
                 {l.label}
+                {active && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-6 rounded-full bg-gold" />
+                )}
               </Link>
             );
           })}
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <Link to="/contact" className="px-4 py-2 rounded-full text-sm btn-ghost-gold">Book a Call</Link>
+          <a href="https://wa.me/251946471234" target="_blank" rel="noreferrer noopener" className="px-4 py-2 rounded-full text-sm btn-ghost-gold">Book a Call</a>
           <Link to="/contact" className="px-5 py-2 rounded-full text-sm btn-gold">Get Started</Link>
         </div>
 
@@ -69,13 +73,21 @@ export function Navbar() {
       {open && (
         <div className="md:hidden mx-4 mt-3 rounded-2xl glass p-4 animate-fade-up">
           <nav className="flex flex-col">
-            {links.map((l) => (
-              <Link key={l.to} to={l.to} className="px-4 py-3 rounded-lg hover:bg-white/5 text-foreground/90">
-                {l.label}
-              </Link>
-            ))}
+            {links.map((l) => {
+              const active = location.pathname === l.to;
+              return (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  aria-current={active ? "page" : undefined}
+                  className={`px-4 py-3 rounded-lg text-foreground/90 ${active ? "bg-gold/10 text-gold ring-1 ring-gold/30" : "hover:bg-white/5"}`}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
             <div className="mt-3 grid grid-cols-2 gap-2">
-              <Link to="/contact" className="text-center px-4 py-2 rounded-full btn-ghost-gold text-sm">Book a Call</Link>
+              <a href="https://wa.me/251946471234" target="_blank" rel="noreferrer noopener" className="text-center px-4 py-2 rounded-full btn-ghost-gold text-sm">Book a Call</a>
               <Link to="/contact" className="text-center px-4 py-2 rounded-full btn-gold text-sm">Get Started</Link>
             </div>
           </nav>
