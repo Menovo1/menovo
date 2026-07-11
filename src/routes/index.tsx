@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { Hero } from "@/components/site/Hero";
 import { CTA } from "@/components/site/CTA";
-import { PricingCard } from "@/components/site/PricingCard";
+
 import {
   Globe, QrCode, LayoutGrid, BadgeDollarSign, Zap, Sparkles, Smartphone, Workflow, LifeBuoy,
   MessageSquare, Calendar, Hammer, Rocket, ArrowRight, ChevronDown,
