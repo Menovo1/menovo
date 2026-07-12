@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { Counter } from "./Counter";
 
 export function Hero() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -71,12 +72,14 @@ export function Hero() {
 
         <div className="mt-16 grid grid-cols-3 gap-4 max-w-xl mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
           {[
-            { k: "50+", v: "Projects" },
-            { k: "24/7", v: "Support" },
-            { k: "100%", v: "Passion" },
+            { n: 50, suffix: "+", v: "Projects" },
+            { n: 24, suffix: "/7", v: "Support" },
+            { n: 100, suffix: "%", v: "Passion" },
           ].map((s) => (
             <div key={s.v} className="glass rounded-2xl px-4 py-3">
-              <div className="text-xl sm:text-2xl font-display font-bold text-gradient-gold">{s.k}</div>
+              <div className="text-xl sm:text-2xl font-display font-bold text-gradient-gold">
+                <Counter end={s.n} suffix={s.suffix} />
+              </div>
               <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
             </div>
           ))}
