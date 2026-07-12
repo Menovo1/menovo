@@ -1,3 +1,5 @@
+import whatsappIcon from "@/assets/whatsapp-icon.png.asset.json";
+
 export function WhatsAppButton() {
   return (
     <a
@@ -5,12 +7,9 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noreferrer noopener"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full grid place-items-center shadow-2xl animate-glow-pulse"
-      style={{ background: "linear-gradient(135deg, #25D366, #128C7E)" }}
+      className="fixed bottom-6 right-6 z-40 h-14 w-14 grid place-items-center animate-glow-pulse"
     >
-      <svg viewBox="0 0 32 32" className="h-8 w-8 fill-white">
-        <path d="M16.003 0C7.178 0 0 7.177 0 16.003c0 2.82.743 5.57 2.144 7.97L.06 31.78l7.94-2.047A15.92 15.92 0 0 0 16.003 32c8.823 0 16-7.177 16-15.997C32.003 7.177 24.825 0 16.003 0zm9.092 22.392c-.388 1.092-1.91 1.998-2.96 2.255-.79.198-1.83.356-5.316-1.11-4.462-1.787-7.35-6.219-7.572-6.503-.22-.283-1.793-2.387-1.793-4.556 0-2.168 1.137-3.226 1.545-3.67.388-.42.865-.525 1.153-.525.288 0 .576.003.827.015.263.013.614-.1.962.735.388.91 1.22 3.187 1.323 3.42.104.233.175.504.035.814-.14.31-.21.504-.42.787-.21.283-.44.595-.628.8-.2.22-.41.46-.246.907.164.446.732 2.018 1.57 3.267 1.07 1.57 2.07 2.16 2.56 2.4.304.146.54.12.74-.07.2-.19.83-.97 1.05-1.305.22-.336.44-.28.73-.17.29.11 1.87.88 2.19 1.04.32.16.53.24.61.37.08.13.08.75-.31 1.84z"/>
-      </svg>
+      <img src={whatsappIcon.url} alt="WhatsApp" className="h-14 w-14" />
     </a>
   );
 }
