@@ -68,11 +68,11 @@ function Home() {
             <div className="grid grid-cols-2 gap-4 pt-4">
               <div className="glass rounded-xl p-4">
                 <div className="text-sm uppercase tracking-widest text-gold font-semibold">Mission</div>
-                <p className="mt-2 text-sm text-muted-foreground">Make every hospitality business digitally visible—simply and affordably.</p>
+                <p className="mt-2 text-sm text-muted-foreground">Make every HOTEL, RESTAURANT and CAFÉ digitally visible—simply and affordably.</p>
               </div>
               <div className="glass rounded-xl p-4">
                 <div className="text-sm uppercase tracking-widest text-gold font-semibold">Vision</div>
-                <p className="mt-2 text-sm text-muted-foreground">A future where no great café, restaurant or hotel goes undiscovered.</p>
+                <p className="mt-2 text-sm text-muted-foreground">A future where no great CAFÉ, RESTAURANT or HOTEL goes undiscovered.</p>
               </div>
             </div>
           </div>
