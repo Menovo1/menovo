@@ -45,8 +45,8 @@ function Contact() {
       <Section eyebrow="Get in touch" title={<>Let's begin your <span className="text-gradient-gold">digital story.</span></>} subtitle="Tell us a little about your business—we'll take it from there.">
         <div className="grid lg:grid-cols-5 gap-8">
           <form onSubmit={onSubmit} className="lg:col-span-3 card-luxe p-8 space-y-5">
-            <Field label="Your name" name="name" placeholder="ASAD JE." />
-            <Field label="Phone number" name="phone" placeholder="+251946471234 …" />
+            <Field label="Your name" name="name" placeholder="E.g. Asad Je." />
+            <Field label="Phone number" name="phone" placeholder="E.g. +251946471234 …" />
             <div>
               <label className="text-xs uppercase tracking-widest text-gold">Service needed</label>
               <select name="service" className="mt-2 w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none">
