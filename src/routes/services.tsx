@@ -1,77 +1,332 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Section } from "@/components/site/Section";
-import { PricingCard } from "@/components/site/PricingCard";
 import { CTA } from "@/components/site/CTA";
-import { Globe, QrCode, LayoutGrid } from "lucide-react";
+import { Check, ArrowRight, Star } from "lucide-react";
+import { useState } from "react";
+import heroRestaurant from "@/assets/hero-restaurant.jpg";
+import aboutMenu from "@/assets/about-menu.jpg";
+import portfolioHotel from "@/assets/portfolio-hotel.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services & Pricing — MENOVO" },
-      { name: "description", content: "Websites, digital menus, and full digital packages for hotels, restaurants and cafés. Transparent pricing from $4." },
+      { name: "description", content: "Website design, digital QR menus and complete bundles for hotels, restaurants and cafés. Transparent pricing starting at $4." },
       { property: "og:title", content: "Services & Pricing — MENOVO" },
-      { property: "og:description", content: "Websites, digital menus and complete packages for hospitality." },
+      { property: "og:description", content: "Everything your hospitality business needs online — beautifully priced." },
     ],
   }),
   component: Services,
 });
 
+type Plan = {
+  name: string;
+  price: string;
+  desc: string;
+  features: string[];
+  popular?: boolean;
+  waMsg: string;
+};
+
+const menuPlans: Plan[] = [
+  {
+    name: "Basic",
+    price: "$4",
+    desc: "Perfect for getting started with a simple digital presence.",
+    features: ["QR Code", "Text Menu", "Basic Categories", "No Updates"],
+    waMsg: "the Basic Digital Menu plan",
+  },
+  {
+    name: "Standard",
+    price: "$10",
+    popular: true,
+    desc: "The most popular choice for growing restaurants and cafés.",
+    features: ["Professional QR Code", "QR Poster Included", "Photo Menu", "Organized Categories", "30 Days Updates"],
+    waMsg: "the Standard Digital Menu plan",
+  },
+  {
+    name: "Premium",
+    price: "$25",
+    desc: "Luxury presentation for discerning establishments.",
+    features: ["Luxury QR Menu", "Premium QR Poster", "Luxury Menu Design", "Photos Included", "Featured Categories", "Unlimited Updates"],
+    waMsg: "the Premium Digital Menu plan",
+  },
+];
+
+const websitePlans: Plan[] = [
+  {
+    name: "Basic",
+    price: "$10",
+    desc: "A clean starter site to get your business found online.",
+    features: ["Up to 3 pages", "Contact form", "Google Maps embed", "Mobile responsive"],
+    waMsg: "the Basic Website plan",
+  },
+  {
+    name: "Standard",
+    price: "$25",
+    popular: true,
+    desc: "A refined website with SEO and ongoing polish.",
+    features: ["Up to 8 pages", "Premium design", "SEO optimization", "Analytics setup", "30 days of updates"],
+    waMsg: "the Standard Website plan",
+  },
+  {
+    name: "Premium",
+    price: "$39",
+    desc: "A complete website with bookings, payments and support.",
+    features: ["Unlimited pages", "Booking form", "Payment integration", "Security monitoring", "Unlimited updates"],
+    waMsg: "the Premium Website plan",
+  },
+];
+
+const bundlePlans: Plan[] = [
+  {
+    name: "Basic",
+    price: "$14",
+    desc: "A simple website paired with a starter QR menu.",
+    features: ["3-page website", "QR text menu", "Contact form", "Mobile responsive"],
+    waMsg: "the Basic Bundle",
+  },
+  {
+    name: "Standard",
+    price: "$29",
+    popular: true,
+    desc: "The best-value combo for restaurants and cafés.",
+    features: ["8-page website", "Photo QR menu", "QR poster included", "SEO optimization", "30 days of updates"],
+    waMsg: "the Standard Bundle",
+  },
+  {
+    name: "Premium",
+    price: "$59",
+    desc: "A luxury digital presence — everything included.",
+    features: ["Unlimited pages", "Luxury QR menu", "Booking + payments", "Premium QR poster", "Unlimited updates"],
+    waMsg: "the Premium Bundle",
+  },
+];
+
+const tabs = [
+  { key: "menu", label: "Digital Menu", plans: menuPlans },
+  { key: "web", label: "Website", plans: websitePlans },
+  { key: "bundle", label: "Bundle Deal", plans: bundlePlans },
+] as const;
+
+function wa(msg: string) {
+  return `https://wa.me/251946471234?text=${encodeURIComponent(`Hello MENOVO,\n\nI'm interested in ${msg}.`)}`;
+}
+
 function Services() {
+  const [tab, setTab] = useState<(typeof tabs)[number]["key"]>("menu");
+  const active = tabs.find((t) => t.key === tab)!;
+
   return (
-    <div className="pt-28">
-      <Section eyebrow="Our Services" title={<>Three services. <span className="text-gradient-gold">Endless possibilities.</span></>} subtitle="Whether you need a single QR menu or a complete digital presence, MENOVO delivers with elegance and care.">
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            { icon: Globe, t: "Website", d: "A professional website that reflects the quality of your hospitality." },
-            { icon: QrCode, t: "Digital Menu", d: "A luxurious QR menu your customers will love using." },
-            { icon: LayoutGrid, t: "Website + Digital Menu", d: "One complete, cohesive digital experience." },
-          ].map((s) => (
-            <div key={s.t} className="card-luxe p-8">
-              <div className="h-12 w-12 grid place-items-center rounded-xl bg-gold/10 text-gold">
-                <s.icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-6 text-xl font-display font-semibold">{s.t}</h3>
-              <p className="mt-3 text-sm text-muted-foreground">{s.d}</p>
+    <div>
+      {/* Hero */}
+      <section className="relative pt-40 pb-24 sm:pt-48 sm:pb-32 overflow-hidden" style={{ background: "var(--gradient-navy)" }}>
+        <div className="absolute inset-0 grid-gold opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[40rem] rounded-full bg-gold/15 blur-3xl" />
+        <div className="relative mx-auto max-w-5xl px-5 sm:px-8 text-center">
+          <div className="inline-flex items-center rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.24em] text-gold">
+            Our Services
+          </div>
+          <h1 className="mt-8 font-display font-bold text-5xl sm:text-6xl md:text-7xl leading-[1.02]">
+            Everything your business
+            <br />
+            <span className="text-gradient-gold">needs online</span>
+          </h1>
+          <p className="mt-8 max-w-2xl mx-auto text-muted-foreground text-lg leading-relaxed">
+            Choose from our carefully crafted service packages — designed specifically for hotels, restaurants, and cafés of every size and budget.
+          </p>
+        </div>
+      </section>
+
+      {/* Service block 1: Website Design */}
+      <ServiceBlock
+        image={heroRestaurant}
+        eyebrow="Your business, beautifully online"
+        title="Website Design"
+        desc="A professional website is the foundation of your digital presence. We design and build fast, beautiful, mobile-first websites that help hotels, restaurants, and cafés get found on Google and convert visitors into customers."
+        features={[
+          "Rank higher on Google with built-in SEO",
+          "Customers can find your location instantly",
+          "Accept reservations and inquiries online",
+          "Works perfectly on every device",
+          "Fast loading — under 2 seconds",
+        ]}
+        cta="Get Website Design"
+        href={wa("Website Design")}
+      />
+
+      {/* Service block 2: Digital QR Menus (reversed) */}
+      <ServiceBlock
+        reverse
+        image={aboutMenu}
+        eyebrow="Menus customers love to use"
+        title="Digital QR Menus"
+        desc="Replace printed menus with a beautiful digital experience. Customers scan your QR code and instantly see your full menu with photos, categories, and prices — all on their own phone. Update anytime without reprinting."
+        features={[
+          "No more printing costs or outdated menus",
+          "Update prices and items in real-time",
+          "Beautiful photo presentation",
+          "Works on any smartphone",
+          "Includes professional QR code and poster",
+        ]}
+        cta="Get Digital QR Menus"
+        href={wa("Digital QR Menus")}
+      />
+
+      {/* Service block 3: Bundle */}
+      <ServiceBlock
+        image={portfolioHotel}
+        eyebrow="One cohesive brand experience"
+        title="Website + Digital Menu"
+        desc="Get the complete digital package — a stunning website and a luxurious QR menu that share the same brand identity. One team, one vision, one seamless experience from table to screen."
+        features={[
+          "Matching brand design across web and menu",
+          "Single point of contact and support",
+          "Best value — save vs. buying separately",
+          "Free QR poster included",
+          "30 days of free support",
+        ]}
+        cta="Get the Bundle"
+        href={wa("the Website + Digital Menu bundle")}
+      />
+
+      {/* Pricing */}
+      <section id="pricing" className="relative py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="inline-flex items-center rounded-full glass px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-gold">
+              Pricing
             </div>
-          ))}
-        </div>
-      </Section>
+            <h2 className="mt-5 font-display font-bold text-4xl sm:text-5xl leading-tight">
+              Transparent pricing, <span className="text-gradient-gold">zero surprises</span>
+            </h2>
+            <p className="mt-5 text-muted-foreground text-lg">
+              One-time payments. No subscriptions. No hidden fees.
+            </p>
+          </div>
 
-      <Section eyebrow="Digital Menu" title="QR menus that feel like fine dining.">
-        <div className="grid md:grid-cols-3 gap-6">
-          <PricingCard name="Basic" price="$4" features={["QR code", "Text menu", "Basic categories", "No updates"]} />
-          <PricingCard name="Standard" price="$10" highlight badge="Most Popular" features={["Professional QR", "QR poster", "Photo menu", "Organized categories", "30 days of updates"]} />
-          <PricingCard name="Premium" price="$25" features={["Luxury QR menu", "Premium QR poster", "Luxury menu design", "Photos", "Featured categories", "Unlimited updates"]} />
-        </div>
-      </Section>
+          {/* Tabs */}
+          <div className="mt-10 flex justify-center">
+            <div className="inline-flex glass rounded-full p-1.5">
+              {tabs.map((t) => (
+                <button
+                  key={t.key}
+                  onClick={() => setTab(t.key)}
+                  className={`rounded-full px-5 sm:px-6 py-2.5 text-sm font-medium transition ${
+                    tab === t.key
+                      ? "btn-gold"
+                      : "text-muted-foreground hover:text-gold"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+          </div>
 
-      <Section eyebrow="Website" title="Websites crafted with intention.">
-        <div className="grid md:grid-cols-3 gap-6">
-          <PricingCard name="Basic" price="$10" features={["Up to 3 pages", "Contact form", "Google Maps"]} />
-          <PricingCard name="Standard" price="$25" highlight badge="Most Popular" features={["Up to 8 pages", "Premium design", "SEO optimization", "30 days of updates"]} />
-          <PricingCard name="Premium" price="$39" features={["Unlimited pages", "Booking form", "Payment integration", "Security monitoring", "Unlimited updates"]} />
+          {/* Plan cards */}
+          <div className="mt-12 grid md:grid-cols-3 gap-6">
+            {active.plans.map((p) => (
+              <div
+                key={p.name}
+                className={`relative card-luxe p-8 flex flex-col ${
+                  p.popular ? "ring-1 ring-gold/60" : ""
+                }`}
+              >
+                {p.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full btn-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-1">
+                    <Star className="h-3 w-3" /> Most Popular
+                  </div>
+                )}
+                <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{p.name}</div>
+                <p className="mt-3 text-sm text-muted-foreground min-h-[3rem]">{p.desc}</p>
+                <div className="mt-6 flex items-baseline gap-2">
+                  <span className="text-5xl font-display font-bold text-gradient-gold">{p.price}</span>
+                  <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time</span>
+                </div>
+                <ul className="mt-8 space-y-3 text-sm flex-1">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2">
+                      <Check className="h-4 w-4 text-gold mt-0.5 shrink-0" />
+                      <span className="text-foreground/90">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={wa(p.waMsg)}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className={`mt-8 text-center rounded-full py-3 text-sm ${
+                    p.popular ? "btn-gold" : "btn-ghost-gold"
+                  }`}
+                >
+                  Get {p.name}
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
-      </Section>
-
-      <Section eyebrow="Complete Package" title={<>Website + Digital Menu — <span className="text-gradient-gold">Best Value</span></>}>
-        <div className="max-w-2xl mx-auto">
-          <PricingCard
-            name="Website + Digital Menu"
-            price="$29"
-            highlight
-            badge="Best Value"
-            features={[
-              "Professional website",
-              "Luxury QR menu",
-              "Free QR poster",
-              "30 days of free support",
-              "Cohesive brand experience",
-            ]}
-          />
-        </div>
-      </Section>
+      </section>
 
       <CTA />
     </div>
+  );
+}
+
+function ServiceBlock({
+  image,
+  eyebrow,
+  title,
+  desc,
+  features,
+  cta,
+  href,
+  reverse,
+}: {
+  image: string;
+  eyebrow: string;
+  title: string;
+  desc: string;
+  features: string[];
+  cta: string;
+  href: string;
+  reverse?: boolean;
+}) {
+  return (
+    <section className="relative py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className={`grid md:grid-cols-2 gap-12 lg:gap-16 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+          <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
+            <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover aspect-[4/3]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
+          </div>
+          <div>
+            <div className="inline-flex items-center rounded-full glass px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-gold">
+              {eyebrow}
+            </div>
+            <h2 className="mt-5 font-display font-bold text-4xl sm:text-5xl leading-tight">{title}</h2>
+            <p className="mt-5 text-muted-foreground leading-relaxed">{desc}</p>
+            <ul className="mt-8 space-y-3">
+              {features.map((f) => (
+                <li key={f} className="flex items-start gap-3">
+                  <span className="mt-0.5 h-5 w-5 rounded-full grid place-items-center bg-gold/15 text-gold shrink-0">
+                    <Check className="h-3 w-3" />
+                  </span>
+                  <span className="text-sm text-foreground/90">{f}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={href}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mt-9 inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm group"
+            >
+              {cta}
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
