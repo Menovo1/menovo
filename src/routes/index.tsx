@@ -79,23 +79,6 @@ function Home() {
         </div>
       </Section>
 
-      {/* Values */}
-      <Section eyebrow="What We Believe" title={<>Values that guide every <span className="text-gradient-gold">project.</span></>}>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            { t: "Elegance", d: "Every design should feel luxurious, timeless and effortless." },
-            { t: "Clarity", d: "Simple processes and honest communication—no jargon, no surprises." },
-            { t: "Care", d: "We treat every brand as if it were our own, down to the smallest detail." },
-            { t: "Impact", d: "Real results: more bookings, more orders, more guests discovering you." },
-          ].map((v) => (
-            <div key={v.t} className="card-luxe p-6">
-              <div className="text-xs uppercase tracking-widest text-gold">{v.t}</div>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.d}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* What We Do */}
       <Section eyebrow="What We Do" title={<>Three services. One <span className="text-gradient-gold">seamless</span> experience.</>}>
         <div className="grid md:grid-cols-3 gap-6">
@@ -113,6 +96,24 @@ function Home() {
           ))}
         </div>
       </Section>
+
+      {/* Values */}
+      <Section eyebrow="What We Believe" title={<>Values that guide every <span className="text-gradient-gold">project.</span></>}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {[
+            { t: "Elegance", d: "Luxurious, timeless design." },
+            { t: "Clarity", d: "Honest, simple communication." },
+            { t: "Care", d: "Every brand treated as our own." },
+            { t: "Impact", d: "Real results you can measure." },
+          ].map((v) => (
+            <div key={v.t} className="card-luxe p-6">
+              <div className="text-xs uppercase tracking-widest text-gold">{v.t}</div>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
 
       {/* Why Choose */}
       <Section eyebrow="Why MENOVO" title={<>Crafted for hospitality. Built for <span className="text-gradient-gold">results.</span></>}>
