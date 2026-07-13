@@ -52,8 +52,7 @@ function Portfolio() {
           </div>
         </div>
       </Section>
-
-      <CTA />
     </div>
+
   );
 }
