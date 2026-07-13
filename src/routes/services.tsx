@@ -293,9 +293,9 @@ function ServiceBlock({
             <div className="inline-flex items-center rounded-full glass px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-gold">
               {eyebrow}
             </div>
-            <h2 className="mt-5 font-display font-bold text-4xl sm:text-5xl leading-tight">{title}</h2>
-            <p className="mt-5 text-muted-foreground leading-relaxed">{desc}</p>
-            <ul className="mt-8 space-y-3">
+            <h2 className="mt-3 font-display font-bold text-4xl sm:text-5xl leading-tight">{title}</h2>
+            <p className="mt-3 text-muted-foreground leading-relaxed">{desc}</p>
+            <ul className="mt-5 space-y-2">
               {features.map((f) => (
                 <li key={f} className="flex items-start gap-3">
                   <span className="mt-0.5 h-5 w-5 rounded-full grid place-items-center bg-gold/15 text-gold shrink-0">
@@ -309,7 +309,8 @@ function ServiceBlock({
               href={href}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-9 inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm group"
+              className="mt-6 inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm group"
+
             >
               {cta}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
