@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CTA } from "@/components/site/CTA";
+
 import { Check, ArrowRight, Star } from "lucide-react";
 import { useState } from "react";
 import heroRestaurant from "@/assets/hero-restaurant.jpg";
