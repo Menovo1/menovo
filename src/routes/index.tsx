@@ -159,31 +159,11 @@ function Home() {
         </div>
       </Section>
 
-      {/* Process */}
-      <Section eyebrow="Our Process" title={<>Four elegant <span className="text-gradient-gold">steps.</span></>}>
-        <div className="relative">
-          <div className="hidden md:block absolute top-14 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 relative">
-            {steps.map((s, i) => (
-              <div key={s.t} className="text-center">
-                <div className="mx-auto h-16 w-16 rounded-full glass grid place-items-center text-gold ring-1 ring-gold/40">
-                  <s.icon className="h-7 w-7" />
-                </div>
-                <div className="mt-4 text-xs uppercase tracking-widest text-gold">Step {i + 1}</div>
-                <h4 className="mt-1 font-display font-semibold text-lg">{s.t}</h4>
-                <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
       {/* FAQ */}
       <Section eyebrow="FAQ" title={<>Questions, <span className="text-gradient-gold">answered.</span></>}>
         <Faq />
       </Section>
 
-      <CTA />
     </>
   );
 }
