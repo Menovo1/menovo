@@ -36,12 +36,8 @@ const why = [
   { icon: LifeBuoy, t: "24/7 Support", d: "We are always here—whenever you need us." },
 ];
 
-const steps = [
-  { icon: MessageSquare, t: "Contact Us", d: "Tell us about your business and goals." },
-  { icon: Calendar, t: "Book a Call", d: "A quick call to align on vision and scope." },
-  { icon: Hammer, t: "We Build", d: "We design and build your project end-to-end." },
-  { icon: Rocket, t: "Launch", d: "You go live and start being discovered online." },
-];
+const steps: never[] = [];
+
 
 const faqs = [
   { q: "How long does a project take?", a: "Most projects launch within 3–10 days depending on scope." },
