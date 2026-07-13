@@ -124,26 +124,8 @@ function Services() {
         </div>
       </section>
 
-      {/* Service block 1: Website Design */}
+      {/* Service block 1: Digital QR Menus */}
       <ServiceBlock
-        image={heroRestaurant}
-        eyebrow="Your business, beautifully online"
-        title="Website Design"
-        desc="A professional website is the foundation of your digital presence. We design and build fast, beautiful, mobile-first websites that help hotels, restaurants, and cafés get found on Google and convert visitors into customers."
-        features={[
-          "Rank higher on Google with built-in SEO",
-          "Customers can find your location instantly",
-          "Accept reservations and inquiries online",
-          "Works perfectly on every device",
-          "Fast loading — under 2 seconds",
-        ]}
-        cta="Get Website Design"
-        href={wa("Website Design")}
-      />
-
-      {/* Service block 2: Digital QR Menus (reversed) */}
-      <ServiceBlock
-        reverse
         image={aboutMenu}
         eyebrow="Menus customers love to use"
         title="Digital QR Menus"
@@ -157,6 +139,24 @@ function Services() {
         ]}
         cta="Get Digital QR Menus"
         href={wa("Digital QR Menus")}
+      />
+
+      {/* Service block 2: Website Design (reversed) */}
+      <ServiceBlock
+        reverse
+        image={heroRestaurant}
+        eyebrow="Your business, beautifully online"
+        title="Website Design"
+        desc="A professional website is the foundation of your digital presence. We design and build fast, beautiful, mobile-first websites that help hotels, restaurants, and cafés get found on Google and convert visitors into customers."
+        features={[
+          "Rank higher on Google with built-in SEO",
+          "Customers can find your location instantly",
+          "Accept reservations and inquiries online",
+          "Works perfectly on every device",
+          "Fast loading — under 2 seconds",
+        ]}
+        cta="Get Website Design"
+        href={wa("Website Design")}
       />
 
       {/* Service block 3: Bundle */}
@@ -175,6 +175,7 @@ function Services() {
         cta="Get the Bundle"
         href={wa("the Website + Digital Menu bundle")}
       />
+
 
       {/* Pricing */}
       <section id="pricing" className="relative py-24 sm:py-32">
