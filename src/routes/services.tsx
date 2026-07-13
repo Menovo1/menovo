@@ -211,52 +211,53 @@ function Services() {
             </div>
           </div>
 
-          {/* Plan cards */}
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {active.plans.map((p) => (
-              <div
-                key={p.name}
-                className={`relative card-luxe p-8 flex flex-col ${
-                  p.popular ? "ring-1 ring-gold/60" : ""
-                }`}
-              >
-                {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full btn-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-1">
-                    <Star className="h-3 w-3" /> Most Popular
-                  </div>
-                )}
-                <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{p.name}</div>
-                <p className="mt-3 text-sm text-muted-foreground min-h-[3rem]">{p.desc}</p>
-                <div className="mt-6 flex items-baseline gap-2">
-                  <span className="text-5xl font-display font-bold text-gradient-gold">{p.price}</span>
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time</span>
-                </div>
-                <ul className="mt-8 space-y-3 text-sm flex-1">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-gold mt-0.5 shrink-0" />
-                      <span className="text-foreground/90">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={wa(p.waMsg)}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className={`mt-8 text-center rounded-full py-3 text-sm ${
-                    p.popular ? "btn-gold" : "btn-ghost-gold"
+          {/* Plan cards — horizontally scrollable */}
+          <div className="mt-12 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
+            <div className="flex gap-6 pb-4 md:justify-center">
+              {active.plans.map((p) => (
+                <div
+                  key={p.name}
+                  className={`relative card-luxe p-8 flex flex-col shrink-0 snap-center w-[85vw] sm:w-[360px] ${
+                    p.popular ? "ring-1 ring-gold/60" : ""
                   }`}
                 >
-                  Get {p.name}
-                </a>
-              </div>
-            ))}
+                  {p.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full btn-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-1">
+                      <Star className="h-3 w-3" /> Recommended
+                    </div>
+                  )}
+                  <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{p.name}</div>
+                  <p className="mt-3 text-sm text-muted-foreground min-h-[3rem]">{p.desc}</p>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="text-5xl font-display font-bold text-gradient-gold">{p.price}</span>
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time</span>
+                  </div>
+                  <ul className="mt-8 space-y-3 text-sm flex-1">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-gold mt-0.5 shrink-0" />
+                        <span className="text-foreground/90">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={wa(p.waMsg)}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={`mt-8 text-center rounded-full py-3 text-sm ${
+                      p.popular ? "btn-gold" : "btn-ghost-gold"
+                    }`}
+                  >
+                    Get {p.name}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-
-      <CTA />
     </div>
+
   );
 }
 
