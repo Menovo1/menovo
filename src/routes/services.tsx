@@ -79,34 +79,21 @@ const websitePlans: Plan[] = [
 
 const bundlePlans: Plan[] = [
   {
-    name: "Basic",
-    price: "$14",
-    desc: "A simple website paired with a starter QR menu.",
-    features: ["3-page website", "QR text menu", "Contact form", "Mobile responsive"],
-    waMsg: "the Basic Bundle",
-  },
-  {
-    name: "Standard",
+    name: "Bundle Deal",
     price: "$29",
     popular: true,
-    desc: "The best-value combo for restaurants and cafés.",
-    features: ["8-page website", "Photo QR menu", "QR poster included", "SEO optimization", "30 days of updates"],
-    waMsg: "the Standard Bundle",
-  },
-  {
-    name: "Premium",
-    price: "$59",
-    desc: "A luxury digital presence — everything included.",
-    features: ["Unlimited pages", "Luxury QR menu", "Booking + payments", "Premium QR poster", "Unlimited updates"],
-    waMsg: "the Premium Bundle",
+    desc: "Everything you need — website and digital menu, together.",
+    features: ["Professional Website", "Digital QR Menu", "Free QR Poster", "30 Days Free Support"],
+    waMsg: "the Website + Digital Menu Bundle Deal",
   },
 ];
 
 const tabs = [
   { key: "menu", label: "Digital Menu", plans: menuPlans },
   { key: "web", label: "Website", plans: websitePlans },
-  { key: "bundle", label: "Bundle Deal", plans: bundlePlans },
+  { key: "bundle", label: "Website + Digital Menu", plans: bundlePlans },
 ] as const;
+
 
 function wa(msg: string) {
   return `https://wa.me/251946471234?text=${encodeURIComponent(`Hello MENOVO,\n\nI'm interested in ${msg}.`)}`;
