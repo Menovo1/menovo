@@ -36,7 +36,7 @@ const why = [
   { icon: LifeBuoy, t: "24/7 Support", d: "We are always here—whenever you need us." },
 ];
 
-const steps: never[] = [];
+
 
 
 const faqs = [
