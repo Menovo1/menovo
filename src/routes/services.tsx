@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CTA } from "@/components/site/CTA";
+
 import { Check, ArrowRight, Star } from "lucide-react";
 import { useState } from "react";
 import heroRestaurant from "@/assets/hero-restaurant.jpg";
@@ -79,34 +79,21 @@ const websitePlans: Plan[] = [
 
 const bundlePlans: Plan[] = [
   {
-    name: "Basic",
-    price: "$14",
-    desc: "A simple website paired with a starter QR menu.",
-    features: ["3-page website", "QR text menu", "Contact form", "Mobile responsive"],
-    waMsg: "the Basic Bundle",
-  },
-  {
-    name: "Standard",
+    name: "Bundle Deal",
     price: "$29",
     popular: true,
-    desc: "The best-value combo for restaurants and cafés.",
-    features: ["8-page website", "Photo QR menu", "QR poster included", "SEO optimization", "30 days of updates"],
-    waMsg: "the Standard Bundle",
-  },
-  {
-    name: "Premium",
-    price: "$59",
-    desc: "A luxury digital presence — everything included.",
-    features: ["Unlimited pages", "Luxury QR menu", "Booking + payments", "Premium QR poster", "Unlimited updates"],
-    waMsg: "the Premium Bundle",
+    desc: "Everything you need — website and digital menu, together.",
+    features: ["Professional Website", "Digital QR Menu", "Free QR Poster", "30 Days Free Support"],
+    waMsg: "the Website + Digital Menu Bundle Deal",
   },
 ];
 
 const tabs = [
   { key: "menu", label: "Digital Menu", plans: menuPlans },
   { key: "web", label: "Website", plans: websitePlans },
-  { key: "bundle", label: "Bundle Deal", plans: bundlePlans },
+  { key: "bundle", label: "Website + Digital Menu", plans: bundlePlans },
 ] as const;
+
 
 function wa(msg: string) {
   return `https://wa.me/251946471234?text=${encodeURIComponent(`Hello MENOVO,\n\nI'm interested in ${msg}.`)}`;
@@ -137,26 +124,8 @@ function Services() {
         </div>
       </section>
 
-      {/* Service block 1: Website Design */}
+      {/* Service block 1: Digital QR Menus */}
       <ServiceBlock
-        image={heroRestaurant}
-        eyebrow="Your business, beautifully online"
-        title="Website Design"
-        desc="A professional website is the foundation of your digital presence. We design and build fast, beautiful, mobile-first websites that help hotels, restaurants, and cafés get found on Google and convert visitors into customers."
-        features={[
-          "Rank higher on Google with built-in SEO",
-          "Customers can find your location instantly",
-          "Accept reservations and inquiries online",
-          "Works perfectly on every device",
-          "Fast loading — under 2 seconds",
-        ]}
-        cta="Get Website Design"
-        href={wa("Website Design")}
-      />
-
-      {/* Service block 2: Digital QR Menus (reversed) */}
-      <ServiceBlock
-        reverse
         image={aboutMenu}
         eyebrow="Menus customers love to use"
         title="Digital QR Menus"
@@ -170,6 +139,24 @@ function Services() {
         ]}
         cta="Get Digital QR Menus"
         href={wa("Digital QR Menus")}
+      />
+
+      {/* Service block 2: Website Design (reversed) */}
+      <ServiceBlock
+        reverse
+        image={heroRestaurant}
+        eyebrow="Your business, beautifully online"
+        title="Website Design"
+        desc="A professional website is the foundation of your digital presence. We design and build fast, beautiful, mobile-first websites that help hotels, restaurants, and cafés get found on Google and convert visitors into customers."
+        features={[
+          "Rank higher on Google with built-in SEO",
+          "Customers can find your location instantly",
+          "Accept reservations and inquiries online",
+          "Works perfectly on every device",
+          "Fast loading — under 2 seconds",
+        ]}
+        cta="Get Website Design"
+        href={wa("Website Design")}
       />
 
       {/* Service block 3: Bundle */}
@@ -188,6 +175,7 @@ function Services() {
         cta="Get the Bundle"
         href={wa("the Website + Digital Menu bundle")}
       />
+
 
       {/* Pricing */}
       <section id="pricing" className="relative py-24 sm:py-32">
@@ -223,52 +211,53 @@ function Services() {
             </div>
           </div>
 
-          {/* Plan cards */}
-          <div className="mt-12 grid md:grid-cols-3 gap-6">
-            {active.plans.map((p) => (
-              <div
-                key={p.name}
-                className={`relative card-luxe p-8 flex flex-col ${
-                  p.popular ? "ring-1 ring-gold/60" : ""
-                }`}
-              >
-                {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full btn-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-1">
-                    <Star className="h-3 w-3" /> Most Popular
-                  </div>
-                )}
-                <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{p.name}</div>
-                <p className="mt-3 text-sm text-muted-foreground min-h-[3rem]">{p.desc}</p>
-                <div className="mt-6 flex items-baseline gap-2">
-                  <span className="text-5xl font-display font-bold text-gradient-gold">{p.price}</span>
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time</span>
-                </div>
-                <ul className="mt-8 space-y-3 text-sm flex-1">
-                  {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <Check className="h-4 w-4 text-gold mt-0.5 shrink-0" />
-                      <span className="text-foreground/90">{f}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={wa(p.waMsg)}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className={`mt-8 text-center rounded-full py-3 text-sm ${
-                    p.popular ? "btn-gold" : "btn-ghost-gold"
+          {/* Plan cards — horizontally scrollable */}
+          <div className="mt-12 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
+            <div className="flex gap-6 pb-4 md:justify-center">
+              {active.plans.map((p) => (
+                <div
+                  key={p.name}
+                  className={`relative card-luxe p-8 flex flex-col shrink-0 snap-center w-[85vw] sm:w-[360px] ${
+                    p.popular ? "ring-1 ring-gold/60" : ""
                   }`}
                 >
-                  Get {p.name}
-                </a>
-              </div>
-            ))}
+                  {p.popular && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full btn-gold px-3 py-1 text-[10px] font-bold uppercase tracking-widest inline-flex items-center gap-1">
+                      <Star className="h-3 w-3" /> Recommended
+                    </div>
+                  )}
+                  <div className="text-xs uppercase tracking-[0.22em] text-muted-foreground">{p.name}</div>
+                  <p className="mt-3 text-sm text-muted-foreground min-h-[3rem]">{p.desc}</p>
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="text-5xl font-display font-bold text-gradient-gold">{p.price}</span>
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time</span>
+                  </div>
+                  <ul className="mt-8 space-y-3 text-sm flex-1">
+                    {p.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2">
+                        <Check className="h-4 w-4 text-gold mt-0.5 shrink-0" />
+                        <span className="text-foreground/90">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a
+                    href={wa(p.waMsg)}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={`mt-8 text-center rounded-full py-3 text-sm ${
+                      p.popular ? "btn-gold" : "btn-ghost-gold"
+                    }`}
+                  >
+                    Get {p.name}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
-
-      <CTA />
     </div>
+
   );
 }
 
@@ -292,9 +281,10 @@ function ServiceBlock({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-20 sm:py-24">
+    <section className="relative py-10 sm:py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className={`grid md:grid-cols-2 gap-12 lg:gap-16 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+        <div className={`grid md:grid-cols-2 gap-6 lg:gap-8 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+
           <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
             <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover aspect-[4/3]" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
@@ -303,9 +293,9 @@ function ServiceBlock({
             <div className="inline-flex items-center rounded-full glass px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-gold">
               {eyebrow}
             </div>
-            <h2 className="mt-5 font-display font-bold text-4xl sm:text-5xl leading-tight">{title}</h2>
-            <p className="mt-5 text-muted-foreground leading-relaxed">{desc}</p>
-            <ul className="mt-8 space-y-3">
+            <h2 className="mt-3 font-display font-bold text-4xl sm:text-5xl leading-tight">{title}</h2>
+            <p className="mt-3 text-muted-foreground leading-relaxed">{desc}</p>
+            <ul className="mt-5 space-y-2">
               {features.map((f) => (
                 <li key={f} className="flex items-start gap-3">
                   <span className="mt-0.5 h-5 w-5 rounded-full grid place-items-center bg-gold/15 text-gold shrink-0">
@@ -319,7 +309,8 @@ function ServiceBlock({
               href={href}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-9 inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm group"
+              className="mt-6 inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm group"
+
             >
               {cta}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { CTA } from "@/components/site/CTA";
+
 import portfolioImg from "@/assets/portfolio-hotel.jpg";
 import { ArrowRight } from "lucide-react";
 
@@ -52,8 +52,7 @@ function Portfolio() {
           </div>
         </div>
       </Section>
-
-      <CTA />
     </div>
+
   );
 }

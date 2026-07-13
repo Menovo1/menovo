@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { Hero } from "@/components/site/Hero";
-import { CTA } from "@/components/site/CTA";
 
 import {
   Globe, QrCode, LayoutGrid, BadgeDollarSign, Zap, Sparkles, Smartphone, Workflow, LifeBuoy,
-  MessageSquare, Calendar, Hammer, Rocket, ArrowRight, ChevronDown,
+  ArrowRight, ChevronDown,
 } from "lucide-react";
+
 import aboutImg from "@/assets/about-menu.jpg";
 import portfolioImg from "@/assets/portfolio-hotel.jpg";
 import { useState } from "react";
@@ -36,12 +36,8 @@ const why = [
   { icon: LifeBuoy, t: "24/7 Support", d: "We are always here—whenever you need us." },
 ];
 
-const steps = [
-  { icon: MessageSquare, t: "Contact Us", d: "Tell us about your business and goals." },
-  { icon: Calendar, t: "Book a Call", d: "A quick call to align on vision and scope." },
-  { icon: Hammer, t: "We Build", d: "We design and build your project end-to-end." },
-  { icon: Rocket, t: "Launch", d: "You go live and start being discovered online." },
-];
+
+
 
 const faqs = [
   { q: "How long does a project take?", a: "Most projects launch within 3–10 days depending on scope." },
@@ -83,23 +79,6 @@ function Home() {
         </div>
       </Section>
 
-      {/* Values */}
-      <Section eyebrow="What We Believe" title={<>Values that guide every <span className="text-gradient-gold">project.</span></>}>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            { t: "Elegance", d: "Every design should feel luxurious, timeless and effortless." },
-            { t: "Clarity", d: "Simple processes and honest communication—no jargon, no surprises." },
-            { t: "Care", d: "We treat every brand as if it were our own, down to the smallest detail." },
-            { t: "Impact", d: "Real results: more bookings, more orders, more guests discovering you." },
-          ].map((v) => (
-            <div key={v.t} className="card-luxe p-6">
-              <div className="text-xs uppercase tracking-widest text-gold">{v.t}</div>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.d}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* What We Do */}
       <Section eyebrow="What We Do" title={<>Three services. One <span className="text-gradient-gold">seamless</span> experience.</>}>
         <div className="grid md:grid-cols-3 gap-6">
@@ -117,6 +96,24 @@ function Home() {
           ))}
         </div>
       </Section>
+
+      {/* Values */}
+      <Section eyebrow="What We Believe" title={<>Values that guide every <span className="text-gradient-gold">project.</span></>}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {[
+            { t: "Elegance", d: "Luxurious, timeless design." },
+            { t: "Clarity", d: "Honest, simple communication." },
+            { t: "Care", d: "Every brand treated as our own." },
+            { t: "Impact", d: "Real results you can measure." },
+          ].map((v) => (
+            <div key={v.t} className="card-luxe p-6">
+              <div className="text-xs uppercase tracking-widest text-gold">{v.t}</div>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
 
       {/* Why Choose */}
       <Section eyebrow="Why MENOVO" title={<>Crafted for hospitality. Built for <span className="text-gradient-gold">results.</span></>}>
@@ -162,31 +159,11 @@ function Home() {
         </div>
       </Section>
 
-      {/* Process */}
-      <Section eyebrow="Our Process" title={<>Four elegant <span className="text-gradient-gold">steps.</span></>}>
-        <div className="relative">
-          <div className="hidden md:block absolute top-14 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 relative">
-            {steps.map((s, i) => (
-              <div key={s.t} className="text-center">
-                <div className="mx-auto h-16 w-16 rounded-full glass grid place-items-center text-gold ring-1 ring-gold/40">
-                  <s.icon className="h-7 w-7" />
-                </div>
-                <div className="mt-4 text-xs uppercase tracking-widest text-gold">Step {i + 1}</div>
-                <h4 className="mt-1 font-display font-semibold text-lg">{s.t}</h4>
-                <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
       {/* FAQ */}
       <Section eyebrow="FAQ" title={<>Questions, <span className="text-gradient-gold">answered.</span></>}>
         <Faq />
       </Section>
 
-      <CTA />
     </>
   );
 }
