@@ -1,12 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
 import { Hero } from "@/components/site/Hero";
-import { CTA } from "@/components/site/CTA";
 
 import {
   Globe, QrCode, LayoutGrid, BadgeDollarSign, Zap, Sparkles, Smartphone, Workflow, LifeBuoy,
-  MessageSquare, Calendar, Hammer, Rocket, ArrowRight, ChevronDown,
+  ArrowRight, ChevronDown,
 } from "lucide-react";
+
 import aboutImg from "@/assets/about-menu.jpg";
 import portfolioImg from "@/assets/portfolio-hotel.jpg";
 import { useState } from "react";
