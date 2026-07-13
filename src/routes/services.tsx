@@ -281,9 +281,10 @@ function ServiceBlock({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-20 sm:py-24">
+    <section className="relative py-10 sm:py-14">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className={`grid md:grid-cols-2 gap-12 lg:gap-16 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+        <div className={`grid md:grid-cols-2 gap-6 lg:gap-8 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+
           <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
             <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover aspect-[4/3]" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
