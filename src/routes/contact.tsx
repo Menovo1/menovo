@@ -41,9 +41,9 @@ function Contact() {
   };
 
   return (
-    <div className="pt-28">
+    <div className="pt-24">
       <Section eyebrow="Get in touch" title={<>Let's begin your <span className="text-gradient-gold">digital story.</span></>} subtitle="Tell us a little about your business—we'll take it from there.">
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid lg:grid-cols-5 gap-6">
           <form onSubmit={onSubmit} className="lg:col-span-3 card-luxe p-8 space-y-5">
             <Field label="Your name" name="name" placeholder="E.g. Asad Je." />
             <Field label="Phone number" name="phone" placeholder="E.g. +251946471234 …" />
