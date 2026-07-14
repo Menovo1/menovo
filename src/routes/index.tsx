@@ -57,11 +57,11 @@ function Home() {
 
       {/* About */}
       <Section id="about" eyebrow="About MENOVO" title={<>We put every hospitality brand on the <span className="text-gradient-gold">map.</span></>}>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 text-foreground/85 leading-relaxed">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="space-y-4 text-foreground/85 leading-relaxed">
             <p>Too many great hotels, restaurants and cafeterias go unnoticed—not because their food is bad, but because nobody can find them online.</p>
             <p><span className="text-gold font-semibold">MENOVO exists to change that.</span> We make it simple and affordable for any restaurant, café, or hotel to have a professional digital presence.</p>
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-2 gap-4 pt-2">
               <div className="glass rounded-xl p-4">
                 <div className="text-sm uppercase tracking-widest text-gold font-semibold">Mission</div>
                 <p className="mt-2 text-sm text-muted-foreground">Make every HOTEL, RESTAURANT and CAFÉ digitally visible—simply and affordably.</p>

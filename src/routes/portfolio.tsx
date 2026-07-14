@@ -20,13 +20,13 @@ export const Route = createFileRoute("/portfolio")({
 
 function Portfolio() {
   return (
-    <div className="pt-28">
+    <div className="pt-24">
       <Section eyebrow="Portfolio" title={<>A quiet showcase of <span className="text-gradient-gold">craft.</span></>} subtitle="Each project is an invitation to discover a hospitality brand in its fullest expression online.">
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4">
           <article className="group relative overflow-hidden rounded-3xl border border-gold/15">
             <img src={portfolioImg} alt="Aurea Hotel & Suites" width={1400} height={1000} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
+            <div className="absolute bottom-0 left-0 right-0 p-6">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] uppercase tracking-[0.22em] text-gold px-2 py-1 rounded-full border border-gold/40">Hotel</span>
                 <span className="text-[10px] uppercase tracking-[0.22em] text-gold/80 px-2 py-1 rounded-full border border-gold/20">Website</span>
@@ -41,9 +41,9 @@ function Portfolio() {
             </div>
           </article>
 
-          <div className="grid gap-6">
+          <div className="grid gap-4">
             {["Cafés", "Restaurants", "Boutique Hotels"].map((t) => (
-              <div key={t} className="card-luxe p-8">
+              <div key={t} className="card-luxe p-6">
                 <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Coming soon</div>
                 <h3 className="mt-2 text-xl font-display font-semibold">{t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">New MENOVO projects launching soon. Want yours featured next?</p>

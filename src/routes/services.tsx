@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Check, ArrowRight, Star, ChevronDown } from "lucide-react";
+import { Check, ArrowRight, Star } from "lucide-react";
 import { useState } from "react";
 import heroRestaurant from "@/assets/hero-restaurant.jpg";
 import aboutMenu from "@/assets/about-menu.jpg";
@@ -106,19 +106,19 @@ function Services() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative pt-32 pb-12 sm:pt-40 sm:pb-20 overflow-hidden" style={{ background: "var(--gradient-navy)" }}>
+      <section className="relative pt-28 pb-8 sm:pt-36 sm:pb-12 overflow-hidden" style={{ background: "var(--gradient-navy)" }}>
         <div className="absolute inset-0 grid-gold opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[40rem] rounded-full bg-gold/15 blur-3xl" />
         <div className="relative mx-auto max-w-5xl px-5 sm:px-8 text-center">
           <div className="inline-flex items-center rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.24em] text-gold">
             Our Services
           </div>
-          <h1 className="mt-5 font-display font-bold text-4xl sm:text-6xl md:text-7xl leading-[1.02]">
+          <h1 className="mt-4 font-display font-bold text-4xl sm:text-6xl md:text-7xl leading-[1.02]">
             Everything your business
             <br />
             <span className="text-gradient-gold">needs online</span>
           </h1>
-          <p className="mt-5 max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg leading-relaxed">
+          <p className="mt-3 max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg leading-relaxed">
             Choose from our carefully crafted service packages — designed specifically for hotels, restaurants, and cafés of every size and budget.
           </p>
         </div>
@@ -179,44 +179,44 @@ function Services() {
 
 
       {/* Pricing */}
-      <section id="pricing" className="relative py-12 sm:py-20">
+      <section id="pricing" className="relative py-8 sm:py-12">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center rounded-full glass px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-gold">
               Pricing
             </div>
-            <h2 className="mt-4 font-display font-bold text-3xl sm:text-5xl leading-tight">
+            <h2 className="mt-3 font-display font-bold text-3xl sm:text-5xl leading-tight">
               Transparent pricing, <span className="text-gradient-gold">zero surprises</span>
             </h2>
-            <p className="mt-3 text-muted-foreground text-base sm:text-lg">
+            <p className="mt-2 text-muted-foreground text-base sm:text-lg">
               One-time payments. No subscriptions. No hidden fees.
             </p>
           </div>
 
-          {/* Category selector */}
-          <div className="mt-8 max-w-md mx-auto">
-            <label className="block text-[11px] uppercase tracking-[0.24em] text-gold text-center mb-2">
-              Choose a category
-            </label>
-            <div className="relative">
-              <select
-                value={tab}
-                onChange={(e) => setTab(e.target.value as (typeof tabs)[number]["key"])}
-                className="w-full appearance-none glass rounded-full px-5 py-3 pr-12 text-sm font-medium text-foreground bg-transparent border border-gold/30 focus:outline-none focus:ring-2 focus:ring-gold/50 cursor-pointer"
-              >
-                {tabs.map((t) => (
-                  <option key={t.key} value={t.key} className="bg-navy text-foreground">
-                    {t.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-gold" />
-            </div>
+          {/* Category tabs */}
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {tabs.map((t) => {
+              const active = t.key === tab;
+              return (
+                <button
+                  key={t.key}
+                  type="button"
+                  onClick={() => setTab(t.key)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                    active
+                      ? "bg-gold text-navy shadow-gold"
+                      : "glass text-foreground/80 hover:text-gold"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              );
+            })}
           </div>
 
 
           {/* Plan cards — horizontally scrollable */}
-          <div className="mt-12 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
+          <div className="mt-8 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
             <div className="flex gap-6 pb-4 md:justify-center">
               {active.plans.map((p) => (
                 <div
@@ -285,7 +285,7 @@ function ServiceBlock({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-6 sm:py-10">
+    <section className="relative py-4 sm:py-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className={`grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-center ${reverse ? "[&>*:first-child]:order-2" : ""}`}>
 
