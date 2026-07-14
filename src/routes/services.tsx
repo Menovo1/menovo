@@ -281,27 +281,27 @@ function ServiceBlock({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-10 sm:py-14">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className={`grid md:grid-cols-2 gap-6 lg:gap-8 items-center ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
+    <section className="relative py-6 sm:py-10">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8">
+        <div className={`grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-center ${reverse ? "[&>*:first-child]:order-2" : ""}`}>
 
-          <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
+          <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-gold/20 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.7)]">
             <img src={image} alt={title} loading="lazy" className="w-full h-full object-cover aspect-[4/3]" />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
           </div>
-          <div>
-            <div className="inline-flex items-center rounded-full glass px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-gold">
+          <div className="min-w-0">
+            <div className="inline-flex items-center rounded-full glass px-2 py-0.5 text-[9px] sm:text-[11px] uppercase tracking-[0.18em] sm:tracking-[0.24em] text-gold">
               {eyebrow}
             </div>
-            <h2 className="mt-3 font-display font-bold text-4xl sm:text-5xl leading-tight">{title}</h2>
-            <p className="mt-3 text-muted-foreground leading-relaxed">{desc}</p>
-            <ul className="mt-5 space-y-2">
+            <h2 className="mt-2 font-display font-bold text-lg sm:text-3xl md:text-4xl lg:text-5xl leading-tight">{title}</h2>
+            <p className="mt-2 hidden sm:block text-muted-foreground text-sm sm:text-base leading-relaxed">{desc}</p>
+            <ul className="mt-2 sm:mt-4 space-y-1 sm:space-y-2">
               {features.map((f) => (
-                <li key={f} className="flex items-start gap-3">
-                  <span className="mt-0.5 h-5 w-5 rounded-full grid place-items-center bg-gold/15 text-gold shrink-0">
-                    <Check className="h-3 w-3" />
+                <li key={f} className="flex items-start gap-2">
+                  <span className="mt-0.5 h-4 w-4 sm:h-5 sm:w-5 rounded-full grid place-items-center bg-gold/15 text-gold shrink-0">
+                    <Check className="h-2.5 w-2.5 sm:h-3 sm:w-3" />
                   </span>
-                  <span className="text-sm text-foreground/90">{f}</span>
+                  <span className="text-xs sm:text-sm text-foreground/90">{f}</span>
                 </li>
               ))}
             </ul>
@@ -309,11 +309,10 @@ function ServiceBlock({
               href={href}
               target="_blank"
               rel="noreferrer noopener"
-              className="mt-6 inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm group"
-
+              className="mt-3 sm:mt-5 inline-flex items-center gap-2 rounded-full btn-gold px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm group"
             >
               {cta}
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
+              <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:translate-x-1 transition" />
             </a>
           </div>
         </div>
@@ -321,3 +320,4 @@ function ServiceBlock({
     </section>
   );
 }
+
