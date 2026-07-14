@@ -106,23 +106,24 @@ function Services() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative pt-40 pb-24 sm:pt-48 sm:pb-32 overflow-hidden" style={{ background: "var(--gradient-navy)" }}>
+      <section className="relative pt-32 pb-12 sm:pt-40 sm:pb-20 overflow-hidden" style={{ background: "var(--gradient-navy)" }}>
         <div className="absolute inset-0 grid-gold opacity-30 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[40rem] rounded-full bg-gold/15 blur-3xl" />
         <div className="relative mx-auto max-w-5xl px-5 sm:px-8 text-center">
           <div className="inline-flex items-center rounded-full glass px-4 py-1.5 text-[11px] uppercase tracking-[0.24em] text-gold">
             Our Services
           </div>
-          <h1 className="mt-8 font-display font-bold text-5xl sm:text-6xl md:text-7xl leading-[1.02]">
+          <h1 className="mt-5 font-display font-bold text-4xl sm:text-6xl md:text-7xl leading-[1.02]">
             Everything your business
             <br />
             <span className="text-gradient-gold">needs online</span>
           </h1>
-          <p className="mt-8 max-w-2xl mx-auto text-muted-foreground text-lg leading-relaxed">
+          <p className="mt-5 max-w-2xl mx-auto text-muted-foreground text-base sm:text-lg leading-relaxed">
             Choose from our carefully crafted service packages — designed specifically for hotels, restaurants, and cafés of every size and budget.
           </p>
         </div>
       </section>
+
 
       {/* Service block 1: Digital QR Menus */}
       <ServiceBlock
