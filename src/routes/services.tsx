@@ -216,7 +216,7 @@ function Services() {
 
 
           {/* Plan cards — horizontally scrollable */}
-          <div className="mt-12 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
+          <div className="mt-8 -mx-5 sm:-mx-8 px-5 sm:px-8 overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
             <div className="flex gap-6 pb-4 md:justify-center">
               {active.plans.map((p) => (
                 <div
