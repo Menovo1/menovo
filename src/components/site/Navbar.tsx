@@ -31,11 +31,17 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 shrink-0 group">
-          <img src={logoAsset.url} alt="MENOVO" width={40} height={40} className="h-10 w-10 rounded-full ring-1 ring-gold/40 group-hover:ring-gold transition" />
+        <Link to="/" className="flex items-center gap-3 shrink-0 group min-w-0">
+          <img src={logoAsset.url} alt="MENOVO" width={40} height={40} className="h-10 w-10 rounded-full ring-1 ring-gold/40 group-hover:ring-gold transition shrink-0" />
           <div className="hidden sm:block leading-none">
             <div className="font-display font-bold text-lg tracking-wide text-gradient-gold">MENOVO</div>
             <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">From Table to Screen</div>
+          </div>
+          <div className="sm:hidden leading-none min-w-0">
+            <div className="font-display font-bold text-base tracking-wide text-gradient-gold truncate">MENOVO</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-gold/80 truncate">
+              {links.find((l) => l.to === location.pathname)?.label ?? "Menu"}
+            </div>
           </div>
         </Link>
 
