@@ -285,7 +285,7 @@ function ServiceBlock({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-6 sm:py-10">
+    <section className="relative py-4 sm:py-6">
       <div className="mx-auto max-w-7xl px-4 sm:px-8">
         <div className={`grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-center ${reverse ? "[&>*:first-child]:order-2" : ""}`}>
 
