@@ -96,7 +96,7 @@ const tabs = [
 
 
 function wa(msg: string) {
-  return `https://wa.me/251946471234?text=${encodeURIComponent(`Hello MENOVO,\n\nI'm interested in ${msg}.`)}`;
+  return `https://wa.me/251777775911?text=${encodeURIComponent(`Hello MENOVO,\n\nI'm interested in ${msg}.`)}`;
 }
 
 function Services() {

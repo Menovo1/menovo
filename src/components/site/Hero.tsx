@@ -65,7 +65,7 @@ export function Hero() {
           <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm">
             Get Started <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
           </Link>
-          <a href="https://wa.me/251946471234" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 rounded-full btn-ghost-gold px-7 py-3.5 text-sm">
+          <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 rounded-full btn-ghost-gold px-7 py-3.5 text-sm">
             Book a Call
           </a>
         </div>

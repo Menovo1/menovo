@@ -67,7 +67,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <a href="https://wa.me/251946471234" target="_blank" rel="noreferrer noopener" className="px-4 py-2 rounded-full text-sm btn-ghost-gold">Book a Call</a>
+          <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="px-4 py-2 rounded-full text-sm btn-ghost-gold">Book a Call</a>
           <Link to="/contact" className="px-5 py-2 rounded-full text-sm btn-gold">Get Started</Link>
         </div>
 
@@ -93,7 +93,7 @@ export function Navbar() {
               );
             })}
             <div className="mt-3 grid grid-cols-2 gap-2">
-              <a href="https://wa.me/251946471234" target="_blank" rel="noreferrer noopener" className="text-center px-4 py-2 rounded-full btn-ghost-gold text-sm">Book a Call</a>
+              <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="text-center px-4 py-2 rounded-full btn-ghost-gold text-sm">Book a Call</a>
               <Link to="/contact" className="text-center px-4 py-2 rounded-full btn-gold text-sm">Get Started</Link>
             </div>
           </nav>
