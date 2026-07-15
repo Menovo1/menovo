@@ -67,8 +67,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center gap-2">
-          <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="px-4 py-2 rounded-full text-sm btn-ghost-gold">Book a Call</a>
-          <Link to="/contact" className="px-5 py-2 rounded-full text-sm btn-gold">Get Started</Link>
+          <Link to="/contact" className="px-6 py-2.5 rounded-full text-base font-semibold btn-gold">Get Started</Link>
         </div>
 
         <button className="md:hidden p-2 text-gold" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
@@ -92,9 +91,8 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="text-center px-4 py-2 rounded-full btn-ghost-gold text-sm">Book a Call</a>
-              <Link to="/contact" className="text-center px-4 py-2 rounded-full btn-gold text-sm">Get Started</Link>
+            <div className="mt-3">
+              <Link to="/contact" className="block text-center px-4 py-3 rounded-full btn-gold text-base font-semibold">Get Started</Link>
             </div>
           </nav>
         </div>

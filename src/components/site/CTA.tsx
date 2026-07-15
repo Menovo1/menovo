@@ -16,8 +16,7 @@ export function CTA() {
               Let's create an online experience your customers will never forget.
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-              <Link to="/contact" className="rounded-full btn-gold px-7 py-3.5 text-sm">Get Started</Link>
-              <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="rounded-full btn-ghost-gold px-7 py-3.5 text-sm">Book a Call</a>
+              <Link to="/contact" className="rounded-full btn-gold px-9 py-4 text-base sm:text-lg font-semibold">Get Started</Link>
             </div>
           </div>
         </div>

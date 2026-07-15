@@ -47,7 +47,7 @@ const faqs = [
   { q: "How do payments work?", a: "Transparent, upfront pricing. What you see is what you pay." },
   { q: "Can you update my menu?", a: "Yes—updates are included with Standard and Premium plans." },
   { q: "Do you provide support?", a: "We're available 24/7 via WhatsApp and email." },
-  { q: "How do I book a call?", a: "Use the Book a Call button or message us on WhatsApp." },
+  { q: "How do I get in touch?", a: "Tap Get Started or message us directly on WhatsApp." },
 ];
 
 function Home() {

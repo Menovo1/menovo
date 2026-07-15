@@ -51,36 +51,32 @@ export function Hero() {
           <Sparkles className="h-3.5 w-3.5" /> Hospitality · Digital · Elegant
         </div>
 
-        <h1 className="mt-8 font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.02] animate-fade-up" style={{ animationDelay: "0.1s" }}>
-          <span className="text-gradient-gold">From Table</span>
-          <br />
+        <h1 className="mt-8 font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] whitespace-nowrap animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <span className="text-gradient-gold">From Table</span>{" "}
           <span className="text-foreground">to Screen.</span>
         </h1>
 
-        <p className="mt-8 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg text-muted-foreground leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
           Welcome to <span className="text-gold font-semibold">MENOVO</span>. Where exceptional hospitality meets timeless digital elegance—helping every table reach every screen with style, simplicity and purpose.
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-          <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full btn-gold px-7 py-3.5 text-sm">
-            Get Started <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+          <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full btn-gold px-9 py-4 text-base sm:text-lg font-semibold">
+            Get Started <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition" />
           </Link>
-          <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="inline-flex items-center gap-2 rounded-full btn-ghost-gold px-7 py-3.5 text-sm">
-            Book a Call
-          </a>
         </div>
 
-        <div className="mt-16 grid grid-cols-3 gap-4 max-w-xl mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
+        <div className="mt-10 grid grid-cols-3 gap-4 max-w-xl mx-auto animate-fade-up" style={{ animationDelay: "0.4s" }}>
           {[
             { n: 50, suffix: "+", v: "Projects" },
             { n: 24, suffix: "/7", v: "Support" },
             { n: 100, suffix: "%", v: "Passion" },
           ].map((s) => (
-            <div key={s.v} className="glass rounded-2xl px-4 py-3">
-              <div className="text-xl sm:text-2xl font-display font-bold text-gradient-gold">
-                <Counter end={s.n} suffix={s.suffix} />
+            <div key={s.v} className="glass rounded-2xl px-4 py-4">
+              <div className="text-3xl sm:text-4xl font-display font-bold text-gradient-gold">
+                <Counter end={s.n} suffix={s.suffix} duration={3500} />
               </div>
-              <div className="text-[11px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
+              <div className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">{s.v}</div>
             </div>
           ))}
         </div>
