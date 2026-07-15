@@ -144,17 +144,22 @@ function Home() {
             </div>
           </div>
           <div className="grid gap-6">
-            <div className="card-luxe p-8">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Coming Soon</div>
-              <h3 className="mt-2 text-xl font-display font-semibold">More projects loading…</h3>
-              <p className="mt-2 text-sm text-muted-foreground">We're currently onboarding new hospitality partners across cafés, bistros and boutique hotels.</p>
+            <div className="group relative overflow-hidden rounded-3xl border border-gold/15">
+              <img src={qudusImg.url} alt="QUDUS Restaurant" width={1400} height={1000} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Restaurant · Digital Menu</div>
+                <h3 className="mt-2 text-xl font-display font-semibold">QUDUS Restaurant</h3>
+                <p className="mt-1 text-sm text-muted-foreground max-w-md">A rich digital menu for Somali cuisine—elegant, fast, made for every screen.</p>
+                <a href="https://qudus.lovable.app" target="_blank" rel="noreferrer noopener" className="mt-3 inline-flex items-center gap-1 text-sm text-gold">Visit live site <ArrowRight className="h-4 w-4" /></a>
+              </div>
             </div>
-            <div className="card-luxe p-8 flex flex-col justify-between">
+            <div className="card-luxe p-6 flex flex-col justify-between">
               <div>
                 <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Your brand next?</div>
                 <h3 className="mt-2 text-xl font-display font-semibold">Let's put your business on the map.</h3>
               </div>
-              <Link to="/contact" className="mt-6 rounded-full btn-gold px-5 py-3 text-sm text-center">Start your project</Link>
+              <Link to="/contact" className="mt-5 rounded-full btn-gold px-6 py-3 text-base font-semibold text-center">Get Started</Link>
             </div>
           </div>
         </div>
