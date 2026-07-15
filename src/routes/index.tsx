@@ -9,6 +9,7 @@ import {
 
 import aboutImg from "@/assets/about-menu.jpg";
 import portfolioImg from "@/assets/portfolio-hotel.jpg";
+import qudusImg from "@/assets/qudus-restaurant.png.asset.json";
 import { useState } from "react";
 
 export const Route = createFileRoute("/")({
