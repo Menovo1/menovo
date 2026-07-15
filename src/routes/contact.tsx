@@ -35,7 +35,7 @@ function Contact() {
       return;
     }
     const text = `Hello MENOVO,%0A%0AName: ${encodeURIComponent(parsed.data.name)}%0APhone: ${encodeURIComponent(parsed.data.phone)}%0AService: ${encodeURIComponent(parsed.data.service)}%0A%0AMessage:%0A${encodeURIComponent(parsed.data.message)}`;
-    window.open(`https://wa.me/251946471234?text=${text}`, "_blank", "noopener");
+    window.open(`https://wa.me/251777775911?text=${text}`, "_blank", "noopener");
     setState({ status: "ok", msg: "Opening WhatsApp… your message is ready to send." });
     (e.target as HTMLFormElement).reset();
   };
@@ -46,7 +46,7 @@ function Contact() {
         <div className="grid lg:grid-cols-5 gap-6">
           <form onSubmit={onSubmit} className="lg:col-span-3 card-luxe p-8 space-y-5">
             <Field label="Your name" name="name" placeholder="E.g. Asad Je." />
-            <Field label="Phone number" name="phone" placeholder="E.g. +251946471234 …" />
+            <Field label="Phone number" name="phone" placeholder="E.g. +251777775911 …" />
             <div>
               <label className="text-xs uppercase tracking-widest text-gold">Service needed</label>
               <select name="service" className="mt-2 w-full bg-transparent border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-gold focus:outline-none">
@@ -74,8 +74,8 @@ function Contact() {
           </form>
 
           <aside className="lg:col-span-2 space-y-4">
-            <InfoCard icon={MessageCircle} title="WhatsApp" value="+251 946 471 234" href="https://wa.me/251946471234?text=Hello%20MENOVO,%0A%0AI'm%20interested%20in%20your%20services." />
-            <InfoCard icon={Mail} title="Email" value="7menovo@gmail.com" href="mailto:7menovo@gmail.com" />
+            <InfoCard icon={MessageCircle} title="WhatsApp" value="+251 777775911" href="https://wa.me/251777775911?text=Hello%20MENOVO,%0A%0AI'm%20interested%20in%20your%20services." />
+            <InfoCard icon={Mail} title="Email" value="2MENOVO@gmail.com" href="mailto:2MENOVO@gmail.com" />
             <InfoCard icon={Clock} title="Working Hours" value="Available 24/7" />
             <div className="card-luxe p-2">
               <div className="rounded-2xl overflow-hidden aspect-video grid place-items-center bg-navy-soft/40 border border-gold/10">

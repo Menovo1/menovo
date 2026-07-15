@@ -23,8 +23,8 @@ export function Footer() {
 
         <div className="sm:text-right">
           <ul className="flex flex-col sm:items-end gap-2 text-xs">
-            <li className="flex items-center gap-2 text-foreground/80"><MessageCircle className="h-3.5 w-3.5 text-gold" /> +251 946 471 234</li>
-            <li className="flex items-center gap-2 text-foreground/80"><Mail className="h-3.5 w-3.5 text-gold" /> 7menovo@gmail.com</li>
+            <li className="flex items-center gap-2 text-foreground/80"><MessageCircle className="h-3.5 w-3.5 text-gold" /> +251 777775911</li>
+            <li className="flex items-center gap-2 text-foreground/80"><Mail className="h-3.5 w-3.5 text-gold" /> 2MENOVO@gmail.com</li>
           </ul>
         </div>
       </div>

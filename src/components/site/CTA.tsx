@@ -17,7 +17,7 @@ export function CTA() {
             </p>
             <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
               <Link to="/contact" className="rounded-full btn-gold px-7 py-3.5 text-sm">Get Started</Link>
-              <a href="https://wa.me/251946471234" target="_blank" rel="noreferrer noopener" className="rounded-full btn-ghost-gold px-7 py-3.5 text-sm">Book a Call</a>
+              <a href="https://wa.me/251777775911" target="_blank" rel="noreferrer noopener" className="rounded-full btn-ghost-gold px-7 py-3.5 text-sm">Book a Call</a>
             </div>
           </div>
         </div>
