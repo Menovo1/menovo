@@ -21,6 +21,7 @@ export const Route = createFileRoute("/services")({
 type Plan = {
   name: string;
   price: string;
+  monthly: string;
   desc: string;
   features: string[];
   popular?: boolean;
@@ -30,24 +31,27 @@ type Plan = {
 const menuPlans: Plan[] = [
   {
     name: "Basic",
-    price: "$4",
+    price: "$10",
+    monthly: "$3/month",
     desc: "Perfect for getting started with a simple digital presence.",
-    features: ["QR Code", "Text Menu", "Basic Categories", "No Updates"],
+    features: ["QR Code", "Text Menu", "Basic Categories", "Monthly hosting included"],
     waMsg: "the Basic Digital Menu plan",
   },
   {
     name: "Standard",
-    price: "$10",
+    price: "$20",
+    monthly: "$5/month",
     popular: true,
     desc: "The most popular choice for growing restaurants and cafés.",
-    features: ["Professional QR Code", "QR Poster Included", "Photo Menu", "Organized Categories", "30 Days Updates"],
+    features: ["Professional QR Code", "QR Poster Included", "Photo Menu", "Organized Categories", "Monthly updates included"],
     waMsg: "the Standard Digital Menu plan",
   },
   {
     name: "Premium",
-    price: "$25",
+    price: "$35",
+    monthly: "$8/month",
     desc: "Luxury presentation for discerning establishments.",
-    features: ["Luxury QR Menu", "Premium QR Poster", "Luxury Menu Design", "Photos Included", "Featured Categories", "Unlimited Updates"],
+    features: ["Luxury QR Menu", "Premium QR Poster", "Luxury Menu Design", "Photos Included", "Featured Categories", "Unlimited updates", "Priority support"],
     waMsg: "the Premium Digital Menu plan",
   },
 ];
@@ -55,22 +59,25 @@ const menuPlans: Plan[] = [
 const websitePlans: Plan[] = [
   {
     name: "Basic",
-    price: "$10",
+    price: "$30",
+    monthly: "$5/month",
     desc: "A clean starter site to get your business found online.",
-    features: ["Up to 3 pages", "Contact form", "Google Maps embed", "Mobile responsive"],
+    features: ["Up to 3 pages", "Contact form", "Google Maps embed", "Mobile responsive", "Monthly hosting included"],
     waMsg: "the Basic Website plan",
   },
   {
     name: "Standard",
-    price: "$25",
+    price: "$60",
+    monthly: "$8/month",
     popular: true,
     desc: "A refined website with SEO and ongoing polish.",
-    features: ["Up to 8 pages", "Premium design", "SEO optimization", "Analytics setup", "30 days of updates"],
+    features: ["Up to 8 pages", "Premium design", "SEO optimization", "Analytics setup", "Monthly polish included"],
     waMsg: "the Standard Website plan",
   },
   {
     name: "Premium",
-    price: "$39",
+    price: "$100",
+    monthly: "$12/month",
     desc: "A complete website with bookings, payments and support.",
     features: ["Unlimited pages", "Booking form", "Payment integration", "Security monitoring", "Unlimited updates"],
     waMsg: "the Premium Website plan",
@@ -80,10 +87,11 @@ const websitePlans: Plan[] = [
 const bundlePlans: Plan[] = [
   {
     name: "Bundle Deal",
-    price: "$29",
+    price: "$120",
+    monthly: "$15/month",
     popular: true,
     desc: "Everything you need — website and digital menu, together.",
-    features: ["Professional Website", "Digital QR Menu", "Free QR Poster", "30 Days Free Support"],
+    features: ["Professional Website (Premium tier)", "Digital QR Menu (Premium tier)", "Free QR Poster", "Unlimited updates", "30 days free priority support"],
     waMsg: "the Website + Digital Menu Bundle Deal",
   },
 ];
@@ -234,7 +242,7 @@ function Services() {
                   <p className="mt-3 text-sm text-muted-foreground min-h-[3rem]">{p.desc}</p>
                   <div className="mt-6 flex items-baseline gap-2">
                     <span className="text-5xl font-display font-bold text-gradient-gold">{p.price}</span>
-                    <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time</span>
+                    <span className="text-xs uppercase tracking-widest text-muted-foreground">one-time + {p.monthly}</span>
                   </div>
                   <ul className="mt-8 space-y-3 text-sm flex-1">
                     {p.features.map((f) => (
