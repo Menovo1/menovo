@@ -45,8 +45,8 @@ const faqs = [
   { q: "Can I upgrade later?", a: "Absolutely. Every package is designed to grow with you." },
   { q: "Do you redesign existing websites?", a: "Yes—we love giving tired sites a luxurious refresh." },
   { q: "Do I need technical knowledge?", a: "None at all. We handle the technical side completely." },
-  { q: "How do payments work?", a: "Transparent, upfront pricing. What you see is what you pay." },
-  { q: "Can you update my menu?", a: "Yes—updates are included with Standard and Premium plans." },
+  { q: "How do payments work?", a: "Each plan has a small one-time setup fee to build your website or menu, plus a low monthly fee that covers hosting, support, and updates. No hidden costs — you'll always know exactly what you're paying before you start." },
+  { q: "Can you update my menu?", a: "Yes — updates are included in your monthly plan. Basic plans include limited updates, while Standard and Premium plans include more frequent or unlimited updates depending on your tier." },
   { q: "Do you provide support?", a: "We're available 24/7 via WhatsApp and email." },
   { q: "How do I get in touch?", a: "Tap Get Started or message us directly on WhatsApp." },
 ];
