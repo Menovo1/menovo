@@ -1,201 +1,208 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Section } from "@/components/site/Section";
-import { Hero } from "@/components/site/Hero";
-
-import {
-  Globe, QrCode, LayoutGrid, BadgeDollarSign, Zap, Sparkles, Smartphone, Workflow, LifeBuoy,
-  ArrowRight, ChevronDown,
-} from "lucide-react";
-
-import aboutImg from "@/assets/about-menu.jpg";
-import portfolioImg from "@/assets/portfolio-hotel.jpg";
-import qudusImg from "@/assets/qudus-restaurant.png.asset.json";
-import { useState } from "react";
+import { Reveal } from "@/components/site/Reveal";
+import { HeroVideo } from "@/components/site/HeroVideo";
+import { problems, solutions, values, whyMenovo, site } from "@/content/site";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "MENOVO — From Table to Screen | Hospitality Websites & QR Menus" },
-      { name: "description", content: "Premium websites and digital QR menus for hotels, restaurants and cafés. Honest pricing, luxury design, fast delivery." },
+      { title: "MENOVO — Hotel Web Design & Development Agency" },
+      {
+        name: "description",
+        content:
+          "MENOVO is a premium web-development agency specialized exclusively in hotel websites. Elegant, mobile-first digital experiences for hotels worldwide.",
+      },
+      { property: "og:title", content: "MENOVO — Hotel Web Design & Development Agency" },
+      {
+        property: "og:description",
+        content:
+          "Premium websites designed and developed exclusively for hotels. From Table to Screen.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://menovo.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://menovo.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "MENOVO",
+          description:
+            "Premium web-development agency specialized exclusively in hotel websites.",
+          url: "https://menovo.lovable.app",
+          email: "2MENOVO@gmail.com",
+          telephone: "+251946471234",
+          areaServed: "Worldwide",
+          serviceType: "Hotel website design and development",
+        }),
+      },
     ],
   }),
-  component: Home,
+  component: HomePage,
 });
 
-const services = [
-  { icon: Globe, title: "Website Design", desc: "Professional, elegant websites tailored for hotels, restaurants and cafés." },
-  { icon: QrCode, title: "Digital Menus", desc: "Beautiful QR menus your customers will love—fast, mobile, effortless." },
-  { icon: LayoutGrid, title: "Website + Digital Menu", desc: "The complete digital package—one cohesive experience end to end." },
-];
-
-const why = [
-  { icon: BadgeDollarSign, t: "Affordable Pricing", d: "What you see is what you pay. No hidden fees." },
-  { icon: Zap, t: "Fast Delivery", d: "Your time is valuable. We move quickly and precisely." },
-  { icon: Sparkles, t: "Luxury Design", d: "Timeless aesthetics that reflect your hospitality." },
-  { icon: Smartphone, t: "Mobile Friendly", d: "Beautiful on every screen, from pocket to desktop." },
-  { icon: Workflow, t: "Simple Process", d: "No technical knowledge required. We handle everything." },
-  { icon: LifeBuoy, t: "24/7 Support", d: "We are always here—whenever you need us." },
-];
-
-
-
-
-const faqs = [
-  { q: "How long does a project take?", a: "Most projects launch within 3–10 days depending on scope." },
-  { q: "Can I upgrade later?", a: "Absolutely. Every package is designed to grow with you." },
-  { q: "Do you redesign existing websites?", a: "Yes—we love giving tired sites a luxurious refresh." },
-  { q: "Do I need technical knowledge?", a: "None at all. We handle the technical side completely." },
-  { q: "How do payments work?", a: "Each plan has a small one-time setup fee to build your website or menu, plus a low monthly fee that covers hosting, support, and updates. No hidden costs — you'll always know exactly what you're paying before you start." },
-  { q: "Can you update my menu?", a: "Yes — updates are included in your monthly plan. Basic plans include limited updates, while Standard and Premium plans include more frequent or unlimited updates depending on your tier." },
-  { q: "Do you provide support?", a: "We're available 24/7 via WhatsApp and email." },
-  { q: "How do I get in touch?", a: "Tap Get Started or message us directly on WhatsApp." },
-];
-
-function Home() {
+function HomePage() {
   return (
     <>
-      <Hero />
+      {/* HERO */}
+      <section className="relative min-h-[92svh] flex items-end overflow-hidden">
+        <HeroVideo />
+        <div className="relative w-full mx-auto max-w-6xl px-6 sm:px-8 pb-20 sm:pb-28 pt-40">
+          <div
+            className="text-[10px] uppercase tracking-[0.32em] text-white/80 animate-fade-up"
+            style={{ animationDelay: "0.15s" }}
+          >
+            Hotel Web Design Agency · Worldwide
+          </div>
+          <h1 className="mt-6 font-display text-white text-[2.6rem] leading-[1.05] sm:text-6xl md:text-7xl max-w-4xl">
+            <span className="block animate-fade-up" style={{ animationDelay: "0.3s" }}>
+              Hotel websites,
+            </span>
+            <span className="block italic text-white/90 animate-fade-up" style={{ animationDelay: "0.5s" }}>
+              designed differently.
+            </span>
+          </h1>
+          <p
+            className="mt-6 max-w-xl text-white/80 text-base sm:text-lg leading-relaxed animate-fade-up"
+            style={{ animationDelay: "0.7s" }}
+          >
+            We design and develop premium digital experiences for hotels — and nothing else.
+          </p>
+          <div
+            className="mt-9 flex flex-wrap items-center gap-3 animate-fade-up"
+            style={{ animationDelay: "0.9s" }}
+          >
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 bg-white text-navy px-8 py-4 text-sm tracking-wide transition-colors hover:bg-gold"
+            >
+              Get Started <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link to="/services" className="btn-light px-8 py-4 text-sm tracking-wide">
+              See Services
+            </Link>
+          </div>
+          <div
+            className="mt-12 text-[10px] uppercase tracking-[0.34em] text-white/55 animate-fade-in"
+            style={{ animationDelay: "1.2s" }}
+          >
+            {site.tagline}
+          </div>
+        </div>
+      </section>
 
-      {/* About */}
-      <Section id="about" eyebrow="About MENOVO" title={<>We put every hospitality brand on the <span className="text-gradient-gold">map.</span></>}>
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-4 text-foreground/85 leading-relaxed">
-            <p>Too many great hotels, restaurants and cafeterias go unnoticed—not because their food is bad, but because nobody can find them online.</p>
-            <p><span className="text-gold font-semibold">MENOVO exists to change that.</span> We make it simple and affordable for any restaurant, café, or hotel to have a professional digital presence.</p>
-            <div className="grid grid-cols-2 gap-4 pt-2">
-              <div className="glass rounded-xl p-4">
-                <div className="text-sm uppercase tracking-widest text-gold font-semibold">Mission</div>
-                <p className="mt-2 text-sm text-muted-foreground">Make every HOTEL, RESTAURANT and CAFÉ digitally visible—simply and affordably.</p>
-              </div>
-              <div className="glass rounded-xl p-4">
-                <div className="text-sm uppercase tracking-widest text-gold font-semibold">Vision</div>
-                <p className="mt-2 text-sm text-muted-foreground">A future where no great CAFÉ, RESTAURANT or HOTEL goes undiscovered.</p>
-              </div>
-            </div>
-          </div>
-          <div className="relative rounded-3xl overflow-hidden border border-gold/20 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)]">
-            <img src={aboutImg} alt="Digital menu on a marble café table" width={1400} height={1400} loading="lazy" className="w-full h-auto object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
-          </div>
+      {/* PROBLEM */}
+      <Section
+        eyebrow="The problem"
+        title={<>Most hotel websites don't match the hotel.</>}
+        subtitle="Guests judge a property in seconds. Too often the website is the weakest part of the experience."
+      >
+        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-3 border border-border">
+          {problems.map((p, i) => (
+            <Reveal key={p.title} delay={i * 70} className="bg-background p-8">
+              <div className="eyebrow">{String(i + 1).padStart(2, "0")}</div>
+              <h3 className="mt-4 font-display text-2xl">{p.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.body}</p>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
-      {/* What We Do */}
-      <Section eyebrow="What We Do" title={<>Three services. One <span className="text-gradient-gold">seamless</span> experience.</>}>
-        <div className="grid md:grid-cols-3 gap-6">
-          {services.map((s) => (
-            <div key={s.title} className="card-luxe p-8 group">
-              <div className="h-12 w-12 grid place-items-center rounded-xl bg-gold/10 text-gold group-hover:bg-gold group-hover:text-navy transition">
-                <s.icon className="h-6 w-6" />
-              </div>
-              <h3 className="mt-6 text-xl font-display font-semibold">{s.title}</h3>
-              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-              <Link to="/services" className="mt-6 inline-flex items-center gap-1 text-sm text-gold hover:gap-2 transition-all">
-                Learn more <ArrowRight className="h-4 w-4" />
+      {/* SOLUTION */}
+      <Section
+        className="bg-secondary"
+        eyebrow="The solution"
+        title={<>Premium websites, built exclusively for hotels.</>}
+        subtitle="Every project is designed around how guests choose a hotel — and how a hotel wants to be remembered."
+      >
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          {solutions.map((s, i) => (
+            <Reveal key={s.title} delay={i * 70}>
+              <div className="rule-gold w-12" />
+              <h3 className="mt-5 font-display text-2xl">{s.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.body}</p>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={200} className="mt-12">
+          <Link to="/services" className="link-underline text-sm tracking-wide text-navy">
+            Explore our services
+          </Link>
+        </Reveal>
+      </Section>
+
+      {/* FINAL CTA */}
+      <section className="relative bg-navy text-white py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8">
+          <Reveal className="max-w-3xl">
+            <div className="text-[11px] uppercase tracking-[0.28em] text-gold">Start a project</div>
+            <h2 className="mt-5 font-display text-3xl sm:text-5xl leading-[1.1] text-white">
+              Let's give your hotel a website worthy of the stay.
+            </h2>
+            <p className="mt-5 text-white/70 max-w-xl leading-relaxed">
+              Tell us about your property. We'll come back with a clear, considered plan.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link to="/contact" className="bg-white text-navy px-8 py-4 text-sm tracking-wide transition-colors hover:bg-gold">
+                Get Started
+              </Link>
+              <Link to="/services" className="btn-light px-8 py-4 text-sm tracking-wide">
+                See Services
               </Link>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MISSION / VISION */}
+      <Section eyebrow="Mission & Vision">
+        <div className="grid gap-12 md:grid-cols-2">
+          <Reveal>
+            <h2 className="font-display text-3xl sm:text-4xl">Our Mission</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              To make every HOTEL digitally visible — with websites that are elegant, fast and effortless
+              for guests to use.
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className="font-display text-3xl sm:text-4xl">Our Vision</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">
+              A future where no great HOTEL goes undiscovered, and where every property has a digital
+              presence as considered as its hospitality.
+            </p>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* VALUES */}
+      <Section className="bg-secondary" eyebrow="What we value" title="Values">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {values.map((v, i) => (
+            <Reveal key={v.title} delay={i * 80}>
+              <div className="rule-gold w-10" />
+              <h3 className="mt-4 font-display text-2xl">{v.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.body}</p>
+            </Reveal>
           ))}
         </div>
       </Section>
 
-      {/* Values */}
-      <Section eyebrow="What We Believe" title={<>Values that guide every <span className="text-gradient-gold">project.</span></>}>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {[
-            { t: "Elegance", d: "Luxurious, timeless design." },
-            { t: "Clarity", d: "Honest, simple communication." },
-            { t: "Care", d: "Every brand treated as our own." },
-            { t: "Impact", d: "Real results you can measure." },
-          ].map((v) => (
-            <div key={v.t} className="card-luxe p-6">
-              <div className="text-xs uppercase tracking-widest text-gold">{v.t}</div>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{v.d}</p>
-            </div>
+      {/* WHY MENOVO */}
+      <Section eyebrow="Why MENOVO" title="Why hotels choose us">
+        <div className="grid gap-px bg-border sm:grid-cols-2 border border-border">
+          {whyMenovo.map((w, i) => (
+            <Reveal key={w.title} delay={i * 80} className="bg-background p-8 sm:p-10">
+              <h3 className="font-display text-2xl">{w.title}</h3>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{w.body}</p>
+            </Reveal>
           ))}
         </div>
       </Section>
-
-
-      {/* Why Choose */}
-      <Section eyebrow="Why MENOVO" title={<>Crafted for hospitality. Built for <span className="text-gradient-gold">results.</span></>}>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {why.map((w) => (
-            <div key={w.t} className="card-luxe p-6">
-              <w.icon className="h-6 w-6 text-gold" />
-              <h4 className="mt-4 font-semibold">{w.t}</h4>
-              <p className="mt-2 text-sm text-muted-foreground">{w.d}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-
-      {/* Portfolio preview */}
-      <Section eyebrow="Selected Work" title={<>A quiet showcase of <span className="text-gradient-gold">craft.</span></>}>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="group relative overflow-hidden rounded-3xl border border-gold/15">
-            <img src={portfolioImg} alt="Luxury hotel lobby" width={1400} height={1000} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Hospitality · Website</div>
-              <h3 className="mt-2 text-2xl font-display font-semibold">Aurea Hotel & Suites</h3>
-              <p className="mt-1 text-sm text-muted-foreground max-w-md">Complete digital presence with booking integration and multilingual menu.</p>
-              <Link to="/portfolio" className="mt-4 inline-flex items-center gap-1 text-sm text-gold">View project <ArrowRight className="h-4 w-4" /></Link>
-            </div>
-          </div>
-          <div className="grid gap-6">
-            <div className="group relative overflow-hidden rounded-3xl border border-gold/15">
-              <img src={qudusImg.url} alt="QUDUS Restaurant" width={1400} height={1000} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Restaurant · Digital Menu</div>
-                <h3 className="mt-2 text-xl font-display font-semibold">QUDUS Restaurant</h3>
-                <p className="mt-1 text-sm text-muted-foreground max-w-md">A rich digital menu for Somali cuisine—elegant, fast, made for every screen.</p>
-                <a href="https://qudus.lovable.app" target="_blank" rel="noreferrer noopener" className="mt-3 inline-flex items-center gap-1 text-sm text-gold">Visit live site <ArrowRight className="h-4 w-4" /></a>
-              </div>
-            </div>
-            <div className="card-luxe p-6 flex flex-col justify-between">
-              <div>
-                <div className="text-[10px] uppercase tracking-[0.22em] text-gold">Your brand next?</div>
-                <h3 className="mt-2 text-xl font-display font-semibold">Let's put your business on the map.</h3>
-              </div>
-              <Link to="/contact" className="mt-5 rounded-full btn-gold px-6 py-3 text-base font-semibold text-center">Get Started</Link>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* FAQ */}
-      <Section eyebrow="FAQ" title={<>Questions, <span className="text-gradient-gold">answered.</span></>}>
-        <Faq />
-      </Section>
-
     </>
-  );
-}
-
-function Faq() {
-  const [open, setOpen] = useState<number | null>(0);
-  return (
-    <div className="max-w-3xl mx-auto space-y-3">
-      {faqs.map((f, i) => {
-        const isOpen = open === i;
-        return (
-          <button
-            key={f.q}
-            onClick={() => setOpen(isOpen ? null : i)}
-            className="w-full text-left card-luxe p-6"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <span className="font-medium">{f.q}</span>
-              <ChevronDown className={`h-5 w-5 text-gold transition ${isOpen ? "rotate-180" : ""}`} />
-            </div>
-            <div className={`grid transition-all duration-500 ${isOpen ? "grid-rows-[1fr] mt-3 opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
-              <div className="overflow-hidden text-sm text-muted-foreground">{f.a}</div>
-            </div>
-          </button>
-        );
-      })}
-    </div>
   );
 }

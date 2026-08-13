@@ -2,13 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logoAsset from "@/assets/menovo-logo.png.asset.json";
-
-const links = [
-  { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/contact", label: "Contact" },
-];
+import { navLinks, site } from "@/content/site";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,87 +10,123 @@ export function Navbar() {
   const { location } = useRouterState();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
+  const onHome = location.pathname === "/";
+  const light = onHome && !scrolled && !open;
 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-strong py-3" : "py-5 bg-transparent"
+        scrolled || open
+          ? "bg-background/95 backdrop-blur-md border-b border-border py-3"
+          : "py-5 border-b border-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 flex items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-3 shrink-0 group min-w-0">
-          <img src={logoAsset.url} alt="MENOVO" width={40} height={40} className="h-10 w-10 rounded-full ring-1 ring-gold/40 group-hover:ring-gold transition shrink-0" />
-          <div className="hidden sm:block leading-none">
-            <div className="font-display font-bold text-lg tracking-wide text-gradient-gold">MENOVO</div>
-            <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">From Table to Screen</div>
-          </div>
-          <div className="sm:hidden leading-none min-w-0">
-            <div className="font-display font-bold text-base tracking-wide text-gradient-gold truncate">MENOVO</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-gold/80 truncate">
-              {links.find((l) => l.to === location.pathname)?.label ?? "Menu"}
-            </div>
-          </div>
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 flex items-center justify-between gap-4">
+        <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0">
+          <img
+            src={logoAsset.url}
+            alt="MENOVO — hotel web design agency"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-full shrink-0"
+          />
+          <span className="leading-none min-w-0">
+            <span
+              className={`block font-display text-xl tracking-[0.18em] font-semibold transition-colors ${
+                light ? "text-white" : "text-navy"
+              }`}
+            >
+              {site.name}
+            </span>
+            <span
+              className={`block mt-1 text-[9px] uppercase tracking-[0.22em] truncate transition-colors ${
+                light ? "text-white/70" : "text-muted-foreground"
+              }`}
+            >
+              {site.tagline}
+            </span>
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1">
-          {links.map((l) => {
+        <nav className="hidden lg:flex items-center gap-7">
+          {navLinks.map((l) => {
             const active = location.pathname === l.to;
             return (
               <Link
                 key={l.to}
                 to={l.to}
                 aria-current={active ? "page" : undefined}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  active ? "text-gold bg-gold/10 ring-1 ring-gold/30" : "text-foreground/80 hover:text-gold"
-                }`}
+                className={`link-underline text-[13px] tracking-wide transition-colors ${
+                  light
+                    ? active
+                      ? "text-white"
+                      : "text-white/75 hover:text-white"
+                    : active
+                      ? "text-gold-deep"
+                      : "text-navy/70 hover:text-navy"
+                } ${active ? "font-medium" : ""}`}
               >
                 {l.label}
-                {active && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-6 rounded-full bg-gold" />
-                )}
               </Link>
             );
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
-          <Link to="/contact" className="px-6 py-2.5 rounded-full text-base font-semibold btn-gold">Get Started</Link>
+        <div className="hidden lg:block">
+          <Link
+            to="/contact"
+            className={`px-6 py-2.5 text-[13px] tracking-wide ${light ? "btn-light" : "btn-primary"}`}
+          >
+            Get Started
+          </Link>
         </div>
 
-        <button className="md:hidden p-2 text-gold" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
+        <button
+          className={`lg:hidden p-2 ${light ? "text-white" : "text-navy"}`}
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
-      {open && (
-        <div className="md:hidden mx-4 mt-3 rounded-2xl glass p-4 animate-fade-up">
-          <nav className="flex flex-col">
-            {links.map((l) => {
-              const active = location.pathname === l.to;
-              return (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  aria-current={active ? "page" : undefined}
-                  className={`px-4 py-3 rounded-lg text-foreground/90 ${active ? "bg-gold/10 text-gold ring-1 ring-gold/30" : "hover:bg-white/5"}`}
-                >
-                  {l.label}
-                </Link>
-              );
-            })}
-            <div className="mt-3">
-              <Link to="/contact" className="block text-center px-4 py-3 rounded-full btn-gold text-base font-semibold">Get Started</Link>
-            </div>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-500 ${
+          open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="mx-6 mt-4 mb-3 border-t border-border pt-3 flex flex-col">
+          {navLinks.map((l) => {
+            const active = location.pathname === l.to;
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                aria-current={active ? "page" : undefined}
+                className={`py-3 border-b border-border/60 text-sm tracking-wide ${
+                  active ? "text-gold-deep font-medium" : "text-navy/80"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
+          <Link to="/contact" className="mt-5 btn-primary px-6 py-3 text-center text-sm tracking-wide">
+            Get Started
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

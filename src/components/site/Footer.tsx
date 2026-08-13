@@ -1,37 +1,67 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MessageCircle } from "lucide-react";
 import logoAsset from "@/assets/menovo-logo.png.asset.json";
+import { navLinks, site, whatsappLink, emailLink } from "@/content/site";
 
 export function Footer() {
   return (
-    <footer className="relative mt-10 border-t border-gold/15">
-      <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-6 grid gap-6 sm:grid-cols-2 items-start">
-        <div>
+    <footer className="border-t border-border bg-secondary">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8 py-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="lg:col-span-2">
           <div className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="MENOVO" width={40} height={40} className="h-10 w-10 rounded-full ring-1 ring-gold/40" />
-            <div className="font-display font-bold text-lg tracking-wide text-gradient-gold">MENOVO</div>
+            <img src={logoAsset.url} alt="MENOVO logo" width={40} height={40} className="h-10 w-10 rounded-full" />
+            <span className="font-display text-xl tracking-[0.18em] font-semibold text-navy">{site.name}</span>
           </div>
-          <p className="mt-2 text-xs text-muted-foreground max-w-sm leading-relaxed">
-            We help hotels, restaurants and cafés become digitally visible with beautiful websites and QR menus—fast, affordable, and effortlessly elegant.
+          <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
+            MENOVO is a premium web-development agency specialized exclusively in hotel websites —
+            elegant, fast and built to turn visitors into guests.
           </p>
-          <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs">
-            <li><Link to="/privacy" className="text-foreground/80 hover:text-gold">Privacy Policy</Link></li>
-            <li><Link to="/terms" className="text-foreground/80 hover:text-gold">Terms of Service</Link></li>
+          <p className="mt-3 text-[10px] uppercase tracking-[0.28em] text-gold-deep">{site.tagline}</p>
+        </div>
+
+        <div>
+          <div className="eyebrow">Navigation</div>
+          <ul className="mt-5 space-y-2 text-sm">
+            {navLinks.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-navy/70 hover:text-gold-deep transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        <div className="sm:text-right">
-          <ul className="flex flex-col sm:items-end gap-2 text-xs">
-            <li className="flex items-center gap-2 text-foreground/80"><MessageCircle className="h-3.5 w-3.5 text-gold" /> +251 777775911</li>
-            <li className="flex items-center gap-2 text-foreground/80"><Mail className="h-3.5 w-3.5 text-gold" /> 2MENOVO@gmail.com</li>
+        <div>
+          <div className="eyebrow">Contact</div>
+          <ul className="mt-5 space-y-3 text-sm">
+            <li>
+              <a href={whatsappLink()} target="_blank" rel="noreferrer noopener" className="flex items-center gap-2 text-navy/70 hover:text-gold-deep transition-colors">
+                <MessageCircle className="h-4 w-4 text-gold" /> {site.whatsappNumber}
+              </a>
+            </li>
+            <li>
+              <a href={emailLink()} className="flex items-center gap-2 text-navy/70 hover:text-gold-deep transition-colors">
+                <Mail className="h-4 w-4 text-gold" /> {site.email}
+              </a>
+            </li>
+          </ul>
+          <div className="eyebrow mt-8">Services</div>
+          <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+            <li>Hotel Website Development</li>
+            <li>Business Website Development</li>
+            <li>Website Maintenance</li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/5">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-3 text-center text-[10px] uppercase tracking-widest text-muted-foreground">
-          © 2026 MENOVO.PRO — All Rights Reserved.
+      <div className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-muted-foreground">
+          <span>© {new Date().getFullYear()} MENOVO. All rights reserved.</span>
+          <span className="flex gap-6">
+            <Link to="/privacy" className="hover:text-gold-deep transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-gold-deep transition-colors">Terms of Service</Link>
+          </span>
         </div>
       </div>
     </footer>
