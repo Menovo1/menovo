@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ProcessRouteImport } from './routes/process'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -33,6 +34,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProcessRoute = ProcessRouteImport.update({
+  id: '/process',
+  path: '/process',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
+  '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
+  '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
   '/privacy': typeof PrivacyRoute
+  '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/portfolio'
     | '/privacy'
+    | '/process'
     | '/services'
     | '/sitemap.xml'
     | '/terms'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/portfolio'
     | '/privacy'
+    | '/process'
     | '/services'
     | '/sitemap.xml'
     | '/terms'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/portfolio'
     | '/privacy'
+    | '/process'
     | '/services'
     | '/sitemap.xml'
     | '/terms'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   PortfolioRoute: typeof PortfolioRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProcessRoute: typeof ProcessRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/process': {
+      id: '/process'
+      path: '/process'
+      fullPath: '/process'
+      preLoaderRoute: typeof ProcessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   PortfolioRoute: PortfolioRoute,
   PrivacyRoute: PrivacyRoute,
+  ProcessRoute: ProcessRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
