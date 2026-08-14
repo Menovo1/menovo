@@ -118,11 +118,29 @@
   html {
     scroll-behavior: smooth;
   }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  body,
+  header,
+  footer,
+  section,
+  nav,
+  aside {
+    transition:
+      background-color 0.45s ease,
+      border-color 0.45s ease,
+      color 0.45s ease;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
