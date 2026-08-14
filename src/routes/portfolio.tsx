@@ -42,10 +42,10 @@ function PortfolioPage() {
               hotel projects go live.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="btn-primary px-8 py-4 text-sm tracking-wide">
+              <Link to="/contact" className="btn-primary px-9 py-4 text-sm tracking-wide">
                 Get Started
               </Link>
-              <Link to="/services" className="btn-outline px-8 py-4 text-sm tracking-wide">
+              <Link to="/services" className="btn-outline px-9 py-4 text-sm tracking-wide">
                 See Services
               </Link>
             </div>
@@ -76,7 +76,7 @@ function PortfolioPage() {
                       href={p.url}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="link-underline mt-5 inline-block text-sm text-navy"
+                      className="link-underline mt-5 inline-block text-sm text-foreground"
                     >
                       Visit website
                     </a>

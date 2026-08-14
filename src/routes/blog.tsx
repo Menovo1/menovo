@@ -56,10 +56,10 @@ function BlogPage() {
               about your hotel's website directly.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Link to="/contact" className="btn-primary px-8 py-4 text-sm tracking-wide">
+              <Link to="/contact" className="btn-primary px-9 py-4 text-sm tracking-wide">
                 Get Started
               </Link>
-              <Link to="/faq" className="btn-outline px-8 py-4 text-sm tracking-wide">
+              <Link to="/faq" className="btn-outline px-9 py-4 text-sm tracking-wide">
                 Read the FAQ
               </Link>
             </div>
