@@ -43,7 +43,7 @@ export function Navbar() {
           <span className="leading-none min-w-0">
             <span
               className={`block font-display text-xl tracking-[0.18em] font-semibold transition-colors ${
-                light ? "text-white" : "text-navy"
+                light ? "text-white" : "text-foreground"
               }`}
             >
               {site.name}
@@ -73,7 +73,7 @@ export function Navbar() {
                       : "text-white/75 hover:text-white"
                     : active
                       ? "text-gold-deep"
-                      : "text-navy/70 hover:text-navy"
+                      : "text-foreground/70 hover:text-foreground"
                 } ${active ? "font-medium" : ""}`}
               >
                 {l.label}
@@ -92,7 +92,7 @@ export function Navbar() {
         </div>
 
         <button
-          className={`lg:hidden p-2 ${light ? "text-white" : "text-navy"}`}
+          className={`lg:hidden p-2 ${light ? "text-white" : "text-foreground"}`}
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
@@ -115,7 +115,7 @@ export function Navbar() {
                 to={l.to}
                 aria-current={active ? "page" : undefined}
                 className={`py-3 border-b border-border/60 text-sm tracking-wide ${
-                  active ? "text-gold-deep font-medium" : "text-navy/80"
+                  active ? "text-gold-deep font-medium" : "text-foreground/80"
                 }`}
               >
                 {l.label}

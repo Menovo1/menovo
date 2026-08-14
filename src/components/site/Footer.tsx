@@ -10,7 +10,7 @@ export function Footer() {
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3">
             <img src={logoAsset.url} alt="MENOVO logo" width={40} height={40} className="h-10 w-10 rounded-full" />
-            <span className="font-display text-xl tracking-[0.18em] font-semibold text-navy">{site.name}</span>
+            <span className="font-display text-xl tracking-[0.18em] font-semibold text-foreground">{site.name}</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
             MENOVO is a premium web-development agency specialized exclusively in hotel websites —
@@ -24,7 +24,7 @@ export function Footer() {
           <ul className="mt-5 space-y-2 text-sm">
             {navLinks.map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="text-navy/70 hover:text-gold-deep transition-colors">
+                <Link to={l.to} className="text-foreground/70 hover:text-gold-deep transition-colors">
                   {l.label}
                 </Link>
               </li>
@@ -36,12 +36,12 @@ export function Footer() {
           <div className="eyebrow">Contact</div>
           <ul className="mt-5 space-y-3 text-sm">
             <li>
-              <a href={whatsappLink()} target="_blank" rel="noreferrer noopener" className="flex items-center gap-2 text-navy/70 hover:text-gold-deep transition-colors">
+              <a href={whatsappLink()} target="_blank" rel="noreferrer noopener" className="flex items-center gap-2 text-foreground/70 hover:text-gold-deep transition-colors">
                 <MessageCircle className="h-4 w-4 text-gold" /> {site.whatsappNumber}
               </a>
             </li>
             <li>
-              <a href={emailLink()} className="flex items-center gap-2 text-navy/70 hover:text-gold-deep transition-colors">
+              <a href={emailLink()} className="flex items-center gap-2 text-foreground/70 hover:text-gold-deep transition-colors">
                 <Mail className="h-4 w-4 text-gold" /> {site.email}
               </a>
             </li>

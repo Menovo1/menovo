@@ -76,7 +76,7 @@ function PortfolioPage() {
                       href={p.url}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="link-underline mt-5 inline-block text-sm text-navy"
+                      className="link-underline mt-5 inline-block text-sm text-foreground"
                     >
                       Visit website
                     </a>

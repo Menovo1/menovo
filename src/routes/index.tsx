@@ -130,7 +130,7 @@ function HomePage() {
           ))}
         </div>
         <Reveal delay={200} className="mt-12">
-          <Link to="/services" className="link-underline text-sm tracking-wide text-navy">
+          <Link to="/services" className="link-underline text-sm tracking-wide text-foreground">
             Explore our services
           </Link>
         </Reveal>
