@@ -142,7 +142,7 @@ function AboutPage() {
           ))}
         </div>
         <Reveal delay={200} className="mt-12">
-          <Link to="/contact" className="btn-primary inline-block px-8 py-4 text-sm tracking-wide">
+          <Link to="/contact" className="btn-primary inline-block px-9 py-4 text-sm tracking-wide">
             Get Started
           </Link>
         </Reveal>

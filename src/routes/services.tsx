@@ -71,7 +71,7 @@ function ServicesPage() {
           ))}
         </div>
         <Reveal delay={150} className="mt-10">
-          <Link to="/contact" className="btn-primary inline-block px-8 py-4 text-sm tracking-wide">
+          <Link to="/contact" className="btn-primary inline-block px-9 py-4 text-sm tracking-wide">
             Get Started
           </Link>
         </Reveal>
@@ -112,10 +112,10 @@ function ServicesPage() {
 
       <Section align="center" title="Let's talk about your hotel." subtitle="Share your property and goals — we'll outline the right approach.">
         <Reveal className="flex flex-wrap justify-center gap-3">
-          <Link to="/contact" className="btn-primary px-8 py-4 text-sm tracking-wide">
+          <Link to="/contact" className="btn-primary px-9 py-4 text-sm tracking-wide">
             Get Started
           </Link>
-          <Link to="/portfolio" className="btn-outline px-8 py-4 text-sm tracking-wide">
+          <Link to="/portfolio" className="btn-outline px-9 py-4 text-sm tracking-wide">
             See Our Work
           </Link>
         </Reveal>

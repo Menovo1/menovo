@@ -79,11 +79,11 @@ function HomePage() {
           >
             <Link
               to="/contact"
-              className="group inline-flex items-center gap-2 bg-white text-navy px-8 py-4 text-sm tracking-wide transition-colors hover:bg-gold"
+              className="group inline-flex items-center gap-2 rounded-full bg-white text-navy px-9 py-4 text-sm tracking-wide transition-all duration-400 hover:bg-gold hover:-translate-y-px"
             >
               Get Started <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
-            <Link to="/services" className="btn-light px-8 py-4 text-sm tracking-wide">
+            <Link to="/services" className="btn-light px-9 py-4 text-sm tracking-wide">
               See Services
             </Link>
           </div>
@@ -137,7 +137,7 @@ function HomePage() {
       </Section>
 
       {/* FINAL CTA */}
-      <section className="relative bg-navy text-white py-20 sm:py-28">
+      <section className="relative bg-navy dark:bg-secondary text-white py-20 sm:py-28 border-y border-gold/20">
         <div className="mx-auto max-w-6xl px-6 sm:px-8">
           <Reveal className="max-w-3xl">
             <div className="text-[11px] uppercase tracking-[0.28em] text-gold">Start a project</div>
@@ -148,10 +148,10 @@ function HomePage() {
               Tell us about your property. We'll come back with a clear, considered plan.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
-              <Link to="/contact" className="bg-white text-navy px-8 py-4 text-sm tracking-wide transition-colors hover:bg-gold">
+              <Link to="/contact" className="rounded-full bg-white text-navy px-9 py-4 text-sm tracking-wide transition-all duration-400 hover:bg-gold hover:-translate-y-px">
                 Get Started
               </Link>
-              <Link to="/services" className="btn-light px-8 py-4 text-sm tracking-wide">
+              <Link to="/services" className="btn-light px-9 py-4 text-sm tracking-wide">
                 See Services
               </Link>
             </div>

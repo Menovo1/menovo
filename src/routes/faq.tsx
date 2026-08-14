@@ -90,10 +90,10 @@ function FaqPage() {
         <Reveal delay={150} className="mt-14 max-w-3xl">
           <p className="text-muted-foreground">Still have a question about your property?</p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link to="/contact" className="btn-primary px-8 py-4 text-sm tracking-wide">
+            <Link to="/contact" className="btn-primary px-9 py-4 text-sm tracking-wide">
               Get Started
             </Link>
-            <Link to="/services" className="btn-outline px-8 py-4 text-sm tracking-wide">
+            <Link to="/services" className="btn-outline px-9 py-4 text-sm tracking-wide">
               See Services
             </Link>
           </div>

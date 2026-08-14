@@ -116,7 +116,7 @@ function ContactPage() {
               href={whatsappLink()}
               target="_blank"
               rel="noreferrer noopener"
-              className="btn-primary mt-8 inline-block px-8 py-4 text-sm tracking-wide"
+              className="btn-primary mt-8 inline-block px-9 py-4 text-sm tracking-wide"
             >
               Message us on WhatsApp
             </a>
@@ -148,7 +148,7 @@ function ContactPage() {
                 I'd like to book a call
               </label>
               {error && <p className="text-sm text-destructive">{error}</p>}
-              <button type="submit" className="btn-primary w-full px-8 py-4 text-sm tracking-wide">
+              <button type="submit" className="btn-primary w-full px-9 py-4 text-sm tracking-wide">
                 Send enquiry via WhatsApp
               </button>
               <p className="text-xs text-muted-foreground">

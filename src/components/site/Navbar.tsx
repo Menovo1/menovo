@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logoAsset from "@/assets/menovo-logo.png.asset.json";
 import { navLinks, site } from "@/content/site";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -82,7 +83,8 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:flex items-center gap-3">
+          <ThemeToggle light={light} />
           <Link
             to="/contact"
             className={`px-6 py-2.5 text-[13px] tracking-wide ${light ? "btn-light" : "btn-primary"}`}
@@ -91,14 +93,17 @@ export function Navbar() {
           </Link>
         </div>
 
+        <div className="lg:hidden flex items-center gap-2">
+          <ThemeToggle light={light} />
         <button
-          className={`lg:hidden p-2 ${light ? "text-white" : "text-foreground"}`}
+          className={`p-2 ${light ? "text-white" : "text-foreground"}`}
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
+        </div>
       </div>
 
       <div
