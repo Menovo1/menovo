@@ -115,8 +115,8 @@ function ServicesPage() {
           <Link to="/contact" className="btn-primary px-8 py-4 text-sm tracking-wide">
             Get Started
           </Link>
-          <Link to="/process" className="btn-outline px-8 py-4 text-sm tracking-wide">
-            See our process
+          <Link to="/portfolio" className="btn-outline px-8 py-4 text-sm tracking-wide">
+            See Our Work
           </Link>
         </Reveal>
       </Section>
