@@ -13,8 +13,8 @@ export function Footer() {
             <span className="font-display text-xl tracking-[0.18em] font-semibold text-foreground">{site.name}</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
-            MENOVO is a premium web-development agency specialized exclusively in hotel websites —
-            elegant, fast and built to turn visitors into guests.
+            Premium websites built exclusively for hotels — elegant, fast, and made to turn
+            visitors into guests.
           </p>
           <p className="mt-3 text-[10px] uppercase tracking-[0.28em] text-gold-deep">{site.tagline}</p>
         </div>
@@ -52,6 +52,14 @@ export function Footer() {
             <li>Business Website Development</li>
             <li>Website Maintenance</li>
           </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-border">
+        <div className="mx-auto max-w-6xl px-6 sm:px-8 py-8 text-center">
+          <p className="font-display text-2xl sm:text-3xl tracking-[0.06em]">
+            Founded by <span className="text-gold-deep">ASAD JE</span>
+          </p>
         </div>
       </div>
 
