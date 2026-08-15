@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { BookingForm } from "@/components/site/BookingForm";
 import { site, whatsappLink, emailLink } from "@/content/site";
 import { Mail, MessageCircle, PhoneCall, Globe } from "lucide-react";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -26,44 +27,14 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [form, setForm] = useState({ name: "", hotel: "", email: "", message: "", call: false });
-  const [error, setError] = useState("");
-
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((f) => ({ ...f, [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value }));
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.message.trim()) {
-      setError("Please add your name and a short message.");
-      return;
-    }
-    setError("");
-    const text = [
-      "Hello MENOVO,",
-      "",
-      `Name: ${form.name}`,
-      form.hotel && `Hotel: ${form.hotel}`,
-      form.email && `Email: ${form.email}`,
-      form.call && "I'd like to book a call.",
-      "",
-      form.message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-    window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
-  };
-
-  const field =
-    "w-full border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold";
-
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Tell us about your hotel."
-        subtitle="Send a message and we'll reply personally. If it's easier, reach us straight on WhatsApp."
+        title="Book an appointment."
+        subtitle="Request a consultation and we'll confirm the meeting personally on WhatsApp or Zoom."
       />
+
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
@@ -98,11 +69,11 @@ function ContactPage() {
               <li className="flex items-start gap-4">
                 <PhoneCall className="h-5 w-5 text-gold mt-0.5" />
                 <span>
-                  <span className="block text-sm font-medium">Book a call</span>
+                  <span className="block text-sm font-medium">Appointments</span>
                   <span className="block text-sm text-muted-foreground">
-                    Tick “Book a call” in the form, or message us on WhatsApp and we'll agree a time
-                    that suits you.
+                    Pick a date and time in the form. We confirm every request personally.
                   </span>
+
                 </span>
               </li>
             </ul>
@@ -123,39 +94,9 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <form onSubmit={submit} className="border border-border p-8 sm:p-10 space-y-5">
-              <div className="eyebrow">Project enquiry</div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="block">
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">Your name</span>
-                  <input className={`mt-2 ${field}`} value={form.name} onChange={set("name")} required />
-                </label>
-                <label className="block">
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">Hotel name</span>
-                  <input className={`mt-2 ${field}`} value={form.hotel} onChange={set("hotel")} />
-                </label>
-              </div>
-              <label className="block">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">Email</span>
-                <input type="email" className={`mt-2 ${field}`} value={form.email} onChange={set("email")} />
-              </label>
-              <label className="block">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">Message</span>
-                <textarea rows={5} className={`mt-2 ${field}`} value={form.message} onChange={set("message")} required />
-              </label>
-              <label className="flex items-center gap-3 text-sm text-muted-foreground">
-                <input type="checkbox" checked={form.call} onChange={set("call")} className="accent-[var(--gold)]" />
-                I'd like to book a call
-              </label>
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <button type="submit" className="btn-primary w-full px-9 py-4 text-sm tracking-wide">
-                Send enquiry via WhatsApp
-              </button>
-              <p className="text-xs text-muted-foreground">
-                Your message opens in WhatsApp so you can send it directly to our team.
-              </p>
-            </form>
+            <BookingForm />
           </Reveal>
+
         </div>
       </Section>
     </>
