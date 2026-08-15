@@ -57,11 +57,15 @@ export function Footer() {
 
       <div className="border-t border-border">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 py-8 text-center">
-          <p className="font-display text-2xl sm:text-3xl tracking-[0.06em]">
+          <Link
+            to="/asad-je"
+            className="font-display text-2xl sm:text-3xl tracking-[0.06em] inline-block transition-colors hover:text-gold-deep"
+          >
             Founded by <span className="text-gold-deep">ASAD JE</span>
-          </p>
+          </Link>
         </div>
       </div>
+
 
       <div className="border-t border-border">
         <div className="mx-auto max-w-6xl px-6 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-muted-foreground">
