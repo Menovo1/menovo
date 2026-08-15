@@ -141,11 +141,15 @@ function AboutPage() {
             </Reveal>
           ))}
         </div>
-        <Reveal delay={200} className="mt-12">
+        <Reveal delay={200} className="mt-12 flex flex-wrap gap-4">
           <Link to="/contact" className="btn-primary inline-block px-9 py-4 text-sm tracking-wide">
             Get Started
           </Link>
+          <Link to="/asad-je" className="btn-outline inline-block px-9 py-4 text-sm tracking-wide">
+            Meet the Founder
+          </Link>
         </Reveal>
+
       </Section>
     </>
   );
