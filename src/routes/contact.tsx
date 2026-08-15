@@ -94,39 +94,9 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <form onSubmit={submit} className="border border-border p-8 sm:p-10 space-y-5">
-              <div className="eyebrow">Project enquiry</div>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="block">
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">Your name</span>
-                  <input className={`mt-2 ${field}`} value={form.name} onChange={set("name")} required />
-                </label>
-                <label className="block">
-                  <span className="text-xs uppercase tracking-widest text-muted-foreground">Hotel name</span>
-                  <input className={`mt-2 ${field}`} value={form.hotel} onChange={set("hotel")} />
-                </label>
-              </div>
-              <label className="block">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">Email</span>
-                <input type="email" className={`mt-2 ${field}`} value={form.email} onChange={set("email")} />
-              </label>
-              <label className="block">
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">Message</span>
-                <textarea rows={5} className={`mt-2 ${field}`} value={form.message} onChange={set("message")} required />
-              </label>
-              <label className="flex items-center gap-3 text-sm text-muted-foreground">
-                <input type="checkbox" checked={form.call} onChange={set("call")} className="accent-[var(--gold)]" />
-                I'd like to book a call
-              </label>
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <button type="submit" className="btn-primary w-full px-9 py-4 text-sm tracking-wide">
-                Send enquiry via WhatsApp
-              </button>
-              <p className="text-xs text-muted-foreground">
-                Your message opens in WhatsApp so you can send it directly to our team.
-              </p>
-            </form>
+            <BookingForm />
           </Reveal>
+
         </div>
       </Section>
     </>
