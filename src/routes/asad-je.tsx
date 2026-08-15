@@ -106,7 +106,24 @@ function AsadProfile() {
           </div>
         </div>
 
-        <Reveal className="mt-16 border-t border-border pt-10 text-center">
+        <Reveal className="mt-16 border-t border-border pt-10">
+          <div className="eyebrow text-center">Connect</div>
+          <div className="mt-5 flex flex-wrap justify-center gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="btn-outline px-6 py-3 text-sm tracking-wide"
+              >
+                <s.icon className="h-4 w-4 text-gold" /> {s.label}
+              </a>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-12 border-t border-border pt-10 text-center">
           <p className="font-display text-2xl sm:text-3xl tracking-[0.04em]">
             Founded by <span className="text-gold-deep">ASAD JE</span>
           </p>
@@ -120,6 +137,7 @@ function AsadProfile() {
             <ArrowLeft className="h-4 w-4" /> Back to MENOVO
           </Link>
         </Reveal>
+
       </Section>
     </div>
   );
