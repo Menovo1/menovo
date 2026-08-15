@@ -27,44 +27,14 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [form, setForm] = useState({ name: "", hotel: "", email: "", message: "", call: false });
-  const [error, setError] = useState("");
-
-  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((f) => ({ ...f, [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value }));
-
-  const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.message.trim()) {
-      setError("Please add your name and a short message.");
-      return;
-    }
-    setError("");
-    const text = [
-      "Hello MENOVO,",
-      "",
-      `Name: ${form.name}`,
-      form.hotel && `Hotel: ${form.hotel}`,
-      form.email && `Email: ${form.email}`,
-      form.call && "I'd like to book a call.",
-      "",
-      form.message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-    window.open(whatsappLink(text), "_blank", "noopener,noreferrer");
-  };
-
-  const field =
-    "w-full border border-input bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-gold";
-
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Tell us about your hotel."
-        subtitle="Send a message and we'll reply personally. If it's easier, reach us straight on WhatsApp."
+        title="Book an appointment."
+        subtitle="Request a consultation and we'll confirm the meeting personally on WhatsApp or Zoom."
       />
+
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
