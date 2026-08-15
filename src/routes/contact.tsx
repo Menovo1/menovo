@@ -69,11 +69,11 @@ function ContactPage() {
               <li className="flex items-start gap-4">
                 <PhoneCall className="h-5 w-5 text-gold mt-0.5" />
                 <span>
-                  <span className="block text-sm font-medium">Book a call</span>
+                  <span className="block text-sm font-medium">Appointments</span>
                   <span className="block text-sm text-muted-foreground">
-                    Tick “Book a call” in the form, or message us on WhatsApp and we'll agree a time
-                    that suits you.
+                    Pick a date and time in the form. We confirm every request personally.
                   </span>
+
                 </span>
               </li>
             </ul>
