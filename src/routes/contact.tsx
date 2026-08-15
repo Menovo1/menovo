@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { BookingForm } from "@/components/site/BookingForm";
 import { site, whatsappLink, emailLink } from "@/content/site";
 import { Mail, MessageCircle, PhoneCall, Globe } from "lucide-react";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
