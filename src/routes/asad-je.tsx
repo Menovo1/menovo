@@ -1,7 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, AtSign, Instagram, MessageCircle } from "lucide-react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+
+/** Only real, provided links are shown. Add Facebook / X / LinkedIn / GitHub here when available. */
+const socials = [
+  { label: "Instagram", href: "https://www.instagram.com/the_asad_je/", icon: Instagram },
+  { label: "WhatsApp", href: "https://wa.me/251976367556", icon: MessageCircle },
+  { label: "Threads", href: "https://www.threads.com/@the_asad_je", icon: AtSign },
+];
+
 
 export const Route = createFileRoute("/asad-je")({
   head: () => ({
