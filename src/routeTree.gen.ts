@@ -22,6 +22,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
 
@@ -90,6 +91,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminMessagesRoute = AdminMessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
@@ -116,6 +122,7 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -132,6 +139,7 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -150,6 +158,7 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/services': typeof AdminServicesRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -169,6 +178,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/bookings'
     | '/admin/messages'
+    | '/admin/services'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -185,6 +195,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/bookings'
     | '/admin/messages'
+    | '/admin/services'
     | '/admin'
   id:
     | '__root__'
@@ -202,6 +213,7 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin/bookings'
     | '/admin/messages'
+    | '/admin/services'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -313,6 +325,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/messages': {
       id: '/admin/messages'
       path: '/messages'
@@ -333,12 +352,14 @@ declare module '@tanstack/react-router' {
 interface AdminRouteChildren {
   AdminBookingsRoute: typeof AdminBookingsRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
+  AdminServicesRoute: typeof AdminServicesRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
   AdminBookingsRoute: AdminBookingsRoute,
   AdminMessagesRoute: AdminMessagesRoute,
+  AdminServicesRoute: AdminServicesRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
