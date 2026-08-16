@@ -22,9 +22,14 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
+import { Route as AdminPortfolioRouteImport } from './routes/admin/portfolio'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
+import { Route as AdminFounderRouteImport } from './routes/admin/founder'
+import { Route as AdminFaqRouteImport } from './routes/admin/faq'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
+import { Route as AdminBlogRouteImport } from './routes/admin/blog'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -91,9 +96,19 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminServicesRoute = AdminServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminMessagesRoute = AdminMessagesRouteImport.update({
@@ -101,9 +116,24 @@ const AdminMessagesRoute = AdminMessagesRouteImport.update({
   path: '/messages',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminFounderRoute = AdminFounderRouteImport.update({
+  id: '/founder',
+  path: '/founder',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminFaqRoute = AdminFaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminBookingsRoute = AdminBookingsRouteImport.update({
   id: '/bookings',
   path: '/bookings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBlogRoute = AdminBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
   getParentRoute: () => AdminRoute,
 } as any)
 
@@ -120,9 +150,14 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
+  '/admin/faq': typeof AdminFaqRoute
+  '/admin/founder': typeof AdminFounderRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -137,9 +172,14 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
+  '/admin/faq': typeof AdminFaqRoute
+  '/admin/founder': typeof AdminFounderRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -156,9 +196,14 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
+  '/admin/faq': typeof AdminFaqRoute
+  '/admin/founder': typeof AdminFounderRoute
   '/admin/messages': typeof AdminMessagesRoute
+  '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -176,9 +221,14 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/blog'
     | '/admin/bookings'
+    | '/admin/faq'
+    | '/admin/founder'
     | '/admin/messages'
+    | '/admin/portfolio'
     | '/admin/services'
+    | '/admin/settings'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -193,9 +243,14 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/blog'
     | '/admin/bookings'
+    | '/admin/faq'
+    | '/admin/founder'
     | '/admin/messages'
+    | '/admin/portfolio'
     | '/admin/services'
+    | '/admin/settings'
     | '/admin'
   id:
     | '__root__'
@@ -211,9 +266,14 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/blog'
     | '/admin/bookings'
+    | '/admin/faq'
+    | '/admin/founder'
     | '/admin/messages'
+    | '/admin/portfolio'
     | '/admin/services'
+    | '/admin/settings'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -325,11 +385,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/services': {
       id: '/admin/services'
       path: '/services'
       fullPath: '/admin/services'
       preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/portfolio': {
+      id: '/admin/portfolio'
+      path: '/portfolio'
+      fullPath: '/admin/portfolio'
+      preLoaderRoute: typeof AdminPortfolioRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/messages': {
@@ -339,6 +413,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMessagesRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/founder': {
+      id: '/admin/founder'
+      path: '/founder'
+      fullPath: '/admin/founder'
+      preLoaderRoute: typeof AdminFounderRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/faq': {
+      id: '/admin/faq'
+      path: '/faq'
+      fullPath: '/admin/faq'
+      preLoaderRoute: typeof AdminFaqRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/bookings': {
       id: '/admin/bookings'
       path: '/bookings'
@@ -346,20 +434,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBookingsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/blog': {
+      id: '/admin/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminBlogRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminBlogRoute: typeof AdminBlogRoute
   AdminBookingsRoute: typeof AdminBookingsRoute
+  AdminFaqRoute: typeof AdminFaqRoute
+  AdminFounderRoute: typeof AdminFounderRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
+  AdminPortfolioRoute: typeof AdminPortfolioRoute
   AdminServicesRoute: typeof AdminServicesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminBlogRoute: AdminBlogRoute,
   AdminBookingsRoute: AdminBookingsRoute,
+  AdminFaqRoute: AdminFaqRoute,
+  AdminFounderRoute: AdminFounderRoute,
   AdminMessagesRoute: AdminMessagesRoute,
+  AdminPortfolioRoute: AdminPortfolioRoute,
   AdminServicesRoute: AdminServicesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 

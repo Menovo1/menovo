@@ -36,7 +36,18 @@ export const Route = createFileRoute("/admin")({
 });
 
 type NavItem = {
-  to: "/admin" | `/admin/${string}`;
+  to:
+    | "/admin"
+    | "/admin/bookings"
+    | "/admin/messages"
+    | "/admin/website"
+    | "/admin/services"
+    | "/admin/portfolio"
+    | "/admin/blog"
+    | "/admin/faq"
+    | "/admin/founder"
+    | "/admin/media"
+    | "/admin/settings";
   label: string;
   icon: typeof LayoutDashboard;
   exact?: boolean;
