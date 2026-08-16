@@ -22,10 +22,12 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminWebsiteRouteImport } from './routes/admin/website'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminPortfolioRouteImport } from './routes/admin/portfolio'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
+import { Route as AdminMediaRouteImport } from './routes/admin/media'
 import { Route as AdminFounderRouteImport } from './routes/admin/founder'
 import { Route as AdminFaqRouteImport } from './routes/admin/faq'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
@@ -96,6 +98,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminWebsiteRoute = AdminWebsiteRouteImport.update({
+  id: '/website',
+  path: '/website',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -114,6 +121,11 @@ const AdminPortfolioRoute = AdminPortfolioRouteImport.update({
 const AdminMessagesRoute = AdminMessagesRouteImport.update({
   id: '/messages',
   path: '/messages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminFounderRoute = AdminFounderRouteImport.update({
@@ -154,10 +166,12 @@ export interface FileRoutesByFullPath {
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/website': typeof AdminWebsiteRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -176,10 +190,12 @@ export interface FileRoutesByTo {
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/website': typeof AdminWebsiteRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -200,10 +216,12 @@ export interface FileRoutesById {
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/website': typeof AdminWebsiteRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -225,10 +243,12 @@ export interface FileRouteTypes {
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/website'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -247,10 +267,12 @@ export interface FileRouteTypes {
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/website'
     | '/admin'
   id:
     | '__root__'
@@ -270,10 +292,12 @@ export interface FileRouteTypes {
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/website'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -385,6 +409,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/website': {
+      id: '/admin/website'
+      path: '/website'
+      fullPath: '/admin/website'
+      preLoaderRoute: typeof AdminWebsiteRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/settings': {
       id: '/admin/settings'
       path: '/settings'
@@ -411,6 +442,13 @@ declare module '@tanstack/react-router' {
       path: '/messages'
       fullPath: '/admin/messages'
       preLoaderRoute: typeof AdminMessagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/founder': {
@@ -449,10 +487,12 @@ interface AdminRouteChildren {
   AdminBookingsRoute: typeof AdminBookingsRoute
   AdminFaqRoute: typeof AdminFaqRoute
   AdminFounderRoute: typeof AdminFounderRoute
+  AdminMediaRoute: typeof AdminMediaRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminWebsiteRoute: typeof AdminWebsiteRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
@@ -461,10 +501,12 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminBookingsRoute: AdminBookingsRoute,
   AdminFaqRoute: AdminFaqRoute,
   AdminFounderRoute: AdminFounderRoute,
+  AdminMediaRoute: AdminMediaRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminWebsiteRoute: AdminWebsiteRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
