@@ -52,7 +52,8 @@ export type SiteData = {
     published_at: string | null;
   }>;
   faqs: Array<{ id: string; question: string; answer: string }>;
-  content: Record<string, Record<string, unknown>>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content: Record<string, Record<string, any>>;
 };
 
 /** One public read for every CMS-managed block on the website. */
@@ -81,9 +82,10 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(async (): P
     supabase.from("site_content").select("key, value"),
   ]);
 
-  const contentMap: Record<string, Record<string, unknown>> = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const contentMap: Record<string, Record<string, any>> = {};
   for (const row of content.data ?? []) {
-    contentMap[row.key] = (row.value ?? {}) as Record<string, unknown>;
+    contentMap[row.key] = (row.value ?? {}) as Record<string, never>;
   }
 
   return {
