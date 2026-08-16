@@ -3,7 +3,8 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { isAdminTable, TABLE_ORDER, TABLE_PK, type AdminTable } from "@/lib/admin-tables";
 
-type Row = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Row = Record<string, any>;
 
 function db(client: unknown) {
   return client as SupabaseClient;
@@ -136,7 +137,7 @@ export const adminStats = createServerFn({ method: "GET" })
       count("page_views", (q) => (q as never as { gte: (a: string, b: string) => unknown }).gte("created_at", monthAgo)),
     ]);
 
-    const { calendarConfigured } = await import("@/lib/google-calendar.server");
+    const { readCalendarConfig } = await import("@/lib/google-calendar.server");
 
     return {
       totalBookings,
@@ -150,6 +151,6 @@ export const adminStats = createServerFn({ method: "GET" })
       newMessages,
       totalViews,
       viewsThisMonth,
-      calendarConnected: calendarConfigured(),
+      calendarConnected: Boolean(readCalendarConfig()),
     };
   });
