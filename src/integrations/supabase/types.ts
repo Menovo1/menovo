@@ -125,6 +125,45 @@ export type Database = {
         }
         Relationships: []
       }
+      content_revisions: {
+        Row: {
+          action: string
+          after_value: Json | null
+          before_value: Json | null
+          created_at: string
+          created_by: string | null
+          id: string
+          label: string
+          record_key: string
+          table_name: string
+          undone: boolean
+        }
+        Insert: {
+          action?: string
+          after_value?: Json | null
+          before_value?: Json | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          label?: string
+          record_key: string
+          table_name: string
+          undone?: boolean
+        }
+        Update: {
+          action?: string
+          after_value?: Json | null
+          before_value?: Json | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          label?: string
+          record_key?: string
+          table_name?: string
+          undone?: boolean
+        }
+        Relationships: []
+      }
       faqs: {
         Row: {
           answer: string
