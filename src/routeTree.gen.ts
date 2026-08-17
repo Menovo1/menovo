@@ -28,6 +28,7 @@ import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminPortfolioRouteImport } from './routes/admin/portfolio'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
 import { Route as AdminMediaRouteImport } from './routes/admin/media'
+import { Route as AdminIdentityRouteImport } from './routes/admin/identity'
 import { Route as AdminFounderRouteImport } from './routes/admin/founder'
 import { Route as AdminFaqRouteImport } from './routes/admin/faq'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
@@ -129,6 +130,11 @@ const AdminMediaRoute = AdminMediaRouteImport.update({
   path: '/media',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminIdentityRoute = AdminIdentityRouteImport.update({
+  id: '/identity',
+  path: '/identity',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminFounderRoute = AdminFounderRouteImport.update({
   id: '/founder',
   path: '/founder',
@@ -172,6 +178,7 @@ export interface FileRoutesByFullPath {
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/identity': typeof AdminIdentityRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -197,6 +204,7 @@ export interface FileRoutesByTo {
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/identity': typeof AdminIdentityRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -224,6 +232,7 @@ export interface FileRoutesById {
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/identity': typeof AdminIdentityRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -252,6 +261,7 @@ export interface FileRouteTypes {
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/identity'
     | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
@@ -277,6 +287,7 @@ export interface FileRouteTypes {
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/identity'
     | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
@@ -303,6 +314,7 @@ export interface FileRouteTypes {
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/identity'
     | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
@@ -464,6 +476,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMediaRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/identity': {
+      id: '/admin/identity'
+      path: '/identity'
+      fullPath: '/admin/identity'
+      preLoaderRoute: typeof AdminIdentityRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/founder': {
       id: '/admin/founder'
       path: '/founder'
@@ -507,6 +526,7 @@ interface AdminRouteChildren {
   AdminBookingsRoute: typeof AdminBookingsRoute
   AdminFaqRoute: typeof AdminFaqRoute
   AdminFounderRoute: typeof AdminFounderRoute
+  AdminIdentityRoute: typeof AdminIdentityRoute
   AdminMediaRoute: typeof AdminMediaRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
@@ -521,6 +541,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminBookingsRoute: AdminBookingsRoute,
   AdminFaqRoute: AdminFaqRoute,
   AdminFounderRoute: AdminFounderRoute,
+  AdminIdentityRoute: AdminIdentityRoute,
   AdminMediaRoute: AdminMediaRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
