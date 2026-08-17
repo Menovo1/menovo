@@ -318,7 +318,9 @@ function AdminGate() {
         </header>
 
         <main className="px-5 py-8 sm:px-8 sm:py-10">
+          <HistoryBar />
           <Outlet />
+
         </main>
       </div>
     </div>
