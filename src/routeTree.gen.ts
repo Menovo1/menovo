@@ -28,10 +28,13 @@ import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminPortfolioRouteImport } from './routes/admin/portfolio'
 import { Route as AdminMessagesRouteImport } from './routes/admin/messages'
 import { Route as AdminMediaRouteImport } from './routes/admin/media'
+import { Route as AdminIdentityRouteImport } from './routes/admin/identity'
 import { Route as AdminFounderRouteImport } from './routes/admin/founder'
 import { Route as AdminFaqRouteImport } from './routes/admin/faq'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
 import { Route as AdminBlogRouteImport } from './routes/admin/blog'
+import { Route as AdminBackgroundsRouteImport } from './routes/admin/backgrounds'
+import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -128,6 +131,11 @@ const AdminMediaRoute = AdminMediaRouteImport.update({
   path: '/media',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminIdentityRoute = AdminIdentityRouteImport.update({
+  id: '/identity',
+  path: '/identity',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminFounderRoute = AdminFounderRouteImport.update({
   id: '/founder',
   path: '/founder',
@@ -148,6 +156,16 @@ const AdminBlogRoute = AdminBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminBackgroundsRoute = AdminBackgroundsRouteImport.update({
+  id: '/backgrounds',
+  path: '/backgrounds',
+  getParentRoute: () => AdminRoute,
+} as any)
+const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
+  id: '/api/public/media/$',
+  path: '/api/public/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -162,10 +180,12 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/identity': typeof AdminIdentityRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -173,6 +193,7 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/website': typeof AdminWebsiteRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -186,10 +207,12 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/identity': typeof AdminIdentityRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -197,6 +220,7 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/website': typeof AdminWebsiteRoute
   '/admin': typeof AdminIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -212,10 +236,12 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
   '/admin/faq': typeof AdminFaqRoute
   '/admin/founder': typeof AdminFounderRoute
+  '/admin/identity': typeof AdminIdentityRoute
   '/admin/media': typeof AdminMediaRoute
   '/admin/messages': typeof AdminMessagesRoute
   '/admin/portfolio': typeof AdminPortfolioRoute
@@ -223,6 +249,7 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/website': typeof AdminWebsiteRoute
   '/admin/': typeof AdminIndexRoute
+  '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -239,10 +266,12 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/identity'
     | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
@@ -250,6 +279,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/website'
     | '/admin/'
+    | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -263,10 +293,12 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/identity'
     | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
@@ -274,6 +306,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/website'
     | '/admin'
+    | '/api/public/media/$'
   id:
     | '__root__'
     | '/'
@@ -288,10 +321,12 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
     | '/admin/faq'
     | '/admin/founder'
+    | '/admin/identity'
     | '/admin/media'
     | '/admin/messages'
     | '/admin/portfolio'
@@ -299,6 +334,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/website'
     | '/admin/'
+    | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -314,6 +350,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -451,6 +488,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminMediaRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/identity': {
+      id: '/admin/identity'
+      path: '/identity'
+      fullPath: '/admin/identity'
+      preLoaderRoute: typeof AdminIdentityRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/founder': {
       id: '/admin/founder'
       path: '/founder'
@@ -479,14 +523,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBlogRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/backgrounds': {
+      id: '/admin/backgrounds'
+      path: '/backgrounds'
+      fullPath: '/admin/backgrounds'
+      preLoaderRoute: typeof AdminBackgroundsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/api/public/media/$': {
+      id: '/api/public/media/$'
+      path: '/api/public/media/$'
+      fullPath: '/api/public/media/$'
+      preLoaderRoute: typeof ApiPublicMediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminBackgroundsRoute: typeof AdminBackgroundsRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminBookingsRoute: typeof AdminBookingsRoute
   AdminFaqRoute: typeof AdminFaqRoute
   AdminFounderRoute: typeof AdminFounderRoute
+  AdminIdentityRoute: typeof AdminIdentityRoute
   AdminMediaRoute: typeof AdminMediaRoute
   AdminMessagesRoute: typeof AdminMessagesRoute
   AdminPortfolioRoute: typeof AdminPortfolioRoute
@@ -497,10 +557,12 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminBackgroundsRoute: AdminBackgroundsRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminBookingsRoute: AdminBookingsRoute,
   AdminFaqRoute: AdminFaqRoute,
   AdminFounderRoute: AdminFounderRoute,
+  AdminIdentityRoute: AdminIdentityRoute,
   AdminMediaRoute: AdminMediaRoute,
   AdminMessagesRoute: AdminMessagesRoute,
   AdminPortfolioRoute: AdminPortfolioRoute,
@@ -525,6 +587,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

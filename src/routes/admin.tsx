@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowLeft,
+  BadgeCheck,
   BookOpen,
   CalendarDays,
   HelpCircle,
@@ -15,12 +16,14 @@ import {
   Settings as SettingsIcon,
   Sparkles,
   User,
+  Wallpaper,
   Layers,
   X,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { isAdmin, claimAdmin } from "@/lib/bookings.functions";
 import { AdminButton, inputCls } from "@/components/admin/ui";
+import { HistoryBar } from "@/components/admin/HistoryBar";
 import adminBg from "@/assets/admin-bg.jpg";
 import logo from "@/assets/menovo-logo-2026.png";
 
@@ -41,6 +44,8 @@ type NavItem = {
     | "/admin/bookings"
     | "/admin/messages"
     | "/admin/website"
+    | "/admin/identity"
+    | "/admin/backgrounds"
     | "/admin/services"
     | "/admin/portfolio"
     | "/admin/blog"
@@ -58,6 +63,8 @@ const NAV: NavItem[] = [
   { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
   { to: "/admin/messages", label: "Messages", icon: Mail },
   { to: "/admin/website", label: "Website", icon: Sparkles },
+  { to: "/admin/identity", label: "Identity", icon: BadgeCheck },
+  { to: "/admin/backgrounds", label: "Backgrounds", icon: Wallpaper },
   { to: "/admin/services", label: "Services", icon: Layers },
   { to: "/admin/portfolio", label: "Portfolio", icon: ImageIcon },
   { to: "/admin/blog", label: "Blog", icon: BookOpen },
@@ -67,20 +74,46 @@ const NAV: NavItem[] = [
   { to: "/admin/settings", label: "Settings", icon: SettingsIcon },
 ];
 
+/**
+ * Module-scope flag: it resets on every full page load, so a refresh always
+ * ends the admin session and forces a fresh sign-in.
+ */
+let sessionLive = false;
+
 function AdminLayout() {
   const [ready, setReady] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSignedIn(Boolean(data.session));
-      setReady(true);
-    });
+    let cancelled = false;
+
+    void (async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session && !sessionLive) {
+        // Page was reloaded — drop the restored session.
+        await supabase.auth.signOut();
+        if (!cancelled) {
+          setSignedIn(false);
+          setReady(true);
+        }
+        return;
+      }
+      if (!cancelled) {
+        setSignedIn(Boolean(data.session));
+        setReady(true);
+      }
+    })();
+
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+      sessionLive = Boolean(session);
       setSignedIn(Boolean(session));
     });
-    return () => sub.subscription.unsubscribe();
+    return () => {
+      cancelled = true;
+      sub.subscription.unsubscribe();
+    };
   }, []);
+
 
   return (
     <div
@@ -286,7 +319,9 @@ function AdminGate() {
         </header>
 
         <main className="px-5 py-8 sm:px-8 sm:py-10">
+          <HistoryBar />
           <Outlet />
+
         </main>
       </div>
     </div>
