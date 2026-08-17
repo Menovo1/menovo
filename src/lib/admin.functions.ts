@@ -308,7 +308,8 @@ export const adminStats = createServerFn({ method: "GET" })
       count("page_views", (q) => (q as never as { gte: (a: string, b: string) => unknown }).gte("created_at", monthAgo)),
     ]);
 
-    const { readCalendarConfig } = await import("@/lib/google-calendar.server");
+    const { countUpcomingCalendly } = await import("@/lib/calendly.server");
+    const calendlyUpcoming = await countUpcomingCalendly();
 
     return {
       totalBookings,
@@ -322,6 +323,8 @@ export const adminStats = createServerFn({ method: "GET" })
       newMessages,
       totalViews,
       viewsThisMonth,
-      calendarConnected: Boolean(readCalendarConfig()),
+      calendlyConnected: calendlyUpcoming !== null,
+      calendlyUpcoming: calendlyUpcoming ?? 0,
     };
   });
+
