@@ -41,6 +41,8 @@ type NavItem = {
     | "/admin/bookings"
     | "/admin/messages"
     | "/admin/website"
+    | "/admin/identity"
+    | "/admin/backgrounds"
     | "/admin/services"
     | "/admin/portfolio"
     | "/admin/blog"
@@ -58,6 +60,8 @@ const NAV: NavItem[] = [
   { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
   { to: "/admin/messages", label: "Messages", icon: Mail },
   { to: "/admin/website", label: "Website", icon: Sparkles },
+  { to: "/admin/identity", label: "Identity", icon: BadgeCheck },
+  { to: "/admin/backgrounds", label: "Backgrounds", icon: Wallpaper },
   { to: "/admin/services", label: "Services", icon: Layers },
   { to: "/admin/portfolio", label: "Portfolio", icon: ImageIcon },
   { to: "/admin/blog", label: "Blog", icon: BookOpen },
@@ -67,20 +71,46 @@ const NAV: NavItem[] = [
   { to: "/admin/settings", label: "Settings", icon: SettingsIcon },
 ];
 
+/**
+ * Module-scope flag: it resets on every full page load, so a refresh always
+ * ends the admin session and forces a fresh sign-in.
+ */
+let sessionLive = false;
+
 function AdminLayout() {
   const [ready, setReady] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      setSignedIn(Boolean(data.session));
-      setReady(true);
-    });
+    let cancelled = false;
+
+    void (async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session && !sessionLive) {
+        // Page was reloaded — drop the restored session.
+        await supabase.auth.signOut();
+        if (!cancelled) {
+          setSignedIn(false);
+          setReady(true);
+        }
+        return;
+      }
+      if (!cancelled) {
+        setSignedIn(Boolean(data.session));
+        setReady(true);
+      }
+    })();
+
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
+      sessionLive = Boolean(session);
       setSignedIn(Boolean(session));
     });
-    return () => sub.subscription.unsubscribe();
+    return () => {
+      cancelled = true;
+      sub.subscription.unsubscribe();
+    };
   }, []);
+
 
   return (
     <div
