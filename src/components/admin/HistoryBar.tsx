@@ -26,7 +26,7 @@ export function HistoryBar() {
     void refresh();
   }, [refresh]);
 
-  const run = async (fn: typeof undo) => {
+  const run = async (fn: () => Promise<{ ok: boolean; message: string }>) => {
     setBusy(true);
     try {
       const res = await fn({});
