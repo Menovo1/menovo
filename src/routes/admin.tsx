@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowLeft,
+  BadgeCheck,
   BookOpen,
   CalendarDays,
   HelpCircle,
@@ -15,6 +16,7 @@ import {
   Settings as SettingsIcon,
   Sparkles,
   User,
+  Wallpaper,
   Layers,
   X,
 } from "lucide-react";
