@@ -23,6 +23,7 @@ import {
 import { supabase } from "@/integrations/supabase/client";
 import { isAdmin, claimAdmin } from "@/lib/bookings.functions";
 import { AdminButton, inputCls } from "@/components/admin/ui";
+import { HistoryBar } from "@/components/admin/HistoryBar";
 import adminBg from "@/assets/admin-bg.jpg";
 import logo from "@/assets/menovo-logo-2026.png";
 
