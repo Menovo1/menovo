@@ -30,9 +30,8 @@ function DashboardPage() {
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            <StatCard label="Total bookings" value={stats.totalBookings} hint={`${stats.newBookings} new`} />
-            <StatCard label="Today's appointments" value={stats.todaysAppointments} />
-            <StatCard label="Upcoming" value={stats.upcomingAppointments} />
+            <StatCard label="Calendly meetings" value={stats.calendlyUpcoming} hint="upcoming" />
+            <StatCard label="Total booking requests" value={stats.totalBookings} hint={`${stats.newBookings} new`} />
             <StatCard label="Completed projects" value={stats.completedProjects} />
             <StatCard label="Messages" value={stats.contactMessages} hint={`${stats.newMessages} unread`} />
             <StatCard label="Portfolio projects" value={stats.portfolioCount} />
@@ -42,13 +41,14 @@ function DashboardPage() {
 
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
             <AdminCard>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-white/50">Google Calendar</div>
+              <div className="text-[11px] uppercase tracking-[0.2em] text-white/50">Calendly + Zoom</div>
               <p className="mt-3 text-sm text-white/75">
-                {stats.calendarConnected
-                  ? "Connected — new bookings are added to your calendar automatically."
-                  : "Not connected yet. Bookings are still saved safely and flagged for retry."}
+                {stats.calendlyConnected
+                  ? "Connected — every booking on the contact page creates a Calendly meeting with an automatic Zoom link."
+                  : "Not reachable right now. Bookings still reach Calendly; reconnect the integration if this persists."}
               </p>
             </AdminCard>
+
             <AdminCard>
               <div className="text-[11px] uppercase tracking-[0.2em] text-white/50">Quick actions</div>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
