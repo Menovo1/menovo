@@ -1,14 +1,22 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/menovo-logo.png.asset.json";
 import { navLinks, site } from "@/content/site";
+import { cmsText } from "@/content/cms";
+import { useSiteOptional } from "@/lib/site-data";
 import { ThemeToggle } from "./ThemeToggle";
+
+export const FALLBACK_LOGO = "/brand/menovo-logo.png";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { location } = useRouterState();
+  const data = useSiteOptional();
+
+  const logo = cmsText(data?.content, "identity", "logoUrl") || FALLBACK_LOGO;
+  const siteName = cmsText(data?.content, "identity", "siteName") || site.name;
+  const tagline = cmsText(data?.content, "identity", "tagline") || site.tagline;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -23,6 +31,7 @@ export function Navbar() {
 
   const onHome = location.pathname === "/";
   const light = onHome && !scrolled && !open;
+  const current = navLinks.find((l) => l.to === location.pathname);
 
   return (
     <header
@@ -35,11 +44,11 @@ export function Navbar() {
       <div className="mx-auto max-w-6xl px-6 sm:px-8 flex items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0">
           <img
-            src={logoAsset.url}
-            alt="MENOVO — hotel web design agency"
+            src={logo}
+            alt={`${siteName} — hotel web design agency`}
             width={40}
             height={40}
-            className="h-10 w-10 rounded-full shrink-0"
+            className="h-10 w-10 object-contain shrink-0"
           />
           <span className="leading-none min-w-0">
             <span
@@ -47,14 +56,15 @@ export function Navbar() {
                 light ? "text-white" : "text-foreground"
               }`}
             >
-              {site.name}
+              {siteName}
             </span>
             <span
               className={`block mt-1 text-[9px] uppercase tracking-[0.22em] truncate transition-colors ${
                 light ? "text-white/70" : "text-muted-foreground"
               }`}
             >
-              {site.tagline}
+              <span className="lg:hidden">{current ? current.label : tagline}</span>
+              <span className="hidden lg:inline">{tagline}</span>
             </span>
           </span>
         </Link>
@@ -95,14 +105,14 @@ export function Navbar() {
 
         <div className="lg:hidden flex items-center gap-2">
           <ThemeToggle light={light} />
-        <button
-          className={`p-2 ${light ? "text-white" : "text-foreground"}`}
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+          <button
+            className={`p-2 ${light ? "text-white" : "text-foreground"}`}
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 

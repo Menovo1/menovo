@@ -32,11 +32,16 @@ export const navLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
-  { to: "/portfolio", label: "Portfolio" },
-  { to: "/faq", label: "FAQ" },
-  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
+  { to: "/blog", label: "Blog" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/portfolio", label: "Portfolio" },
 ] as const;
+
+/** Digits only, for wa.me links. */
+export const waDigits = (value?: string | null) =>
+  (value ?? site.whatsappNumber).replace(/[^\d]/g, "");
+
 
 export const values = [
   { title: "Elegance", body: "Restraint over decoration." },

@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { cmsText } from "@/content/cms";
+import { siteDataQuery, useSite } from "@/lib/site-data";
 
 export const Route = createFileRoute("/services")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "Services — Hotel Website Design & Development | MENOVO" },
@@ -25,92 +28,73 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-const hotelCapabilities = [
-  ["Premium homepage", "A cinematic first impression that reflects the property."],
-  ["Rooms & suites", "Room types, details, photography and clear comparison."],
-  ["Amenities & services", "Spa, pool, business facilities, transfers and more."],
-  ["Restaurant & dining", "Menus, hours and atmosphere presented beautifully."],
-  ["Gallery", "Editorial galleries built for high-quality hotel photography."],
-  ["Offers & packages", "Seasonal offers and packages you can update anytime."],
-  ["About the hotel", "The story, location and character of the property."],
-  ["Location & map", "Directions, nearby landmarks and travel information."],
-  ["Contact & WhatsApp", "One-tap guest contact from any page or device."],
-  ["Booking & enquiry flows", "Request forms, or a link to your booking engine."],
-  ["Mobile optimization", "Designed phone-first, refined for every screen."],
-  ["SEO-ready structure", "Semantic markup, metadata and clean URLs."],
-  ["Performance", "Optimized media and fast loading on slower connections."],
-  ["Analytics-ready", "Prepared for the analytics tools you choose."],
-  ["Custom sections", "Anything specific to your property, built for you."],
-  ["Conversion-focused", "Every page guides the guest toward an enquiry."],
-];
-
 function ServicesPage() {
+  const data = useSite();
+  const c = data.content;
+
   return (
     <>
       <PageHeader
         eyebrow="Services"
-        title="Everything a hotel needs online, built with care."
-        subtitle="Our work centres on one specialization: premium hotel website design and development."
+        title={cmsText(c, "services", "title")}
+        subtitle={cmsText(c, "services", "subtitle")}
+        image={cmsText(c, "backgrounds", "servicesImageUrl") || undefined}
       />
 
-      {/* PRIMARY */}
-      <Section eyebrow="Primary service" title="Hotel Website Development">
-        <Reveal className="max-w-2xl -mt-6 mb-12">
-          <p className="text-muted-foreground leading-relaxed">
-            We design and develop complete, premium websites specifically for hotels — from the first
-            impression to the final enquiry. Every project is built around your rooms, your services
-            and your guests.
-          </p>
-        </Reveal>
-        <div className="grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-4 border border-border">
-          {hotelCapabilities.map(([t, b], i) => (
-            <Reveal key={t} delay={Math.min(i, 8) * 50} className="bg-background p-6">
-              <h3 className="font-display text-xl">{t}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{b}</p>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={150} className="mt-10">
-          <Link to="/contact" className="btn-primary inline-block px-9 py-4 text-sm tracking-wide">
-            Get Started
-          </Link>
-        </Reveal>
-      </Section>
-
-      {/* SECONDARY + MAINTENANCE */}
-      <Section className="bg-secondary" eyebrow="Also available">
-        <div className="grid gap-10 md:grid-cols-2">
-          <Reveal className="bg-background border border-border p-8 sm:p-10">
-            <div className="eyebrow">Secondary service</div>
-            <h2 className="mt-4 font-display text-3xl">Business Website Development</h2>
-            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-              Beyond hotels, we occasionally build websites for other businesses that value the same
-              standard of design and performance. The craft is identical — hotels simply remain our
-              specialization.
+      <Section>
+        {data.services.length === 0 ? (
+          <Reveal className="border border-border p-10 sm:p-16 text-center max-w-3xl mx-auto">
+            <div className="eyebrow">Coming soon</div>
+            <h2 className="mt-5 font-display text-3xl sm:text-4xl">Our services are being published.</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed max-w-xl mx-auto">
+              Tell us about your property and we'll outline exactly what your hotel needs online.
             </p>
           </Reveal>
-          <Reveal delay={120} className="bg-background border border-border p-8 sm:p-10">
-            <div className="eyebrow">Ongoing</div>
-            <h2 className="mt-4 font-display text-3xl">Website Maintenance</h2>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              {[
-                "Content and seasonal updates",
-                "Technical maintenance and upkeep",
-                "Performance improvements",
-                "Security-related maintenance",
-                "Minor design and content changes",
-                "Ongoing support and troubleshooting",
-              ].map((x) => (
-                <li key={x} className="border-b border-border pb-2">
-                  {x}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
+        ) : (
+          <div className="space-y-20 sm:space-y-28">
+            {data.services.map((s, i) => (
+              <Reveal key={s.id} className="grid gap-10 md:grid-cols-2 md:items-center">
+                <div className={i % 2 === 1 ? "md:order-2" : ""}>
+                  <div className="eyebrow">{String(i + 1).padStart(2, "0")}</div>
+                  <h2 className="mt-4 font-display text-3xl sm:text-4xl leading-[1.1]">{s.title}</h2>
+                  <p className="mt-4 text-muted-foreground leading-relaxed">{s.description}</p>
+                  {s.features.length > 0 && (
+                    <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+                      {s.features.map((f) => (
+                        <li key={f} className="border-b border-border pb-2">
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <Link to="/contact" className="btn-primary mt-8 inline-block px-9 py-4 text-sm tracking-wide">
+                    Get Started
+                  </Link>
+                </div>
+                <div className={i % 2 === 1 ? "md:order-1" : ""}>
+                  {s.image_url ? (
+                    <img
+                      src={s.image_url}
+                      alt={s.title}
+                      loading="lazy"
+                      className="aspect-[4/3] w-full object-cover border border-border"
+                    />
+                  ) : (
+                    <div className="aspect-[4/3] w-full border border-border bg-secondary" aria-hidden />
+                  )}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </Section>
 
-      <Section align="center" title="Let's talk about your hotel." subtitle="Share your property and goals — we'll outline the right approach.">
+      <Section
+        className="bg-secondary"
+        align="center"
+        title={cmsText(c, "services", "ctaTitle")}
+        subtitle={cmsText(c, "services", "ctaBody")}
+      >
         <Reveal className="flex flex-wrap justify-center gap-3">
           <Link to="/contact" className="btn-primary px-9 py-4 text-sm tracking-wide">
             Get Started

@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
-import { values } from "@/content/site";
+import { cmsList, cmsPairs, cmsText } from "@/content/cms";
+import { siteDataQuery, useSite } from "@/lib/site-data";
 
 export const Route = createFileRoute("/about")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "About MENOVO — Hotel Website Specialists" },
@@ -27,41 +29,29 @@ export const Route = createFileRoute("/about")({
 });
 
 function AboutPage() {
+  const c = useSite().content;
+  const values = cmsPairs(c, "about", "values");
+
   return (
     <>
       <PageHeader
         eyebrow="About"
-        title="We build websites for hotels. Only hotels."
-        subtitle="MENOVO is a premium web-development agency specialized in hotel website design and development, working with properties worldwide."
+        title={cmsText(c, "about", "title")}
+        subtitle={cmsText(c, "about", "subtitle")}
+        image={cmsText(c, "backgrounds", "aboutImageUrl") || undefined}
       />
 
       <Section eyebrow="Who we are">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr]">
           <Reveal>
-            <p className="font-display text-2xl sm:text-3xl leading-[1.35]">
-              Hospitality is a craft of details. A website should be too.
-            </p>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
-              MENOVO began with a simple observation: too many exceptional hotels are represented
-              online by websites that undersell them. Slow pages, dated layouts, unclear room
-              information and booking journeys that lose the guest before the enquiry is ever sent.
-            </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              So we narrowed our focus entirely. Instead of building anything for anyone, we build
-              one thing exceptionally well — premium websites for hotels.
-            </p>
+            <p className="font-display text-2xl sm:text-3xl leading-[1.35]">{cmsText(c, "about", "lead")}</p>
+            <p className="mt-6 text-muted-foreground leading-relaxed">{cmsText(c, "about", "body")}</p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">{cmsText(c, "about", "body2")}</p>
           </Reveal>
           <Reveal delay={120} className="border-l border-border pl-8">
             <div className="eyebrow">What we specialize in</div>
             <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
-              {[
-                "Hotel website design",
-                "Hotel website development",
-                "Rooms, suites & amenity presentation",
-                "Enquiry and booking-request flows",
-                "Mobile-first guest experience",
-                "Ongoing website maintenance",
-              ].map((i) => (
+              {cmsList(c, "about", "specialties").map((i) => (
                 <li key={i} className="border-b border-border pb-3">
                   {i}
                 </li>
@@ -100,17 +90,11 @@ function AboutPage() {
         <div className="grid gap-12 md:grid-cols-2">
           <Reveal>
             <h2 className="font-display text-3xl sm:text-4xl">Mission</h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              To make every HOTEL digitally visible — with websites that are elegant, fast and
-              effortless for guests to use.
-            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">{cmsText(c, "about", "mission")}</p>
           </Reveal>
           <Reveal delay={120}>
             <h2 className="font-display text-3xl sm:text-4xl">Vision</h2>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              A future where no great HOTEL goes undiscovered, and where the global hotel industry
-              is represented online with the same care it shows its guests.
-            </p>
+            <p className="mt-4 text-muted-foreground leading-relaxed">{cmsText(c, "about", "vision")}</p>
           </Reveal>
         </div>
       </Section>
@@ -146,10 +130,9 @@ function AboutPage() {
             Get Started
           </Link>
           <Link to="/asad-je" className="btn-outline inline-block px-9 py-4 text-sm tracking-wide">
-            Meet the Founder
+            {cmsText(c, "about", "founderButtonText")}
           </Link>
         </Reveal>
-
       </Section>
     </>
   );

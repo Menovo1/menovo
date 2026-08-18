@@ -5,9 +5,18 @@ import { heroVideo } from "@/content/site";
  * Cinematic background video with poster fallback.
  * Memoized and keyless so React re-renders never restart playback.
  */
-export const HeroVideo = memo(function HeroVideo() {
+export const HeroVideo = memo(function HeroVideo({
+  src,
+  poster,
+}: {
+  src?: string | undefined;
+  poster?: string | undefined;
+}) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [ready, setReady] = useState(false);
+  const videoSrc = src || heroVideo.src;
+  const posterSrc = poster || heroVideo.poster;
+
 
   useEffect(() => {
     const el = videoRef.current;
@@ -23,7 +32,7 @@ export const HeroVideo = memo(function HeroVideo() {
   return (
     <div className="absolute inset-0 overflow-hidden bg-navy" aria-hidden>
       <img
-        src={heroVideo.poster}
+        src={posterSrc}
         alt=""
         className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
           ready ? "opacity-0" : "opacity-100"
@@ -37,7 +46,7 @@ export const HeroVideo = memo(function HeroVideo() {
           ready ? "opacity-100" : "opacity-0"
         }`}
         style={{ objectPosition: heroVideo.objectPosition }}
-        poster={heroVideo.poster}
+        poster={posterSrc}
         autoPlay
         muted
         loop
@@ -49,7 +58,7 @@ export const HeroVideo = memo(function HeroVideo() {
         onPlaying={() => setReady(true)}
         onError={() => setReady(false)}
       >
-        <source src={heroVideo.src} type={heroVideo.type} />
+        <source key={videoSrc} src={videoSrc} type={heroVideo.type} />
       </video>
       {/* readability overlay */}
       <div className="absolute inset-0 bg-navy/45" />

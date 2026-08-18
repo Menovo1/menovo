@@ -2,10 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
-import { faqs } from "@/content/site";
+import { cmsText } from "@/content/cms";
+import { siteDataQuery, useSite } from "@/lib/site-data";
 import { Plus } from "lucide-react";
 
 export const Route = createFileRoute("/faq")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "FAQ — Hotel Website Development | MENOVO" },
@@ -24,41 +26,30 @@ export const Route = createFileRoute("/faq")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://menovo.lovable.app/faq" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqs.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
-    ],
   }),
   component: FaqPage,
 });
 
 function FaqPage() {
+  const data = useSite();
+  const c = data.content;
   const [open, setOpen] = useState<number | null>(0);
 
   return (
     <>
       <PageHeader
         eyebrow="FAQ"
-        title="Questions hotels ask us."
-        subtitle="Everything you might want to know before starting a hotel website project."
+        title={cmsText(c, "faq", "title")}
+        subtitle={cmsText(c, "faq", "subtitle")}
+        image={cmsText(c, "backgrounds", "faqImageUrl") || undefined}
       />
 
       <Section>
         <div className="max-w-3xl border-t border-border">
-          {faqs.map((f, i) => {
+          {data.faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <Reveal key={f.q} delay={Math.min(i, 6) * 40} className="border-b border-border">
+              <Reveal key={f.id} delay={Math.min(i, 6) * 40} className="border-b border-border">
                 <h2>
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
@@ -66,7 +57,7 @@ function FaqPage() {
                     className="w-full flex items-start justify-between gap-6 py-6 text-left group"
                   >
                     <span className="font-display text-xl sm:text-2xl group-hover:text-gold-deep transition-colors">
-                      {f.q}
+                      {f.question}
                     </span>
                     <Plus
                       className={`h-5 w-5 shrink-0 mt-1 text-gold transition-transform duration-500 ${
@@ -77,10 +68,10 @@ function FaqPage() {
                 </h2>
                 <div
                   className={`overflow-hidden transition-[max-height,opacity] duration-500 ${
-                    isOpen ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="pb-6 pr-10 text-muted-foreground leading-relaxed">{f.a}</p>
+                  <p className="pb-6 pr-10 text-muted-foreground leading-relaxed">{f.answer}</p>
                 </div>
               </Reveal>
             );

@@ -42,24 +42,43 @@ export function PageHeader({
   eyebrow,
   title,
   subtitle,
+  image,
 }: {
   eyebrow: string;
   title: string;
   subtitle?: string;
+  /** Optional CMS-managed background image for this page header. */
+  image?: string | undefined;
 }) {
+  const hasImage = Boolean(image);
+
   return (
-    <header className="pt-36 sm:pt-44 pb-10 sm:pb-16 border-b border-border">
-      <div className="mx-auto max-w-6xl px-6 sm:px-8">
-        <div className="eyebrow animate-fade-up">{eyebrow}</div>
+    <header
+      className={`relative overflow-hidden pt-36 sm:pt-44 pb-10 sm:pb-16 border-b ${
+        hasImage ? "border-transparent" : "border-border"
+      }`}
+    >
+      {hasImage && (
+        <>
+          <img src={image} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-navy/70" aria-hidden />
+        </>
+      )}
+      <div className="relative mx-auto max-w-6xl px-6 sm:px-8">
+        <div className={`eyebrow animate-fade-up ${hasImage ? "text-gold" : ""}`}>{eyebrow}</div>
         <h1
-          className="mt-5 font-display text-4xl sm:text-6xl md:text-7xl leading-[1.02] max-w-4xl animate-fade-up"
+          className={`mt-5 font-display text-4xl sm:text-6xl md:text-7xl leading-[1.02] max-w-4xl animate-fade-up ${
+            hasImage ? "text-white" : ""
+          }`}
           style={{ animationDelay: "0.1s" }}
         >
           {title}
         </h1>
         {subtitle && (
           <p
-            className="mt-6 max-w-2xl text-muted-foreground text-base sm:text-lg leading-relaxed animate-fade-up"
+            className={`mt-6 max-w-2xl text-base sm:text-lg leading-relaxed animate-fade-up ${
+              hasImage ? "text-white/80" : "text-muted-foreground"
+            }`}
             style={{ animationDelay: "0.2s" }}
           >
             {subtitle}
