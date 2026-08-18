@@ -1,22 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
-import { BookingForm } from "@/components/site/BookingForm";
-import { site, whatsappLink, emailLink } from "@/content/site";
+import { CalendlyEmbed } from "@/components/site/CalendlyEmbed";
+import { ContactForm } from "@/components/site/ContactForm";
+import { site, waDigits } from "@/content/site";
+import { cmsText } from "@/content/cms";
+import { siteDataQuery, useSite } from "@/lib/site-data";
 import { Mail, MessageCircle, PhoneCall, Globe } from "lucide-react";
 
-
 export const Route = createFileRoute("/contact")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "Contact MENOVO — Start a Hotel Website Project" },
+      { title: "Contact MENOVO — Book a Hotel Website Consultation" },
       {
         name: "description",
         content:
-          "Talk to MENOVO about your hotel website. Reach us on WhatsApp or email, or send an enquiry and we'll arrange a call.",
+          "Book a Zoom consultation with MENOVO, or reach us on WhatsApp and email to start your hotel website project.",
       },
-      { property: "og:title", content: "Contact MENOVO — Start a Hotel Website Project" },
-      { property: "og:description", content: "WhatsApp, email or send an enquiry to start your hotel website." },
+      { property: "og:title", content: "Contact MENOVO — Book a Hotel Website Consultation" },
+      { property: "og:description", content: "Pick a time that suits you — we'll meet on Zoom." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://menovo.lovable.app/contact" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -27,35 +30,48 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
+  const data = useSite();
+  const c = data.content;
+  const settings = data.settings;
+
+  const whatsapp = settings?.["whatsapp"] || site.whatsappNumber;
+  const email = settings?.["email"] || site.email;
+  const calendlyUrl = cmsText(c, "contact", "calendlyUrl");
+
   return (
     <>
       <PageHeader
         eyebrow="Contact"
-        title="Book an appointment."
-        subtitle="Request a consultation and we'll confirm the meeting personally on WhatsApp or Zoom."
+        title={cmsText(c, "contact", "title")}
+        subtitle={cmsText(c, "contact", "subtitle")}
+        image={cmsText(c, "backgrounds", "contactImageUrl") || undefined}
       />
 
-
       <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
           <Reveal>
             <div className="eyebrow">Direct contact</div>
             <ul className="mt-6 space-y-5">
               <li>
-                <a href={whatsappLink()} target="_blank" rel="noreferrer noopener" className="group flex items-start gap-4">
+                <a
+                  href={`https://wa.me/${waDigits(whatsapp)}`}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group flex items-start gap-4"
+                >
                   <MessageCircle className="h-5 w-5 text-gold mt-0.5" />
                   <span>
                     <span className="block text-sm font-medium group-hover:text-gold-deep transition-colors">WhatsApp</span>
-                    <span className="block text-sm text-muted-foreground">{site.whatsappNumber}</span>
+                    <span className="block text-sm text-muted-foreground">{whatsapp}</span>
                   </span>
                 </a>
               </li>
               <li>
-                <a href={emailLink()} className="group flex items-start gap-4">
+                <a href={`mailto:${email}`} className="group flex items-start gap-4">
                   <Mail className="h-5 w-5 text-gold mt-0.5" />
                   <span>
                     <span className="block text-sm font-medium group-hover:text-gold-deep transition-colors">Email</span>
-                    <span className="block text-sm text-muted-foreground">{site.email}</span>
+                    <span className="block text-sm text-muted-foreground">{email}</span>
                   </span>
                 </a>
               </li>
@@ -71,20 +87,14 @@ function ContactPage() {
                 <span>
                   <span className="block text-sm font-medium">Appointments</span>
                   <span className="block text-sm text-muted-foreground">
-                    Pick a date and time in the form. We confirm every request personally.
+                    {cmsText(c, "contact", "calendlyNote")}
                   </span>
-
                 </span>
               </li>
             </ul>
 
-            <div className="mt-10 border-t border-border pt-6">
-              <div className="eyebrow">Social media</div>
-              <p className="mt-3 text-sm text-muted-foreground">Coming soon.</p>
-            </div>
-
             <a
-              href={whatsappLink()}
+              href={`https://wa.me/${waDigits(whatsapp)}`}
               target="_blank"
               rel="noreferrer noopener"
               className="btn-primary mt-8 inline-block px-9 py-4 text-sm tracking-wide"
@@ -94,9 +104,14 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <BookingForm />
+            <CalendlyEmbed url={calendlyUrl} />
           </Reveal>
+        </div>
+      </Section>
 
+      <Section className="bg-secondary" eyebrow="Or send a message" title="Tell us about your property.">
+        <div className="max-w-2xl">
+          <ContactForm />
         </div>
       </Section>
     </>
