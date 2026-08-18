@@ -5,9 +5,18 @@ import { heroVideo } from "@/content/site";
  * Cinematic background video with poster fallback.
  * Memoized and keyless so React re-renders never restart playback.
  */
-export const HeroVideo = memo(function HeroVideo() {
+export const HeroVideo = memo(function HeroVideo({
+  src,
+  poster,
+}: {
+  src?: string | undefined;
+  poster?: string | undefined;
+}) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [ready, setReady] = useState(false);
+  const videoSrc = src || heroVideo.src;
+  const posterSrc = poster || heroVideo.poster;
+
 
   useEffect(() => {
     const el = videoRef.current;
