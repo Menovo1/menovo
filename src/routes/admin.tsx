@@ -74,12 +74,6 @@ const NAV: NavItem[] = [
   { to: "/admin/settings", label: "Settings", icon: SettingsIcon },
 ];
 
-/**
- * Module-scope flag: it resets on every full page load, so a refresh always
- * ends the admin session and forces a fresh sign-in.
- */
-let sessionLive = false;
-
 function AdminLayout() {
   const [ready, setReady] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
@@ -89,15 +83,6 @@ function AdminLayout() {
 
     void (async () => {
       const { data } = await supabase.auth.getSession();
-      if (data.session && !sessionLive) {
-        // Page was reloaded — drop the restored session.
-        await supabase.auth.signOut();
-        if (!cancelled) {
-          setSignedIn(false);
-          setReady(true);
-        }
-        return;
-      }
       if (!cancelled) {
         setSignedIn(Boolean(data.session));
         setReady(true);
@@ -105,7 +90,6 @@ function AdminLayout() {
     })();
 
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      sessionLive = Boolean(session);
       setSignedIn(Boolean(session));
     });
     return () => {
@@ -200,13 +184,28 @@ function AdminGate() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   const load = useCallback(async () => {
+    setError("");
     try {
       const res = await checkAdmin({});
-      setAdmin(res.admin);
-    } catch {
+      if (res.admin) {
+        setAdmin(true);
+        return;
+      }
+
+      // If no admin exists yet, automatically bootstrap the first signed-in account.
+      // If another admin already exists, claimAdmin safely returns false.
+      const claimed = await takeAdmin({});
+      if (claimed.admin) {
+        setAdmin(true);
+      } else {
+        setAdmin(false);
+        setError(claimed.reason ?? "This account is not an admin.");
+      }
+    } catch (e) {
       setAdmin(false);
+      setError(e instanceof Error ? e.message : "Could not verify admin access.");
     }
-  }, [checkAdmin]);
+  }, [checkAdmin, takeAdmin]);
 
   useEffect(() => {
     void load();
@@ -234,8 +233,8 @@ function AdminGate() {
         <div className="max-w-md space-y-4 rounded-3xl border border-white/12 bg-[#00002B]/70 p-8 backdrop-blur-xl">
           <h1 className="font-display text-2xl">No admin access</h1>
           <p className="text-sm text-white/60">
-            This account is signed in but has no admin rights. If you are the MENOVO owner and no
-            admin exists yet, claim access now.
+            This account is signed in but is not the MENOVO admin. The first account can be
+            claimed automatically; otherwise sign in with the existing admin account.
           </p>
           {error && <p className="text-sm text-red-300">{error}</p>}
           <div className="flex flex-wrap gap-3">
