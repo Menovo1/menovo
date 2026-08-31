@@ -485,6 +485,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      claim_first_admin: {
+        Args: Record<string, never>
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "user"
