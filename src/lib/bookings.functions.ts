@@ -87,28 +87,28 @@ export const listBookings = createServerFn({ method: "GET" })
 export const isAdmin = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { data } = await context.supabase.rpc("has_role", {
+    const { data, error } = await context.supabase.rpc("has_role", {
       _user_id: context.userId,
       _role: "admin",
     });
+    if (error) throw new Error(error.message);
     return { admin: Boolean(data) };
   });
 
-/** First signed-in user may claim admin; afterwards this is closed. */
+/**
+ * Safely makes the first authenticated account the MENOVO admin.
+ * The database function takes a transaction lock, so two simultaneous
+ * first logins cannot create two admins.
+ */
 export const claimAdmin = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { count } = await supabaseAdmin
-      .from("user_roles")
-      .select("id", { count: "exact", head: true })
-      .eq("role", "admin");
-    if ((count ?? 0) > 0) return { admin: false, reason: "An admin already exists." };
-    const { error } = await supabaseAdmin
-      .from("user_roles")
-      .insert({ user_id: context.userId, role: "admin" });
+    const { data, error } = await context.supabase.rpc("claim_first_admin");
     if (error) throw new Error(error.message);
-    return { admin: true, reason: null };
+    return {
+      admin: Boolean(data),
+      reason: data ? null : "An admin already exists for another account.",
+    };
   });
 
 export const updateBookingStatus = createServerFn({ method: "POST" })
