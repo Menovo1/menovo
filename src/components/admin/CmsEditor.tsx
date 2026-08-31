@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react";
 import { adminList, adminSave } from "@/lib/admin.functions";
 import { AdminButton, AdminCard, inputCls, labelCls } from "@/components/admin/ui";
 import { CMS_DEFAULTS, type CmsGroup } from "@/content/cms";
+import { broadcastSiteDataUpdate } from "@/lib/site-data";
 
 type Block = { key: string; value: Record<string, unknown> };
 type Blocks = Record<string, Record<string, unknown>>;
@@ -56,6 +57,7 @@ export function CmsEditor({ groups }: { groups: CmsGroup[] }) {
       await save({
         data: { table: "site_content", row: { key: group, value: (blocks ?? {})[group] ?? {} } },
       });
+      broadcastSiteDataUpdate();
       setNotice("Saved — the website is updated.");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not save.");

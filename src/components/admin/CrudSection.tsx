@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { Loader2, Plus, Pencil, Trash2, X } from "lucide-react";
 import { adminList, adminSave, adminDelete } from "@/lib/admin.functions";
 import { AdminButton, AdminCard, AdminHeading, inputCls, labelCls } from "@/components/admin/ui";
+import { broadcastSiteDataUpdate } from "@/lib/site-data";
 
 export type FieldType = "text" | "textarea" | "url" | "bool" | "number" | "list" | "image" | "date";
 
@@ -75,6 +76,7 @@ export function CrudSection({
     setNotice("");
     try {
       await save({ data: { table, row: draft } });
+      broadcastSiteDataUpdate();
       setNotice("Saved.");
       if (!singleton) setDraft(null);
       await load();
@@ -90,6 +92,7 @@ export function CrudSection({
     setError("");
     try {
       await remove({ data: { table, id } });
+      broadcastSiteDataUpdate();
       await load();
     } catch {
       setError("Delete failed.");
