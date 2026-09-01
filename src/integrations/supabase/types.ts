@@ -283,25 +283,37 @@ export type Database = {
       }
       page_views: {
         Row: {
+          country: string | null
           created_at: string
+          device: string | null
           id: string
           path: string
           referrer: string | null
           session_id: string | null
+          source: string | null
+          user_agent: string | null
         }
         Insert: {
+          country?: string | null
           created_at?: string
+          device?: string | null
           id?: string
           path: string
           referrer?: string | null
           session_id?: string | null
+          source?: string | null
+          user_agent?: string | null
         }
         Update: {
+          country?: string | null
           created_at?: string
+          device?: string | null
           id?: string
           path?: string
           referrer?: string | null
           session_id?: string | null
+          source?: string | null
+          user_agent?: string | null
         }
         Relationships: []
       }
@@ -449,6 +461,42 @@ export type Database = {
           key?: string
           updated_at?: string
           value?: Json
+        }
+        Relationships: []
+      }
+      social_links: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          platform: string
+          show_contact: boolean
+          show_footer: boolean
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          platform: string
+          show_contact?: boolean
+          show_footer?: boolean
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          platform?: string
+          show_contact?: boolean
+          show_footer?: boolean
+          sort_order?: number
+          updated_at?: string
+          url?: string
         }
         Relationships: []
       }
