@@ -10,7 +10,7 @@ export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.15"
+    PostgrestVersion: "14.5"
   }
   public: {
     Tables: {
@@ -283,25 +283,37 @@ export type Database = {
       }
       page_views: {
         Row: {
+          country: string | null
           created_at: string
+          device: string | null
           id: string
           path: string
           referrer: string | null
           session_id: string | null
+          source: string | null
+          user_agent: string | null
         }
         Insert: {
+          country?: string | null
           created_at?: string
+          device?: string | null
           id?: string
           path: string
           referrer?: string | null
           session_id?: string | null
+          source?: string | null
+          user_agent?: string | null
         }
         Update: {
+          country?: string | null
           created_at?: string
+          device?: string | null
           id?: string
           path?: string
           referrer?: string | null
           session_id?: string | null
+          source?: string | null
+          user_agent?: string | null
         }
         Relationships: []
       }
@@ -452,6 +464,42 @@ export type Database = {
         }
         Relationships: []
       }
+      social_links: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          platform: string
+          show_contact: boolean
+          show_footer: boolean
+          sort_order: number
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          platform: string
+          show_contact?: boolean
+          show_footer?: boolean
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          platform?: string
+          show_contact?: boolean
+          show_footer?: boolean
+          sort_order?: number
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -478,15 +526,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      claim_first_admin: { Args: never; Returns: boolean }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
-        Returns: boolean
-      }
-      claim_first_admin: {
-        Args: Record<string, never>
         Returns: boolean
       }
     }
