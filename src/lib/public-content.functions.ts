@@ -64,6 +64,7 @@ export type SiteData = {
     published_at: string | null;
   }>;
   faqs: Array<{ id: string; question: string; answer: string }>;
+  socials: SocialLink[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content: Record<string, Record<string, any>>;
 };
@@ -86,6 +87,7 @@ function fallbackSiteData(): SiteData {
       question: faq.q,
       answer: faq.a,
     })),
+    socials: [],
     content: defaults as Record<string, Record<string, any>>,
   };
 }
@@ -103,7 +105,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
     try {
       const supabase = publicClient();
 
-      const [settings, founder, services, portfolio, posts, faqs, content] = await Promise.all([
+      const [settings, founder, services, portfolio, posts, faqs, socials, content] = await Promise.all([
         supabase.from("settings").select("*").limit(1).maybeSingle(),
         supabase.from("founder_profile").select("*").limit(1).maybeSingle(),
         supabase
@@ -122,6 +124,10 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
           .eq("published", true)
           .order("published_at", { ascending: false }),
         supabase.from("faqs").select("id, question, answer").eq("published", true).order("sort_order"),
+        supabase
+          .from("social_links")
+          .select("id, platform, url, enabled, show_footer, show_contact, sort_order")
+          .order("sort_order"),
         supabase.from("site_content").select("key, value"),
       ]);
 
@@ -138,6 +144,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
         portfolio: (portfolio.data ?? []) as SiteData["portfolio"],
         posts: (posts.data ?? []) as SiteData["posts"],
         faqs: (faqs.data ?? []) as SiteData["faqs"],
+        socials: (socials.data ?? []) as SocialLink[],
         content: contentMap,
       };
     } catch (error) {
