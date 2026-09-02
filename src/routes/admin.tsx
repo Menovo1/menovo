@@ -14,6 +14,7 @@ import {
   Mail,
   Menu,
   Settings as SettingsIcon,
+  Share2,
   Sparkles,
   User,
   Wallpaper,
@@ -50,6 +51,7 @@ type NavItem = {
     | "/admin/portfolio"
     | "/admin/blog"
     | "/admin/faq"
+    | "/admin/social"
     | "/admin/founder"
     | "/admin/media"
     | "/admin/settings";
@@ -69,6 +71,7 @@ const NAV: NavItem[] = [
   { to: "/admin/portfolio", label: "Portfolio", icon: ImageIcon },
   { to: "/admin/blog", label: "Blog", icon: BookOpen },
   { to: "/admin/faq", label: "FAQ", icon: HelpCircle },
+  { to: "/admin/social", label: "Social media", icon: Share2 },
   { to: "/admin/founder", label: "Founder", icon: User },
   { to: "/admin/media", label: "Media", icon: ImageIcon },
   { to: "/admin/settings", label: "Settings", icon: SettingsIcon },

@@ -23,6 +23,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminWebsiteRouteImport } from './routes/admin/website'
+import { Route as AdminSocialRouteImport } from './routes/admin/social'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminPortfolioRouteImport } from './routes/admin/portfolio'
@@ -104,6 +105,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const AdminWebsiteRoute = AdminWebsiteRouteImport.update({
   id: '/website',
   path: '/website',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSocialRoute = AdminSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
@@ -191,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -218,6 +225,7 @@ export interface FileRoutesByTo {
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
   '/admin': typeof AdminIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -247,6 +255,7 @@ export interface FileRoutesById {
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
   '/admin/': typeof AdminIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -277,6 +286,7 @@ export interface FileRouteTypes {
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/social'
     | '/admin/website'
     | '/admin/'
     | '/api/public/media/$'
@@ -304,6 +314,7 @@ export interface FileRouteTypes {
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/social'
     | '/admin/website'
     | '/admin'
     | '/api/public/media/$'
@@ -332,6 +343,7 @@ export interface FileRouteTypes {
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/social'
     | '/admin/website'
     | '/admin/'
     | '/api/public/media/$'
@@ -453,6 +465,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminWebsiteRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/social': {
+      id: '/admin/social'
+      path: '/social'
+      fullPath: '/admin/social'
+      preLoaderRoute: typeof AdminSocialRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/settings': {
       id: '/admin/settings'
       path: '/settings'
@@ -552,6 +571,7 @@ interface AdminRouteChildren {
   AdminPortfolioRoute: typeof AdminPortfolioRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSocialRoute: typeof AdminSocialRoute
   AdminWebsiteRoute: typeof AdminWebsiteRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
@@ -568,6 +588,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminPortfolioRoute: AdminPortfolioRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminSocialRoute: AdminSocialRoute,
   AdminWebsiteRoute: AdminWebsiteRoute,
   AdminIndexRoute: AdminIndexRoute,
 }

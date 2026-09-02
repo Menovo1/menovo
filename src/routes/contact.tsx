@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
+import { SocialIcons } from "@/components/site/SocialIcons";
 import { Reveal } from "@/components/site/Reveal";
 import { CalendlyEmbed } from "@/components/site/CalendlyEmbed";
 import { ContactForm } from "@/components/site/ContactForm";
@@ -105,6 +106,7 @@ function ContactPage() {
 
           <Reveal delay={120}>
             <CalendlyEmbed url={calendlyUrl} />
+            <SocialIcons links={data.socials} surface="contact" className="mt-8" />
           </Reveal>
         </div>
       </Section>
