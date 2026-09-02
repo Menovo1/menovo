@@ -36,6 +36,7 @@ import { Route as AdminFaqRouteImport } from './routes/admin/faq'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
 import { Route as AdminBlogRouteImport } from './routes/admin/blog'
 import { Route as AdminBackgroundsRouteImport } from './routes/admin/backgrounds'
+import { Route as AdminAccountRouteImport } from './routes/admin/account'
 import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
 const TermsRoute = TermsRouteImport.update({
@@ -173,6 +174,11 @@ const AdminBackgroundsRoute = AdminBackgroundsRouteImport.update({
   path: '/backgrounds',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAccountRoute = AdminAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
   id: '/api/public/media/$',
   path: '/api/public/media/$',
@@ -191,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/account': typeof AdminAccountRoute
   '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -220,6 +227,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/account': typeof AdminAccountRoute
   '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -251,6 +259,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/account': typeof AdminAccountRoute
   '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -283,6 +292,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/account'
     | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
@@ -312,6 +322,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/account'
     | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
@@ -342,6 +353,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/account'
     | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
@@ -569,6 +581,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBackgroundsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/account': {
+      id: '/admin/account'
+      path: '/account'
+      fullPath: '/admin/account'
+      preLoaderRoute: typeof AdminAccountRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/api/public/media/$': {
       id: '/api/public/media/$'
       path: '/api/public/media/$'
@@ -580,6 +599,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAccountRoute: typeof AdminAccountRoute
   AdminBackgroundsRoute: typeof AdminBackgroundsRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminBookingsRoute: typeof AdminBookingsRoute
@@ -597,6 +617,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAccountRoute: AdminAccountRoute,
   AdminBackgroundsRoute: AdminBackgroundsRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminBookingsRoute: AdminBookingsRoute,
