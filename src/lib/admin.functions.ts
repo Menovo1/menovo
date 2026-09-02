@@ -328,3 +328,58 @@ export const adminStats = createServerFn({ method: "GET" })
     };
   });
 
+
+/** List every account that currently holds the admin role. */
+export const adminTeam = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: roles } = await supabaseAdmin
+      .from("user_roles")
+      .select("user_id, role, created_at")
+      .eq("role", "admin");
+    const { data: users } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
+    const byId = new Map((users?.users ?? []).map((u) => [u.id, u.email ?? ""]));
+    return (roles ?? []).map((r) => ({
+      userId: r.user_id,
+      email: byId.get(r.user_id) ?? "unknown",
+      since: r.created_at,
+      isSelf: r.user_id === context.userId,
+    }));
+  });
+
+/** Grant admin access to an existing account by email. */
+export const adminGrant = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { email: string }) => ({ email: String(input.email).trim().toLowerCase() }))
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    if (!data.email.includes("@")) throw new Error("Enter a valid email address.");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: users } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
+    const user = (users?.users ?? []).find((u) => (u.email ?? "").toLowerCase() === data.email);
+    if (!user) throw new Error("No account with that email. Ask them to sign in once first.");
+    const { error } = await supabaseAdmin
+      .from("user_roles")
+      .upsert({ user_id: user.id, role: "admin" }, { onConflict: "user_id,role" });
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
+
+/** Remove admin access from another account. */
+export const adminRevoke = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { userId: string }) => ({ userId: String(input.userId) }))
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    if (data.userId === context.userId) throw new Error("You cannot remove your own admin access.");
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error } = await supabaseAdmin
+      .from("user_roles")
+      .delete()
+      .eq("user_id", data.userId)
+      .eq("role", "admin");
+    if (error) throw new Error(error.message);
+    return { ok: true };
+  });
