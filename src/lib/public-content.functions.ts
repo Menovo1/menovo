@@ -176,3 +176,38 @@ export const submitMessage = createServerFn({ method: "POST" })
     if (error) throw new Error("We could not send your message. Please try again.");
     return { ok: true };
   });
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string | null;
+  featured_image_url: string | null;
+  author: string;
+  published_at: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
+};
+
+/** Public read for a single published article. */
+export const getPost = createServerFn({ method: "GET" })
+  .inputValidator((input: unknown) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
+  .handler(async ({ data }): Promise<BlogPost | null> => {
+    try {
+      const supabase = publicClient();
+      const { data: row } = await supabase
+        .from("blog_posts")
+        .select(
+          "id, title, slug, excerpt, content, category, featured_image_url, author, published_at, seo_title, seo_description",
+        )
+        .eq("slug", data.slug)
+        .eq("published", true)
+        .maybeSingle();
+      return (row ?? null) as BlogPost | null;
+    } catch (error) {
+      console.error("[MENOVO] Could not load article.", error);
+      return null;
+    }
+  });

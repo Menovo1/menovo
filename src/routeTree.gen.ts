@@ -22,6 +22,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminWebsiteRouteImport } from './routes/admin/website'
 import { Route as AdminSocialRouteImport } from './routes/admin/social'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
@@ -101,6 +102,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminWebsiteRoute = AdminWebsiteRouteImport.update({
   id: '/website',
@@ -198,6 +204,7 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -226,6 +233,7 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -256,6 +264,7 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
@@ -287,6 +296,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/social'
     | '/admin/website'
+    | '/blog/$slug'
     | '/admin/'
     | '/blog/'
     | '/api/public/media/$'
@@ -315,6 +325,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/social'
     | '/admin/website'
+    | '/blog/$slug'
     | '/admin'
     | '/blog'
     | '/api/public/media/$'
@@ -344,6 +355,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/social'
     | '/admin/website'
+    | '/blog/$slug'
     | '/admin/'
     | '/blog/'
     | '/api/public/media/$'
@@ -361,6 +373,7 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
@@ -457,6 +470,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/website': {
       id: '/admin/website'
@@ -607,6 +627,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
