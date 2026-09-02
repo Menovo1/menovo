@@ -22,6 +22,16 @@ function publicClient() {
   });
 }
 
+export type SocialLink = {
+  id: string;
+  platform: string;
+  url: string;
+  enabled: boolean;
+  show_footer: boolean;
+  show_contact: boolean;
+  sort_order: number;
+};
+
 export type SiteData = {
   settings: Record<string, string | null> | null;
   founder: Record<string, string | null> | null;
