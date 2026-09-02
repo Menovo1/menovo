@@ -4,7 +4,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
@@ -64,7 +64,12 @@ function BlogPage() {
         ) : (
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {data.posts.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80} className="card-editorial p-8">
+              <Reveal key={p.id} delay={i * 80}>
+                <Link
+                  to="/blog/$slug"
+                  params={{ slug: p.slug }}
+                  className="glass-card group block h-full overflow-hidden rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1"
+                >
                 {p.featured_image_url && (
                   <img
                     src={p.featured_image_url}
@@ -79,6 +84,10 @@ function BlogPage() {
                 <h2 className="mt-3 font-display text-2xl">{p.title}</h2>
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.excerpt}</p>
                 <div className="mt-4 text-xs text-muted-foreground">{p.author}</div>
+                <span className="mt-5 inline-block text-xs uppercase tracking-[0.24em] text-gold-deep">
+                  Read article
+                </span>
+                </Link>
               </Reveal>
             ))}
           </div>
