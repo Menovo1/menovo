@@ -8,7 +8,7 @@ export const site = {
   tagline: "From Table to Screen.",
   positioning: "A premium web-development agency specialized exclusively in hotel websites.",
   url: "https://menovo.lovable.app",
-  email: "2MENOVO@gmail.com",
+  email: "info@menovo.agency",
   whatsappNumber: "+251946471234",
   whatsappDigits: "251946471234",
   socialsComingSoon: true,

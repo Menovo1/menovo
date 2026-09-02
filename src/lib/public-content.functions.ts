@@ -75,7 +75,7 @@ function fallbackSiteData(): SiteData {
 
   return {
     settings: {
-      email: "2MENOVO@gmail.com",
+      email: "info@menovo.agency",
       whatsapp: "+251946471234",
     },
     founder: null,
