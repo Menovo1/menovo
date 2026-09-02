@@ -22,6 +22,16 @@ function publicClient() {
   });
 }
 
+export type SocialLink = {
+  id: string;
+  platform: string;
+  url: string;
+  enabled: boolean;
+  show_footer: boolean;
+  show_contact: boolean;
+  sort_order: number;
+};
+
 export type SiteData = {
   settings: Record<string, string | null> | null;
   founder: Record<string, string | null> | null;
@@ -54,6 +64,7 @@ export type SiteData = {
     published_at: string | null;
   }>;
   faqs: Array<{ id: string; question: string; answer: string }>;
+  socials: SocialLink[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content: Record<string, Record<string, any>>;
 };
@@ -64,7 +75,7 @@ function fallbackSiteData(): SiteData {
 
   return {
     settings: {
-      email: "2MENOVO@gmail.com",
+      email: "info@menovo.agency",
       whatsapp: "+251946471234",
     },
     founder: null,
@@ -76,6 +87,7 @@ function fallbackSiteData(): SiteData {
       question: faq.q,
       answer: faq.a,
     })),
+    socials: [],
     content: defaults as Record<string, Record<string, any>>,
   };
 }
@@ -93,7 +105,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
     try {
       const supabase = publicClient();
 
-      const [settings, founder, services, portfolio, posts, faqs, content] = await Promise.all([
+      const [settings, founder, services, portfolio, posts, faqs, socials, content] = await Promise.all([
         supabase.from("settings").select("*").limit(1).maybeSingle(),
         supabase.from("founder_profile").select("*").limit(1).maybeSingle(),
         supabase
@@ -112,6 +124,10 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
           .eq("published", true)
           .order("published_at", { ascending: false }),
         supabase.from("faqs").select("id, question, answer").eq("published", true).order("sort_order"),
+        supabase
+          .from("social_links")
+          .select("id, platform, url, enabled, show_footer, show_contact, sort_order")
+          .order("sort_order"),
         supabase.from("site_content").select("key, value"),
       ]);
 
@@ -128,6 +144,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
         portfolio: (portfolio.data ?? []) as SiteData["portfolio"],
         posts: (posts.data ?? []) as SiteData["posts"],
         faqs: (faqs.data ?? []) as SiteData["faqs"],
+        socials: (socials.data ?? []) as SocialLink[],
         content: contentMap,
       };
     } catch (error) {
@@ -158,4 +175,39 @@ export const submitMessage = createServerFn({ method: "POST" })
     });
     if (error) throw new Error("We could not send your message. Please try again.");
     return { ok: true };
+  });
+
+export type BlogPost = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  category: string | null;
+  featured_image_url: string | null;
+  author: string;
+  published_at: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
+};
+
+/** Public read for a single published article. */
+export const getPost = createServerFn({ method: "GET" })
+  .inputValidator((input: unknown) => z.object({ slug: z.string().min(1).max(200) }).parse(input))
+  .handler(async ({ data }): Promise<BlogPost | null> => {
+    try {
+      const supabase = publicClient();
+      const { data: row } = await supabase
+        .from("blog_posts")
+        .select(
+          "id, title, slug, excerpt, content, category, featured_image_url, author, published_at, seo_title, seo_description",
+        )
+        .eq("slug", data.slug)
+        .eq("published", true)
+        .maybeSingle();
+      return (row ?? null) as BlogPost | null;
+    } catch (error) {
+      console.error("[MENOVO] Could not load article.", error);
+      return null;
+    }
   });

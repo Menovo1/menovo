@@ -4,6 +4,7 @@ import { navLinks, site, waDigits } from "@/content/site";
 import { cmsList, cmsText } from "@/content/cms";
 import { useSiteOptional } from "@/lib/site-data";
 import { FALLBACK_LOGO } from "./Navbar";
+import { SocialIcons } from "./SocialIcons";
 
 export function Footer() {
   const data = useSiteOptional();
@@ -31,6 +32,7 @@ export function Footer() {
           </div>
           <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">{description}</p>
           <p className="mt-3 text-[10px] uppercase tracking-[0.28em] text-gold-deep">{tagline}</p>
+          <SocialIcons links={data?.socials ?? []} surface="footer" className="mt-6" />
         </div>
 
         <div>

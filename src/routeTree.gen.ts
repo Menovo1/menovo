@@ -16,13 +16,15 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AsadJeRouteImport } from './routes/asad-je'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminWebsiteRouteImport } from './routes/admin/website'
+import { Route as AdminSocialRouteImport } from './routes/admin/social'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminServicesRouteImport } from './routes/admin/services'
 import { Route as AdminPortfolioRouteImport } from './routes/admin/portfolio'
@@ -34,6 +36,7 @@ import { Route as AdminFaqRouteImport } from './routes/admin/faq'
 import { Route as AdminBookingsRouteImport } from './routes/admin/bookings'
 import { Route as AdminBlogRouteImport } from './routes/admin/blog'
 import { Route as AdminBackgroundsRouteImport } from './routes/admin/backgrounds'
+import { Route as AdminAccountRouteImport } from './routes/admin/account'
 import { Route as ApiPublicMediaSplatRouteImport } from './routes/api/public/media/$'
 
 const TermsRoute = TermsRouteImport.update({
@@ -71,11 +74,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AsadJeRoute = AsadJeRouteImport.update({
   id: '/asad-je',
   path: '/asad-je',
@@ -96,14 +94,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminWebsiteRoute = AdminWebsiteRouteImport.update({
   id: '/website',
   path: '/website',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSocialRoute = AdminSocialRouteImport.update({
+  id: '/social',
+  path: '/social',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
@@ -161,6 +174,11 @@ const AdminBackgroundsRoute = AdminBackgroundsRouteImport.update({
   path: '/backgrounds',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAccountRoute = AdminAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => AdminRoute,
+} as any)
 const ApiPublicMediaSplatRoute = ApiPublicMediaSplatRouteImport.update({
   id: '/api/public/media/$',
   path: '/api/public/media/$',
@@ -172,7 +190,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/asad-je': typeof AsadJeRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
@@ -180,6 +197,7 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/account': typeof AdminAccountRoute
   '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -191,15 +209,17 @@ export interface FileRoutesByFullPath {
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/asad-je': typeof AsadJeRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
@@ -207,6 +227,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/account': typeof AdminAccountRoute
   '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -218,8 +239,11 @@ export interface FileRoutesByTo {
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/blog': typeof BlogIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRoutesById {
@@ -228,7 +252,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
   '/asad-je': typeof AsadJeRoute
-  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
   '/portfolio': typeof PortfolioRoute
@@ -236,6 +259,7 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
+  '/admin/account': typeof AdminAccountRoute
   '/admin/backgrounds': typeof AdminBackgroundsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/bookings': typeof AdminBookingsRoute
@@ -247,8 +271,11 @@ export interface FileRoutesById {
   '/admin/portfolio': typeof AdminPortfolioRoute
   '/admin/services': typeof AdminServicesRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/admin/social': typeof AdminSocialRoute
   '/admin/website': typeof AdminWebsiteRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/public/media/$': typeof ApiPublicMediaSplatRoute
 }
 export interface FileRouteTypes {
@@ -258,7 +285,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/asad-je'
-    | '/blog'
     | '/contact'
     | '/faq'
     | '/portfolio'
@@ -266,6 +292,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/account'
     | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
@@ -277,15 +304,17 @@ export interface FileRouteTypes {
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/social'
     | '/admin/website'
+    | '/blog/$slug'
     | '/admin/'
+    | '/blog/'
     | '/api/public/media/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/asad-je'
-    | '/blog'
     | '/contact'
     | '/faq'
     | '/portfolio'
@@ -293,6 +322,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/account'
     | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
@@ -304,8 +334,11 @@ export interface FileRouteTypes {
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/social'
     | '/admin/website'
+    | '/blog/$slug'
     | '/admin'
+    | '/blog'
     | '/api/public/media/$'
   id:
     | '__root__'
@@ -313,7 +346,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/asad-je'
-    | '/blog'
     | '/contact'
     | '/faq'
     | '/portfolio'
@@ -321,6 +353,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/sitemap.xml'
     | '/terms'
+    | '/admin/account'
     | '/admin/backgrounds'
     | '/admin/blog'
     | '/admin/bookings'
@@ -332,8 +365,11 @@ export interface FileRouteTypes {
     | '/admin/portfolio'
     | '/admin/services'
     | '/admin/settings'
+    | '/admin/social'
     | '/admin/website'
+    | '/blog/$slug'
     | '/admin/'
+    | '/blog/'
     | '/api/public/media/$'
   fileRoutesById: FileRoutesById
 }
@@ -342,7 +378,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
   AsadJeRoute: typeof AsadJeRoute
-  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -350,6 +385,8 @@ export interface RootRouteChildren {
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicMediaSplatRoute: typeof ApiPublicMediaSplatRoute
 }
 
@@ -404,13 +441,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/asad-je': {
       id: '/asad-je'
       path: '/asad-je'
@@ -439,6 +469,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -446,11 +483,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/website': {
       id: '/admin/website'
       path: '/website'
       fullPath: '/admin/website'
       preLoaderRoute: typeof AdminWebsiteRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/social': {
+      id: '/admin/social'
+      path: '/social'
+      fullPath: '/admin/social'
+      preLoaderRoute: typeof AdminSocialRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/settings': {
@@ -530,6 +581,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBackgroundsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/account': {
+      id: '/admin/account'
+      path: '/account'
+      fullPath: '/admin/account'
+      preLoaderRoute: typeof AdminAccountRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/api/public/media/$': {
       id: '/api/public/media/$'
       path: '/api/public/media/$'
@@ -541,6 +599,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminAccountRoute: typeof AdminAccountRoute
   AdminBackgroundsRoute: typeof AdminBackgroundsRoute
   AdminBlogRoute: typeof AdminBlogRoute
   AdminBookingsRoute: typeof AdminBookingsRoute
@@ -552,11 +611,13 @@ interface AdminRouteChildren {
   AdminPortfolioRoute: typeof AdminPortfolioRoute
   AdminServicesRoute: typeof AdminServicesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSocialRoute: typeof AdminSocialRoute
   AdminWebsiteRoute: typeof AdminWebsiteRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAccountRoute: AdminAccountRoute,
   AdminBackgroundsRoute: AdminBackgroundsRoute,
   AdminBlogRoute: AdminBlogRoute,
   AdminBookingsRoute: AdminBookingsRoute,
@@ -568,6 +629,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminPortfolioRoute: AdminPortfolioRoute,
   AdminServicesRoute: AdminServicesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
+  AdminSocialRoute: AdminSocialRoute,
   AdminWebsiteRoute: AdminWebsiteRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
@@ -579,7 +641,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
   AsadJeRoute: AsadJeRoute,
-  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
   PortfolioRoute: PortfolioRoute,
@@ -587,6 +648,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ApiPublicMediaSplatRoute: ApiPublicMediaSplatRoute,
 }
 export const routeTree = rootRouteImport

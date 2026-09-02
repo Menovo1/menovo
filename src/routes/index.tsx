@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
           description:
             "Premium web-development agency specialized exclusively in hotel websites.",
           url: "https://menovo.lovable.app",
-          email: "2MENOVO@gmail.com",
+          email: "info@menovo.agency",
           telephone: "+251946471234",
           areaServed: "Worldwide",
           serviceType: "Hotel website design and development",
