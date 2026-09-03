@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
 
@@ -35,7 +36,7 @@ function PortfolioPage() {
         eyebrow="Selected Work"
         title={cmsText(c, "portfolio", "title")}
         subtitle={cmsText(c, "portfolio", "subtitle")}
-        image={cmsText(c, "backgrounds", "portfolioImageUrl") || undefined}
+        image={pageBackground("portfolio", cmsText(c, "backgrounds", "portfolioImageUrl"))}
       />
 
       <Section>

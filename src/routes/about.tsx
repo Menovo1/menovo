@@ -38,7 +38,7 @@ function AboutPage() {
         eyebrow="About"
         title={cmsText(c, "about", "title")}
         subtitle={cmsText(c, "about", "subtitle")}
-        image={cmsText(c, "backgrounds", "aboutImageUrl") || undefined}
+        image={pageBackground("about", cmsText(c, "backgrounds", "aboutImageUrl"))}
       />
 
       <Section eyebrow="Who we are">

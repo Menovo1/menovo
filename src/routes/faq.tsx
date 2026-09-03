@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
 import { Plus } from "lucide-react";
@@ -41,7 +42,7 @@ function FaqPage() {
         eyebrow="FAQ"
         title={cmsText(c, "faq", "title")}
         subtitle={cmsText(c, "faq", "subtitle")}
-        image={cmsText(c, "backgrounds", "faqImageUrl") || undefined}
+        image={pageBackground("faq", cmsText(c, "backgrounds", "faqImageUrl"))}
       />
 
       <Section>

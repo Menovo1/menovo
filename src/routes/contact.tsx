@@ -5,6 +5,7 @@ import { Reveal } from "@/components/site/Reveal";
 import { CalendlyEmbed } from "@/components/site/CalendlyEmbed";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site, waDigits } from "@/content/site";
+import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
 import { Mail, MessageCircle, PhoneCall, Globe } from "lucide-react";
@@ -45,7 +46,7 @@ function ContactPage() {
         eyebrow="Contact"
         title={cmsText(c, "contact", "title")}
         subtitle={cmsText(c, "contact", "subtitle")}
-        image={cmsText(c, "backgrounds", "contactImageUrl") || undefined}
+        image={pageBackground("contact", cmsText(c, "backgrounds", "contactImageUrl"))}
       />
 
       <Section>
