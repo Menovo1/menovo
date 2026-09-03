@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import {
   ArrowLeft,
   BadgeCheck,
+  BarChart3,
   BookOpen,
   CalendarDays,
   HelpCircle,
@@ -42,6 +43,7 @@ export const Route = createFileRoute("/admin")({
 type NavItem = {
   to:
     | "/admin"
+    | "/admin/analytics"
     | "/admin/bookings"
     | "/admin/messages"
     | "/admin/website"
@@ -62,6 +64,7 @@ type NavItem = {
 
 const NAV: NavItem[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { to: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { to: "/admin/bookings", label: "Bookings", icon: CalendarDays },
   { to: "/admin/messages", label: "Messages", icon: Mail },
   { to: "/admin/website", label: "Website", icon: Sparkles },

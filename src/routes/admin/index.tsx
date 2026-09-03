@@ -36,7 +36,9 @@ function DashboardPage() {
             <StatCard label="Messages" value={stats.contactMessages} hint={`${stats.newMessages} unread`} />
             <StatCard label="Portfolio projects" value={stats.portfolioCount} />
             <StatCard label="Blog posts" value={stats.blogPosts} />
-            <StatCard label="Page views" value={stats.totalViews} hint={`${stats.viewsThisMonth} in last 30 days`} />
+            <Link to="/admin/analytics" className="block">
+              <StatCard label="Page views" value={stats.totalViews} hint={`${stats.viewsThisMonth} in last 30 days — view analytics`} />
+            </Link>
           </div>
 
           <div className="mt-6 grid gap-4 lg:grid-cols-2">
@@ -54,6 +56,7 @@ function DashboardPage() {
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <Link to="/admin/bookings" className="text-gold hover:underline">Manage bookings</Link>
                 <Link to="/admin/messages" className="text-gold hover:underline">Read messages</Link>
+                <Link to="/admin/analytics" className="text-gold hover:underline">Analytics</Link>
                 <Link to="/admin/website" className="text-gold hover:underline">Edit website text</Link>
                 <Link to="/admin/blog" className="text-gold hover:underline">Write a post</Link>
               </div>
