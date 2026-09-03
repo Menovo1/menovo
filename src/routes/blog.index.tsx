@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
 
@@ -41,7 +42,7 @@ function BlogPage() {
         eyebrow="Journal"
         title={cmsText(c, "blog", "title")}
         subtitle={cmsText(c, "blog", "subtitle")}
-        image={cmsText(c, "backgrounds", "blogImageUrl") || undefined}
+        image={pageBackground("blog", cmsText(c, "backgrounds", "blogImageUrl"))}
       />
 
       <Section>
