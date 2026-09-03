@@ -65,7 +65,7 @@ function HomePage() {
       <section className="relative min-h-[92svh] flex items-end overflow-hidden">
         <HeroVideo
           src={cmsText(c, "backgrounds", "homeVideoUrl") || undefined}
-          poster={cmsText(c, "backgrounds", "homePosterUrl") || undefined}
+          poster={pageBackground("home", cmsText(c, "backgrounds", "homePosterUrl"))}
         />
         <div className="relative w-full mx-auto max-w-6xl px-6 sm:px-8 pb-20 sm:pb-28 pt-40">
           <div

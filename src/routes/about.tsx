@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsList, cmsPairs, cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
 
