@@ -18,6 +18,7 @@ import {
   Share2,
   Sparkles,
   User,
+  KeyRound,
   Wallpaper,
   Layers,
   X,
@@ -56,7 +57,8 @@ type NavItem = {
     | "/admin/social"
     | "/admin/founder"
     | "/admin/media"
-    | "/admin/settings";
+    | "/admin/settings"
+    | "/admin/account";
   label: string;
   icon: typeof LayoutDashboard;
   exact?: boolean;
@@ -78,6 +80,7 @@ const NAV: NavItem[] = [
   { to: "/admin/founder", label: "Founder", icon: User },
   { to: "/admin/media", label: "Media", icon: ImageIcon },
   { to: "/admin/settings", label: "Settings", icon: SettingsIcon },
+  { to: "/admin/account", label: "Account & Access", icon: KeyRound },
 ];
 
 function AdminLayout() {

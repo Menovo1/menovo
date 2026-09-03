@@ -75,6 +75,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         children: `(function(){try{var t=localStorage.getItem('menovo-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})();`,
       },
+      {
+        src: "https://www.googletagmanager.com/gtag/js?id=G-MEEPRHCC73",
+        async: true,
+      },
+      {
+        children: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-MEEPRHCC73');`,
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
