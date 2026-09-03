@@ -20,11 +20,70 @@ async function assertAdmin(client: unknown, userId: string) {
   if (!data) throw new Error("Forbidden");
 }
 
+async function isOwner(client: unknown, userId: string): Promise<boolean> {
+  const c = db(client);
+  const { data: ownerRole } = await c
+    .from("user_roles")
+    .select("user_id")
+    .eq("role", "admin")
+    .order("created_at", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+  return ownerRole?.user_id === userId;
+}
+
+async function hasPermission(client: unknown, userId: string, section: string): Promise<boolean> {
+  const c = db(client);
+  if (await isOwner(client, userId)) return true; // Owner has all permissions
+
+  const { data: perm } = await c
+    .from("admin_permissions")
+    .select("granted")
+    .eq("user_id", userId)
+    .eq("section", section)
+    .maybeSingle();
+
+  return perm ? perm.granted : true; // Default to true if not explicitly denied
+}
+
+async function assertPermission(client: unknown, userId: string, section: string) {
+  if (section === "site_content_any") {
+    if (await isOwner(client, userId)) return;
+    const hasWebsite = await hasPermission(client, userId, "Website");
+    const hasIdentity = await hasPermission(client, userId, "Identity");
+    const hasBackgrounds = await hasPermission(client, userId, "Backgrounds");
+    if (!hasWebsite && !hasIdentity && !hasBackgrounds) {
+      throw new Error("Forbidden: No access to website content");
+    }
+    return;
+  }
+  const granted = await hasPermission(client, userId, section);
+  if (!granted) throw new Error(`Forbidden: No access to ${section}`);
+}
+
+function tableToSection(table: string): string {
+  switch (table) {
+    case "blog_posts": return "Blog";
+    case "portfolio_projects": return "Portfolio";
+    case "services": return "Services";
+    case "faqs": return "FAQ";
+    case "messages": return "Messages";
+    case "bookings": return "Bookings";
+    case "settings": return "Settings";
+    case "founder_profile": return "Founder";
+    case "site_content": return "site_content_any";
+    case "social_links": return "Settings";
+    case "admin_notes": return "Dashboard";
+    default: return "Dashboard";
+  }
+}
+
 export const adminList = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
   .inputValidator((input: { table: string }) => ({ table: assertTable(input.table) }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    await assertPermission(context.supabase, context.userId, tableToSection(data.table));
     const order = TABLE_ORDER[data.table];
     const { data: rows, error } = await db(context.supabase)
       .from(data.table)
@@ -107,6 +166,16 @@ export const adminSave = createServerFn({ method: "POST" })
   }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    let section = tableToSection(data.table);
+    if (data.table === "site_content" && data.row && data.row.key === "identity") {
+      section = "Identity";
+    } else if (data.table === "site_content" && data.row && data.row.key === "backgrounds") {
+      section = "Backgrounds";
+    } else if (data.table === "site_content") {
+      section = "Website";
+    }
+    await assertPermission(context.supabase, context.userId, section);
+
     const result = await writeRow(context.supabase, data.table, data.row);
     await recordRevision(context.supabase, context.userId, {
       table: data.table,
@@ -127,6 +196,7 @@ export const adminDelete = createServerFn({ method: "POST" })
   }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    await assertPermission(context.supabase, context.userId, tableToSection(data.table));
     const pk = TABLE_PK[data.table];
     const { data: before } = await db(context.supabase)
       .from(data.table)
@@ -261,6 +331,7 @@ export const adminStats = createServerFn({ method: "GET" })
   .middleware([requireSupabaseAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
+    await assertPermission(context.supabase, context.userId, "Dashboard");
     const client = db(context.supabase);
 
     const today = new Date();
@@ -328,6 +399,185 @@ export const adminStats = createServerFn({ method: "GET" })
     };
   });
 
+export const addAdminUser = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { email: string; password: string; fullName?: string }) => {
+    if (!input.email || !input.email.includes("@")) throw new Error("Valid email is required.");
+    if (!input.password || input.password.length < 6) throw new Error("Password must be at least 6 characters.");
+    return input;
+  })
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    if (!(await isOwner(context.supabase, context.userId))) {
+      throw new Error("Only the primary owner can add administrators.");
+    }
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    const { data: newUser, error: createError } = await supabaseAdmin.auth.admin.createUser({
+      email: data.email.trim(),
+      password: data.password,
+      email_confirm: true,
+      user_metadata: { full_name: data.fullName || "Admin User" },
+    });
+
+    if (createError || !newUser.user) {
+      throw new Error(createError?.message ?? "Failed to create administrator account.");
+    }
+
+    const { error: roleError } = await supabaseAdmin.from("user_roles").insert({
+      user_id: newUser.user.id,
+      role: "admin",
+    });
+
+    if (roleError) {
+      await supabaseAdmin.auth.admin.deleteUser(newUser.user.id);
+      throw new Error(roleError.message);
+    }
+
+    return { ok: true, userId: newUser.user.id, email: newUser.user.email };
+  });
+
+export const changeAdminPassword = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { currentPassword: string; newPassword: string; confirmPassword: string }) => {
+    if (!input.currentPassword) throw new Error("Current password is required.");
+    if (!input.newPassword || input.newPassword.length < 6) throw new Error("New password must be at least 6 characters.");
+    if (input.newPassword !== input.confirmPassword) throw new Error("New passwords do not match.");
+    return input;
+  })
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    const { data: userData } = await supabaseAdmin.auth.admin.getUserById(context.userId);
+    if (!userData.user?.email) throw new Error("User account not found.");
+
+    const { error: verifyErr } = await supabaseAdmin.auth.signInWithPassword({
+      email: userData.user.email,
+      password: data.currentPassword,
+    });
+
+    if (verifyErr) {
+      throw new Error("Current password is incorrect.");
+    }
+
+    const { error: updateErr } = await supabaseAdmin.auth.admin.updateUserById(context.userId, {
+      password: data.newPassword,
+    });
+
+    if (updateErr) {
+      throw new Error(updateErr.message);
+    }
+
+    return { ok: true };
+  });
+
+export const getAdminPermissions = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { userId: string }) => input)
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    const c = db(context.supabase);
+    const { data: rows, error } = await c
+      .from("admin_permissions")
+      .select("*")
+      .eq("user_id", data.userId);
+    if (error) throw new Error(error.message);
+    return rows ?? [];
+  });
+
+export const updateAdminPermissions = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
+  .inputValidator((input: { userId: string; permissions: Record<string, boolean> }) => input)
+  .handler(async ({ data, context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    const c = db(context.supabase);
+
+    // Ensure caller is the owner
+    const isCallerOwner = await isOwner(context.supabase, context.userId);
+    if (!isCallerOwner) {
+      throw new Error("Only the primary owner can manage admin permissions.");
+    }
+
+    // Do not allow owner's own permissions to be modified
+    if (data.userId === context.userId) {
+      throw new Error("Cannot modify the owner's own permissions.");
+    }
+
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    // Update or insert each permission
+    for (const [section, granted] of Object.entries(data.permissions)) {
+      const { error } = await supabaseAdmin
+        .from("admin_permissions")
+        .upsert(
+          { user_id: data.userId, section, granted },
+          { onConflict: "user_id,section" }
+        );
+      if (error) throw new Error(error.message);
+    }
+
+    return { ok: true };
+  });
+
+export const listAdminsAndPermissions = createServerFn({ method: "GET" })
+  .middleware([requireSupabaseAuth])
+  .handler(async ({ context }) => {
+    await assertAdmin(context.supabase, context.userId);
+    const c = db(context.supabase);
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+    // Get all user roles
+    const { data: roles, error: rolesError } = await c
+      .from("user_roles")
+      .select("user_id, created_at")
+      .eq("role", "admin")
+      .order("created_at", { ascending: true });
+
+    if (rolesError) throw new Error(rolesError.message);
+
+    // Get all users from auth.users (requires service role / admin client)
+    const { data: authData, error: authError } = await supabaseAdmin.auth.admin.listUsers();
+    if (authError) throw new Error(authError.message);
+
+    // Get all permissions
+    const { data: allPerms } = await c
+      .from("admin_permissions")
+      .select("*");
+
+    const ownerId = roles[0]?.user_id ?? null;
+
+    const admins = roles.map((role) => {
+      const authUser = authData.users.find(u => u.id === role.user_id);
+      const userPerms = (allPerms ?? []).filter(p => p.user_id === role.user_id);
+
+      const permissionsMap: Record<string, boolean> = {};
+      // Default to true for all sections
+      const sections = [
+        "Dashboard", "Bookings", "Messages", "Website", "Identity",
+        "Backgrounds", "Services", "Portfolio", "Blog", "FAQ", "Founder", "Media", "Settings"
+      ];
+      sections.forEach(sec => {
+        const found = userPerms.find(p => p.section === sec);
+        permissionsMap[sec] = found ? found.granted : true;
+      });
+
+      return {
+        userId: role.user_id,
+        email: authUser?.email ?? "Unknown Email",
+        fullName: authUser?.user_metadata?.full_name ?? "Admin User",
+        isOwner: role.user_id === ownerId,
+        createdAt: role.created_at,
+        permissions: permissionsMap
+      };
+    });
+
+    return {
+      admins,
+      isCallerOwner: context.userId === ownerId,
+      callerId: context.userId
+    };
+  });
 
 /** List every account that currently holds the admin role. */
 export const adminTeam = createServerFn({ method: "GET" })
@@ -355,6 +605,7 @@ export const adminGrant = createServerFn({ method: "POST" })
   .inputValidator((input: { email: string }) => ({ email: String(input.email).trim().toLowerCase() }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    if (!(await isOwner(context.supabase, context.userId))) throw new Error("Only the primary owner can manage administrators.");
     if (!data.email.includes("@")) throw new Error("Enter a valid email address.");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: users } = await supabaseAdmin.auth.admin.listUsers({ page: 1, perPage: 200 });
@@ -373,6 +624,7 @@ export const adminRevoke = createServerFn({ method: "POST" })
   .inputValidator((input: { userId: string }) => ({ userId: String(input.userId) }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
+    if (!(await isOwner(context.supabase, context.userId))) throw new Error("Only the primary owner can manage administrators.");
     if (data.userId === context.userId) throw new Error("You cannot remove your own admin access.");
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin
