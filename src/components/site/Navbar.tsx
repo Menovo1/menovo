@@ -29,15 +29,16 @@ export function Navbar() {
     setOpen(false);
   }, [location.pathname]);
 
-  const onHome = location.pathname === "/";
-  const light = onHome && !scrolled && !open;
+  // Navigation text is always pure white, so the bar always keeps a dark
+  // navy scrim behind it once it gains a background.
+  const light = true;
   const current = navLinks.find((l) => l.to === location.pathname);
 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled || open
-          ? "bg-background/95 backdrop-blur-md border-b border-border py-3"
+          ? "bg-navy/95 backdrop-blur-md border-b border-white/10 py-3"
           : "py-5 border-b border-transparent"
       }`}
     >
@@ -77,15 +78,9 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 aria-current={active ? "page" : undefined}
-                className={`link-underline text-[13px] tracking-wide transition-colors ${
-                  light
-                    ? active
-                      ? "text-white"
-                      : "text-white/75 hover:text-white"
-                    : active
-                      ? "text-gold-deep"
-                      : "text-foreground/70 hover:text-foreground"
-                } ${active ? "font-medium" : ""}`}
+                className={`link-underline text-[13px] tracking-wide text-white hover:text-white ${
+                  active ? "font-medium" : ""
+                }`}
               >
                 {l.label}
               </Link>
@@ -121,7 +116,7 @@ export function Navbar() {
           open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="mx-6 mt-4 mb-3 border-t border-border pt-3 flex flex-col">
+        <nav className="mx-6 mt-4 mb-3 border-t border-white/15 pt-3 flex flex-col">
           {navLinks.map((l) => {
             const active = location.pathname === l.to;
             return (
@@ -129,15 +124,15 @@ export function Navbar() {
                 key={l.to}
                 to={l.to}
                 aria-current={active ? "page" : undefined}
-                className={`py-3 border-b border-border/60 text-sm tracking-wide ${
-                  active ? "text-gold-deep font-medium" : "text-foreground/80"
+                className={`py-3 border-b border-white/15 text-sm tracking-wide text-white ${
+                  active ? "font-medium" : ""
                 }`}
               >
                 {l.label}
               </Link>
             );
           })}
-          <Link to="/contact" className="mt-5 btn-primary px-6 py-3 text-center text-sm tracking-wide">
+          <Link to="/contact" className="mt-5 btn-light px-6 py-3 text-center text-sm tracking-wide">
             Get Started
           </Link>
         </nav>
