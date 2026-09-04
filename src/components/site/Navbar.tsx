@@ -29,15 +29,16 @@ export function Navbar() {
     setOpen(false);
   }, [location.pathname]);
 
-  const onHome = location.pathname === "/";
-  const light = onHome && !scrolled && !open;
+  // Navigation text is always pure white, so the bar always keeps a dark
+  // navy scrim behind it once it gains a background.
+  const light = true;
   const current = navLinks.find((l) => l.to === location.pathname);
 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled || open
-          ? "bg-background/95 backdrop-blur-md border-b border-border py-3"
+          ? "bg-navy/95 backdrop-blur-md border-b border-white/10 py-3"
           : "py-5 border-b border-transparent"
       }`}
     >
