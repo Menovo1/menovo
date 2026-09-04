@@ -5,6 +5,7 @@ import { HeroVideo } from "@/components/site/HeroVideo";
 import { site } from "@/content/site";
 import { cmsPairs, cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
+import { pageBackground } from "@/lib/page-backgrounds";
 import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
