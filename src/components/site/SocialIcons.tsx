@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { platformDef } from "@/content/social-platforms";
 import type { SocialLink } from "@/lib/public-content.functions";
 
