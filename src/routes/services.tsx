@@ -9,22 +9,22 @@ export const Route = createFileRoute("/services")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "Services — Hotel Website Design & Development | MENOVO" },
+      { title: "Hotel Website Design & Development Services | MENOVO" },
       {
         name: "description",
         content:
-          "Hotel website development, business websites and website maintenance. MENOVO designs premium, mobile-first hotel websites built to convert.",
+          "Professional hotel website design, hotel website development, SEO-ready websites and website maintenance for hotels and hospitality businesses worldwide.",
       },
       { property: "og:title", content: "Services — Hotel Website Design & Development | MENOVO" },
       {
         property: "og:description",
-        content: "Premium hotel website development, plus business websites and ongoing maintenance.",
+        content: "Explore MENOVO hotel website design, development, SEO and maintenance services built for modern hospitality businesses.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/services" },
+      { property: "og:url", content: "https://www.menovo.agency/services" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/services" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/services" }],
   }),
   component: ServicesPage,
 });

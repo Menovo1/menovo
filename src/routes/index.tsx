@@ -5,14 +5,13 @@ import { HeroVideo } from "@/components/site/HeroVideo";
 import { site } from "@/content/site";
 import { cmsPairs, cmsText } from "@/content/cms";
 import { siteDataQuery, useSite } from "@/lib/site-data";
-import { pageBackground } from "@/lib/page-backgrounds";
 import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "MENOVO — Hotel Web Design & Development Agency" },
+      { title: "Hotel Web Design Agency | MENOVO" },
       {
         name: "description",
         content:
@@ -25,10 +24,10 @@ export const Route = createFileRoute("/")({
           "Premium websites designed and developed exclusively for hotels. From Table to Screen.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/" },
+      { property: "og:url", content: "https://www.menovo.agency/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -38,7 +37,7 @@ export const Route = createFileRoute("/")({
           name: "MENOVO",
           description:
             "Premium web-development agency specialized exclusively in hotel websites.",
-          url: "https://menovo.lovable.app",
+          url: "https://www.menovo.agency",
           email: "info@menovo.agency",
           telephone: "+251946471234",
           areaServed: "Worldwide",

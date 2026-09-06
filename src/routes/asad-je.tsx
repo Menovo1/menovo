@@ -2,11 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, AtSign, Instagram, MessageCircle } from "lucide-react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
-import { SocialIcons } from "@/components/site/SocialIcons";
-import { siteDataQuery, useSite } from "@/lib/site-data";
 
-/** Shown only when no social links are managed in the admin yet. */
-const fallbackSocials = [
+/** Only real, provided links are shown. Add Facebook / X / LinkedIn / GitHub here when available. */
+const socials = [
   { label: "Instagram", href: "https://www.instagram.com/the_asad_je/", icon: Instagram },
   { label: "WhatsApp", href: "https://wa.me/251976367556", icon: MessageCircle },
   { label: "Threads", href: "https://www.threads.com/@the_asad_je", icon: AtSign },
@@ -14,20 +12,19 @@ const fallbackSocials = [
 
 
 export const Route = createFileRoute("/asad-je")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "Asad JE — CEO & Founder of MENOVO" },
+      { title: "Asad JE | CEO & Founder of MENOVO" },
       {
         name: "description",
         content:
-          "Asad JE, CEO and Founder of MENOVO — web developer, entrepreneur and digital creator building professional websites and digital solutions.",
+          "Asad JE is the CEO and Founder of MENOVO, a hotel web design agency. He is a web developer and entrepreneur focused on modern websites and digital products.",
       },
       { property: "og:title", content: "Asad JE — CEO & Founder of MENOVO" },
       {
         property: "og:description",
         content:
-          "Web developer, entrepreneur and digital creator. Founder of MENOVO — building digital experiences that help businesses move forward.",
+          "CEO and Founder of MENOVO, web developer and entrepreneur building modern websites and digital experiences for businesses.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },

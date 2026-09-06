@@ -14,19 +14,19 @@ export const Route = createFileRoute("/contact")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "Contact MENOVO — Book a Hotel Website Consultation" },
+      { title: "Contact MENOVO | Hotel Web Design Agency" },
       {
         name: "description",
         content:
-          "Book a Zoom consultation with MENOVO, or reach us on WhatsApp and email to start your hotel website project.",
+          "Contact MENOVO to discuss hotel website design, hotel website development, redesigns and digital solutions for your hotel. Book a consultation or message us today.",
       },
       { property: "og:title", content: "Contact MENOVO — Book a Hotel Website Consultation" },
-      { property: "og:description", content: "Pick a time that suits you — we'll meet on Zoom." },
+      { property: "og:description", content: "Talk to MENOVO about your hotel website project and find the right digital solution for your property." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/contact" },
+      { property: "og:url", content: "https://www.menovo.agency/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/contact" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/contact" }],
   }),
   component: ContactPage,
 });

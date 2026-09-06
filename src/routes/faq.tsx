@@ -11,22 +11,22 @@ export const Route = createFileRoute("/faq")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "FAQ — Hotel Website Development | MENOVO" },
+      { title: "Hotel Website Design FAQ | MENOVO" },
       {
         name: "description",
         content:
-          "Answers about hotel website design and development: redesigns, mobile, WhatsApp, booking requests, maintenance, timelines and how to start.",
+          "Answers to common questions about hotel website design, hotel website development, SEO, mobile-friendly websites, booking features, maintenance and working with MENOVO.",
       },
       { property: "og:title", content: "FAQ — Hotel Website Development | MENOVO" },
       {
         property: "og:description",
-        content: "Common questions about working with a hotel web design agency.",
+        content: "Answers about hotel website design, development, SEO, bookings, maintenance and working with MENOVO.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/faq" },
+      { property: "og:url", content: "https://www.menovo.agency/faq" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/faq" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/faq" }],
   }),
   component: FaqPage,
 });

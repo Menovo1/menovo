@@ -9,7 +9,7 @@ export const Route = createFileRoute("/about")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "About MENOVO — Hotel Website Specialists" },
+      { title: "About MENOVO | Hotel Website Design Agency" },
       {
         name: "description",
         content:
@@ -18,13 +18,13 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About MENOVO — Hotel Website Specialists" },
       {
         property: "og:description",
-        content: "A premium web-development agency built exclusively around hotels.",
+        content: "MENOVO is a hotel web design agency focused on premium website design, development, SEO and digital experiences for hospitality brands.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/about" },
+      { property: "og:url", content: "https://www.menovo.agency/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/about" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/about" }],
   }),
   component: AboutPage,
 });

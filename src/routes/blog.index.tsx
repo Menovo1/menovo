@@ -9,22 +9,22 @@ export const Route = createFileRoute("/blog/")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "Journal — Hotel Website Insights | MENOVO" },
+      { title: "Hotel Web Design & SEO Insights | MENOVO" },
       {
         name: "description",
         content:
-          "Notes on hotel websites, direct bookings, hotel SEO and digital guest experience from MENOVO, a hotel web design agency.",
+          "Hotel website design, hotel SEO, direct bookings, hospitality marketing and digital guest experience insights from MENOVO.",
       },
       { property: "og:title", content: "Journal — Hotel Website Insights | MENOVO" },
       {
         property: "og:description",
-        content: "Perspectives on hotel web design, direct bookings and guest experience.",
+        content: "Practical insights on hotel website design, SEO, direct bookings and digital marketing for hospitality businesses.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/blog" },
+      { property: "og:url", content: "https://www.menovo.agency/blog" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/blog" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/blog" }],
   }),
   component: BlogPage,
 });

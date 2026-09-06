@@ -5,15 +5,15 @@ import { site } from "@/content/site";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms of Service — MENOVO" },
-      { name: "description", content: "The terms that govern your use of MENOVO services." },
+      { title: "Terms of Service | MENOVO" },
+      { name: "description", content: "Read the MENOVO terms of service covering website projects, deliverables, timelines, payments, maintenance and client agreements." },
       { property: "og:title", content: "Terms of Service — MENOVO" },
-      { property: "og:description", content: "Terms governing MENOVO projects and services." },
+      { property: "og:description", content: "Terms covering MENOVO website projects, services and client engagements." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/terms" },
+      { property: "og:url", content: "https://www.menovo.agency/terms" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/terms" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/terms" }],
   }),
   component: () => (
     <>

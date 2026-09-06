@@ -12,18 +12,20 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Article not found | MENOVO" }, { name: "robots", content: "noindex" }],
+        meta: [{ title: "Article Not Found | MENOVO" }, { name: "robots", content: "noindex, nofollow" }],
       };
     }
     const p = loaderData.post;
     const title = p.seo_title || `${p.title} | MENOVO Journal`;
     const description = p.seo_description || p.excerpt;
+    const canonical = `https://www.menovo.agency/blog/${p.slug}`;
     const meta = [
       { title },
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: canonical },
       { name: "twitter:card", content: "summary_large_image" },
     ];
     if (p.featured_image_url?.startsWith("https://")) {
@@ -32,7 +34,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { name: "twitter:image", content: p.featured_image_url },
       );
     }
-    return { meta };
+    return { meta, links: [{ rel: "canonical", href: canonical }] };
   },
   notFoundComponent: ArticleMissing,
   component: ArticlePage,

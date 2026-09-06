@@ -9,19 +9,19 @@ export const Route = createFileRoute("/portfolio")({
   loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
-      { title: "Selected Work — Hotel Websites | MENOVO" },
+      { title: "Hotel Website Design Portfolio | MENOVO" },
       {
         name: "description",
         content:
-          "Selected hotel and hospitality website projects designed and developed by MENOVO.",
+          "Explore hotel website design and development projects by MENOVO, including premium hospitality websites built to look exceptional and convert visitors into guests.",
       },
       { property: "og:title", content: "Selected Work — Hotel Websites | MENOVO" },
-      { property: "og:description", content: "Hotel and hospitality website projects by MENOVO." },
+      { property: "og:description", content: "See selected hotel website design and hospitality web development work by MENOVO." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/portfolio" },
+      { property: "og:url", content: "https://www.menovo.agency/portfolio" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/portfolio" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/portfolio" }],
   }),
   component: PortfolioPage,
 });

@@ -5,15 +5,15 @@ import { site } from "@/content/site";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — MENOVO" },
-      { name: "description", content: "How MENOVO collects, uses and protects your information." },
+      { title: "Privacy Policy | MENOVO" },
+      { name: "description", content: "Read the MENOVO privacy policy covering how information submitted through our website is collected, used and protected." },
       { property: "og:title", content: "Privacy Policy — MENOVO" },
-      { property: "og:description", content: "How MENOVO handles your information." },
+      { property: "og:description", content: "How MENOVO collects, uses and protects information submitted through this website." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://menovo.lovable.app/privacy" },
+      { property: "og:url", content: "https://www.menovo.agency/privacy" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "https://menovo.lovable.app/privacy" }],
+    links: [{ rel: "canonical", href: "https://www.menovo.agency/privacy" }],
   }),
   component: () => (
     <>
