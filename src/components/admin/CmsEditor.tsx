@@ -112,6 +112,11 @@ export function CmsEditor({ groups }: { groups: CmsGroup[] }) {
                       />
                     )}
                     {f.help && <p className="mt-1 text-[11px] text-white/40">{f.help}</p>}
+                    {f.type === "url" && typeof raw === "string" && raw.trim() && /\.(png|jpe?g|webp|gif|avif|svg)(?:[?#].*)?$/i.test(raw.trim()) && (
+                      <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                        <img src={raw.trim()} alt="CMS preview" className="h-32 w-full object-cover" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                      </div>
+                    )}
                   </div>
                 );
               })}

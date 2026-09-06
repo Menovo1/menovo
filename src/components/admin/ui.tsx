@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 export const inputCls =
-  "w-full rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-base sm:text-sm text-white placeholder:text-white/40 outline-none focus:border-gold transition-colors";
+  "w-full rounded-2xl border border-white/15 bg-white/[0.07] px-4 py-3 text-base sm:text-sm text-white placeholder:text-white/40 outline-none backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] focus:border-gold focus:bg-white/[0.09] transition-all";
 
 export const labelCls = "block text-[11px] uppercase tracking-[0.2em] text-white/50 mb-2";
 
@@ -14,7 +14,7 @@ export function AdminCard({
 }) {
   return (
     <div
-      className={`rounded-3xl border border-white/12 bg-[#00002B]/70 backdrop-blur-xl p-5 sm:p-6 ${className}`}
+      className={`rounded-3xl border border-white/15 bg-white/[0.045] backdrop-blur-2xl shadow-[0_24px_70px_-35px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.08)] p-5 sm:p-6 ${className}`}
     >
       {children}
     </div>

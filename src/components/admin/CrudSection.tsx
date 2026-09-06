@@ -197,9 +197,20 @@ export function CrudSection({
             <Plus className="h-3.5 w-3.5" /> {addLabel}
           </AdminButton>
 
-          <div className="mt-6 grid gap-3">
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
             {rows.map((r) => (
-              <AdminCard key={r[pk] as string} className="flex flex-wrap items-center justify-between gap-4">
+              <AdminCard key={r[pk] as string} className="overflow-hidden p-0">
+                {"cover_image_url" in r && r["cover_image_url"] ? (
+                  <div className="aspect-[16/9] overflow-hidden border-b border-white/10 bg-white/5">
+                    <img
+                      src={r["cover_image_url"] as string}
+                      alt={`${(r[titleField] as string) || "Portfolio"} cover`}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ) : null}
+                <div className="flex flex-wrap items-center justify-between gap-4 p-5">
                 <div className="min-w-0">
                   <div className="text-white font-medium truncate">{(r[titleField] as string) || "Untitled"}</div>
                   {subtitleField && (
@@ -215,13 +226,24 @@ export function CrudSection({
                     </span>
                   )}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
+                  {"website_url" in r && r["website_url"] ? (
+                    <a
+                      href={r["website_url"] as string}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="inline-flex items-center rounded-full border border-gold/40 px-4 py-2 text-xs text-gold hover:bg-gold/10"
+                    >
+                      View
+                    </a>
+                  ) : null}
                   <AdminButton variant="ghost" onClick={() => setDraft(r)}>
                     <Pencil className="h-3.5 w-3.5" /> Edit
                   </AdminButton>
                   <AdminButton variant="danger" onClick={() => void destroy(r[pk] as string)} disabled={busy}>
                     <Trash2 className="h-3.5 w-3.5" />
                   </AdminButton>
+                </div>
                 </div>
               </AdminCard>
             ))}

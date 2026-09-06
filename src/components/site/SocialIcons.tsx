@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { platformDef } from "@/content/social-platforms";
 import type { SocialLink } from "@/lib/public-content.functions";
 
@@ -9,21 +8,14 @@ export function SocialIcons({
 }: {
   links: SocialLink[];
   /** Which placement to render. */
-  surface: "footer" | "contact" | "founder";
+  surface: "footer" | "contact";
   className?: string;
 }) {
-  // Social links come from a client-cached query, so rendering them during SSR
-  // can produce a hydration mismatch. Render after hydration only.
-  const [hydrated, setHydrated] = useState(false);
-  useEffect(() => setHydrated(true), []);
-
   const visible = links
     .filter((l) => l.enabled && l.url.trim())
-    .filter((l) =>
-      surface === "footer" ? l.show_footer : surface === "contact" ? l.show_contact : l.show_founder !== false,
-    );
+    .filter((l) => (surface === "footer" ? l.show_footer : l.show_contact));
 
-  if (!hydrated || visible.length === 0) return null;
+  if (visible.length === 0) return null;
 
   return (
     <ul className={`flex flex-wrap items-center gap-3 ${className}`}>
