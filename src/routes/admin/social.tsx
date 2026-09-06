@@ -9,11 +9,11 @@ function Page() {
     <CrudSection
       table="social_links"
       title="Social media"
-      subtitle="Add, remove and reorder the social platforms shown in the footer and on the contact page."
+      subtitle="Add, remove and reorder the social platforms shown in the footer, the contact page and the founder page."
       titleField="platform"
       subtitleField="url"
       addLabel="Add platform"
-      defaults={{ enabled: true, show_footer: true, show_contact: true, sort_order: 0, url: "" }}
+      defaults={{ enabled: true, show_footer: true, show_contact: true, show_founder: true, sort_order: 0, url: "" }}
       fields={[
         {
           name: "platform",
