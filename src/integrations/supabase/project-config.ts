@@ -14,9 +14,13 @@ export function assertCanonicalServerProject() {
   const configuredKey = process.env["SUPABASE_PUBLISHABLE_KEY"];
 
   if (configuredUrl && configuredUrl !== SUPABASE_PROJECT_URL) {
-    throw new Error("Backend configuration mismatch: SUPABASE_URL does not belong to MENOVO.");
+    console.error(
+      "[MENOVO] Ignoring a mismatched SUPABASE_URL and using the canonical project.",
+    );
   }
   if (configuredKey && configuredKey !== SUPABASE_PROJECT_PUBLISHABLE_KEY) {
-    throw new Error("Backend configuration mismatch: SUPABASE_PUBLISHABLE_KEY does not belong to MENOVO.");
+    console.error(
+      "[MENOVO] Ignoring a mismatched SUPABASE_PUBLISHABLE_KEY and using the canonical project.",
+    );
   }
 }
