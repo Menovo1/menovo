@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireMenovoAuth } from "@/lib/menovo-auth-middleware";
 
 const schema = z.object({
   path: z.string().trim().min(1).max(200),
@@ -78,7 +78,7 @@ function tally(rows: ViewRow[], key: (r: ViewRow) => string | null) {
 
 /** Aggregated analytics for the admin dashboard. */
 export const analyticsOverview = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: unknown) => z.object({ days: z.number().int().min(1).max(365) }).parse(input))
   .handler(async ({ data, context }) => {
     const { data: allowed } = await (

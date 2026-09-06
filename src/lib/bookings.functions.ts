@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireMenovoAuth } from "@/lib/menovo-auth-middleware";
 import { bookingSchema, BOOKING_STATUSES } from "@/lib/booking-schema";
 
 export const createBooking = createServerFn({ method: "POST" })
@@ -74,7 +74,7 @@ export const createBooking = createServerFn({ method: "POST" })
   });
 
 export const listBookings = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     const { data, error } = await context.supabase
       .from("bookings")
@@ -85,7 +85,7 @@ export const listBookings = createServerFn({ method: "GET" })
   });
 
 export const isAdmin = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     const { data, error } = await context.supabase.rpc("has_role", {
       _user_id: context.userId,
@@ -101,7 +101,7 @@ export const isAdmin = createServerFn({ method: "GET" })
  * first logins cannot create two admins.
  */
 export const claimAdmin = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     const { data, error } = await context.supabase.rpc("claim_first_admin");
     if (error) throw new Error(error.message);
@@ -112,7 +112,7 @@ export const claimAdmin = createServerFn({ method: "POST" })
   });
 
 export const updateBookingStatus = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { id: string; status: string }) => {
     if (!BOOKING_STATUSES.includes(input.status as (typeof BOOKING_STATUSES)[number])) {
       throw new Error("Invalid status");
@@ -152,7 +152,7 @@ export const updateBookingStatus = createServerFn({ method: "POST" })
   });
 
 export const retryCalendar = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { id: string }) => input)
   .handler(async ({ data, context }) => {
     const { data: booking, error } = await context.supabase

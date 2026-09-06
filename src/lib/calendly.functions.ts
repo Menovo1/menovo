@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireMenovoAuth } from "@/lib/menovo-auth-middleware";
 
 export type CalendlyInvitee = { name: string; email: string; timezone: string | null };
 
@@ -23,7 +23,7 @@ export type CalendlyResult = {
 };
 
 export const calendlyMeetings = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }): Promise<CalendlyResult> => {
     const { data: isAdmin } = await context.supabase.rpc("has_role", {
       _user_id: context.userId,
