@@ -9,7 +9,7 @@ export function SocialIcons({
 }: {
   links: SocialLink[];
   /** Which placement to render. */
-  surface: "footer" | "contact";
+  surface: "footer" | "contact" | "founder";
   className?: string;
 }) {
   // Social links come from a client-cached query, so rendering them during SSR
