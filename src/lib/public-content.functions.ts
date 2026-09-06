@@ -35,6 +35,7 @@ export type SocialLink = {
   enabled: boolean;
   show_footer: boolean;
   show_contact: boolean;
+  show_founder: boolean;
   sort_order: number;
 };
 
