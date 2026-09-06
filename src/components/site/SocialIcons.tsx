@@ -9,7 +9,7 @@ export function SocialIcons({
 }: {
   links: SocialLink[];
   /** Which placement to render. */
-  surface: "footer" | "contact";
+  surface: "footer" | "contact" | "founder";
   className?: string;
 }) {
   // Social links come from a client-cached query, so rendering them during SSR
@@ -19,7 +19,9 @@ export function SocialIcons({
 
   const visible = links
     .filter((l) => l.enabled && l.url.trim())
-    .filter((l) => (surface === "footer" ? l.show_footer : l.show_contact));
+    .filter((l) =>
+      surface === "footer" ? l.show_footer : surface === "contact" ? l.show_contact : l.show_founder !== false,
+    );
 
   if (!hydrated || visible.length === 0) return null;
 

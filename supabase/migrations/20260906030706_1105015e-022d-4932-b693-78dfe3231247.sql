@@ -1,0 +1,1 @@
+ALTER TABLE public.social_links ADD COLUMN IF NOT EXISTS show_founder boolean NOT NULL DEFAULT true;

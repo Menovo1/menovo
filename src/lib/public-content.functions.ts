@@ -35,6 +35,7 @@ export type SocialLink = {
   enabled: boolean;
   show_footer: boolean;
   show_contact: boolean;
+  show_founder: boolean;
   sort_order: number;
 };
 
@@ -132,7 +133,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
         supabase.from("faqs").select("id, question, answer").eq("published", true).order("sort_order"),
         supabase
           .from("social_links")
-          .select("id, platform, url, enabled, show_footer, show_contact, sort_order")
+          .select("id, platform, url, enabled, show_footer, show_contact, show_founder, sort_order")
           .order("sort_order"),
         supabase.from("site_content").select("key, value"),
       ]);
