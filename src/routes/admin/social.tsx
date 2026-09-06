@@ -26,6 +26,7 @@ function Page() {
         { name: "enabled", label: "Enabled", type: "bool" },
         { name: "show_footer", label: "Show in footer", type: "bool" },
         { name: "show_contact", label: "Show on contact page", type: "bool" },
+        { name: "show_founder", label: "Show on founder page (/asad-je)", type: "bool" },
       ]}
     />
   );
