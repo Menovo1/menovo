@@ -19,7 +19,9 @@ export function SocialIcons({
 
   const visible = links
     .filter((l) => l.enabled && l.url.trim())
-    .filter((l) => (surface === "footer" ? l.show_footer : l.show_contact));
+    .filter((l) =>
+      surface === "footer" ? l.show_footer : surface === "contact" ? l.show_contact : l.show_founder !== false,
+    );
 
   if (!hydrated || visible.length === 0) return null;
 
