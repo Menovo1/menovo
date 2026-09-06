@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Mail, MessageCircle, Phone } from "lucide-react";
+import { useEffect, useState } from "react";
 import { navLinks, site, waDigits } from "@/content/site";
 import { cmsList, cmsText } from "@/content/cms";
 import { useSiteOptional } from "@/lib/site-data";
@@ -7,6 +8,8 @@ import { FALLBACK_LOGO } from "./Navbar";
 import { SocialIcons } from "./SocialIcons";
 
 export function Footer() {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
   const data = useSiteOptional();
   const settings = data?.settings ?? null;
 
@@ -69,7 +72,7 @@ export function Footer() {
                 <Mail className="h-4 w-4 text-gold" /> {email}
               </a>
             </li>
-            {phone && (
+            {hydrated && phone && (
               <li>
                 <a
                   href={`tel:${phone.replace(/\s/g, "")}`}

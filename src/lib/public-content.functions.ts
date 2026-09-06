@@ -2,12 +2,18 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
+import {
+  SUPABASE_PROJECT_PUBLISHABLE_KEY,
+  SUPABASE_PROJECT_URL,
+  assertCanonicalServerProject,
+} from "@/integrations/supabase/project-config";
 import { CMS_DEFAULTS } from "@/content/cms";
 import { faqs as STATIC_FAQS } from "@/content/site";
 
 function publicClient() {
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
-  return createClient<Database>(process.env["SUPABASE_URL"]!, key, {
+  assertCanonicalServerProject();
+  const key = SUPABASE_PROJECT_PUBLISHABLE_KEY;
+  return createClient<Database>(SUPABASE_PROJECT_URL, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     global: {
       fetch: (input, init) => {

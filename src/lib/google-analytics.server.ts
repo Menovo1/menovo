@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireMenovoAuth } from "@/lib/menovo-auth-middleware";
 
 export type AnalyticsReport = {
   propertyId: string;
@@ -22,7 +22,7 @@ export const GA_PROPERTY_ID = "404792337";
  * All Google API keys and credentials are kept server-side only.
  */
 export const getGoogleAnalyticsData = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }): Promise<AnalyticsReport> => {
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
 

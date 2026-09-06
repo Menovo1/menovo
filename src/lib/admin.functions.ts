@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { requireMenovoAuth } from "@/lib/menovo-auth-middleware";
 import { isAdminTable, TABLE_ORDER, TABLE_PK, type AdminTable } from "@/lib/admin-tables";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -79,7 +79,7 @@ function tableToSection(table: string): string {
 }
 
 export const adminList = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { table: string }) => ({ table: assertTable(input.table) }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
@@ -159,7 +159,7 @@ async function writeRow(client: unknown, table: AdminTable, row: Row) {
 }
 
 export const adminSave = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { table: string; row: Row }) => ({
     table: assertTable(input.table),
     row: input.row,
@@ -189,7 +189,7 @@ export const adminSave = createServerFn({ method: "POST" })
   });
 
 export const adminDelete = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { table: string; id: string }) => ({
     table: assertTable(input.table),
     id: input.id,
@@ -231,7 +231,7 @@ type Revision = {
 };
 
 export const adminHistory = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     const { data: rows } = await db(context.supabase)
@@ -273,7 +273,7 @@ async function applyRow(client: unknown, table: string, pk: string, row: Row) {
 }
 
 export const adminUndo = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     const c = db(context.supabase);
@@ -300,7 +300,7 @@ export const adminUndo = createServerFn({ method: "POST" })
   });
 
 export const adminRedo = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     const c = db(context.supabase);
@@ -328,7 +328,7 @@ export const adminRedo = createServerFn({ method: "POST" })
 
 
 export const adminStats = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     await assertPermission(context.supabase, context.userId, "Dashboard");
@@ -400,7 +400,7 @@ export const adminStats = createServerFn({ method: "GET" })
   });
 
 export const addAdminUser = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { email: string; password: string; fullName?: string }) => {
     if (!input.email || !input.email.includes("@")) throw new Error("Valid email is required.");
     if (!input.password || input.password.length < 6) throw new Error("Password must be at least 6 characters.");
@@ -438,7 +438,7 @@ export const addAdminUser = createServerFn({ method: "POST" })
   });
 
 export const changeAdminPassword = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { currentPassword: string; newPassword: string; confirmPassword: string }) => {
     if (!input.currentPassword) throw new Error("Current password is required.");
     if (!input.newPassword || input.newPassword.length < 6) throw new Error("New password must be at least 6 characters.");
@@ -473,7 +473,7 @@ export const changeAdminPassword = createServerFn({ method: "POST" })
   });
 
 export const getAdminPermissions = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { userId: string }) => input)
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
@@ -487,7 +487,7 @@ export const getAdminPermissions = createServerFn({ method: "POST" })
   });
 
 export const updateAdminPermissions = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { userId: string; permissions: Record<string, boolean> }) => input)
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
@@ -521,7 +521,7 @@ export const updateAdminPermissions = createServerFn({ method: "POST" })
   });
 
 export const listAdminsAndPermissions = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     const c = db(context.supabase);
@@ -581,7 +581,7 @@ export const listAdminsAndPermissions = createServerFn({ method: "GET" })
 
 /** List every account that currently holds the admin role. */
 export const adminTeam = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -601,7 +601,7 @@ export const adminTeam = createServerFn({ method: "GET" })
 
 /** Grant admin access to an existing account by email. */
 export const adminGrant = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { email: string }) => ({ email: String(input.email).trim().toLowerCase() }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
@@ -620,7 +620,7 @@ export const adminGrant = createServerFn({ method: "POST" })
 
 /** Remove admin access from another account. */
 export const adminRevoke = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { userId: string }) => ({ userId: String(input.userId) }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
