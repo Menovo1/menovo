@@ -499,6 +499,7 @@ export type Database = {
           platform: string
           show_contact: boolean
           show_footer: boolean
+          show_founder: boolean
           sort_order: number
           updated_at: string
           url: string
@@ -510,6 +511,7 @@ export type Database = {
           platform: string
           show_contact?: boolean
           show_footer?: boolean
+          show_founder?: boolean
           sort_order?: number
           updated_at?: string
           url?: string
@@ -521,6 +523,7 @@ export type Database = {
           platform?: string
           show_contact?: boolean
           show_footer?: boolean
+          show_founder?: boolean
           sort_order?: number
           updated_at?: string
           url?: string
