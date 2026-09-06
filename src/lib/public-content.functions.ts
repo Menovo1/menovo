@@ -2,18 +2,12 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
-import {
-  SUPABASE_PROJECT_PUBLISHABLE_KEY,
-  SUPABASE_PROJECT_URL,
-  assertCanonicalServerProject,
-} from "@/integrations/supabase/project-config";
 import { CMS_DEFAULTS } from "@/content/cms";
 import { faqs as STATIC_FAQS } from "@/content/site";
 
 function publicClient() {
-  assertCanonicalServerProject();
-  const key = SUPABASE_PROJECT_PUBLISHABLE_KEY;
-  return createClient<Database>(SUPABASE_PROJECT_URL, key, {
+  const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
+  return createClient<Database>(process.env["SUPABASE_URL"]!, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     global: {
       fetch: (input, init) => {
@@ -35,9 +29,40 @@ export type SocialLink = {
   enabled: boolean;
   show_footer: boolean;
   show_contact: boolean;
-  show_founder: boolean;
   sort_order: number;
 };
+
+/**
+ * Convert Supabase storage URLs (including expiring signed URLs copied from the
+ * admin media library) into the site's stable public media endpoint. External
+ * image/video URLs are left untouched.
+ */
+export function publicMediaUrl(value: string | null | undefined): string | null | undefined {
+  if (!value || typeof value !== "string") return value;
+  const trimmed = value.trim();
+  if (!trimmed) return value;
+  if (trimmed.startsWith("/api/public/media/")) return trimmed;
+
+  try {
+    const u = new URL(trimmed, "http://localhost");
+    const match = u.pathname.match(/\/storage\/v1\/object\/(?:sign|public)\/media\/(.+)$/);
+    if (match?.[1]) {
+      return `/api/public/media/${match[1].split("?")[0].split("#")[0].split("/").map((part) => encodeURIComponent(decodeURIComponent(part))).join("/")}`;
+    }
+  } catch {
+    // Keep malformed/external values unchanged so the CMS remains editable.
+  }
+  return value;
+}
+
+function normalizeMediaValue(value: unknown): unknown {
+  if (typeof value === "string") return publicMediaUrl(value);
+  if (Array.isArray(value)) return value.map(normalizeMediaValue);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, normalizeMediaValue(v)]));
+  }
+  return value;
+}
 
 export type SiteData = {
   settings: Record<string, string | null> | null;
@@ -85,7 +110,27 @@ function fallbackSiteData(): SiteData {
       email: "info@menovo.agency",
       whatsapp: "+251946471234",
     },
-    founder: null,
+    founder: {
+      id: "static-founder",
+      name: "Asad JE",
+      title: "CEO & Founder of MENOVO",
+      bio: "",
+      image_url: null,
+      instagram: "https://www.instagram.com/the_asad_je/",
+      whatsapp: "https://wa.me/251976367556",
+      threads: "https://www.threads.com/@the_asad_je",
+      facebook: null,
+      twitter: null,
+      linkedin: null,
+      github: null,
+      instagram_enabled: true,
+      whatsapp_enabled: true,
+      threads_enabled: true,
+      facebook_enabled: false,
+      twitter_enabled: false,
+      linkedin_enabled: false,
+      github_enabled: false,
+    },
     services: [],
     portfolio: [],
     posts: [],
@@ -133,7 +178,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
         supabase.from("faqs").select("id, question, answer").eq("published", true).order("sort_order"),
         supabase
           .from("social_links")
-          .select("id, platform, url, enabled, show_footer, show_contact, show_founder, sort_order")
+          .select("id, platform, url, enabled, show_footer, show_contact, sort_order")
           .order("sort_order"),
         supabase.from("site_content").select("key, value"),
       ]);
@@ -145,14 +190,14 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
       }
 
       return {
-        settings: (settings.data ?? null) as SiteData["settings"],
-        founder: (founder.data ?? null) as SiteData["founder"],
-        services: (services.data ?? []) as SiteData["services"],
-        portfolio: (portfolio.data ?? []) as SiteData["portfolio"],
-        posts: (posts.data ?? []) as SiteData["posts"],
-        faqs: (faqs.data ?? []) as SiteData["faqs"],
-        socials: (socials.data ?? []) as SocialLink[],
-        content: contentMap,
+        settings: normalizeMediaValue(settings.data ?? null) as SiteData["settings"],
+        founder: normalizeMediaValue(founder.data ?? null) as SiteData["founder"],
+        services: normalizeMediaValue(services.data ?? []) as SiteData["services"],
+        portfolio: normalizeMediaValue(portfolio.data ?? []) as SiteData["portfolio"],
+        posts: normalizeMediaValue(posts.data ?? []) as SiteData["posts"],
+        faqs: faqs.data ?? [],
+        socials: normalizeMediaValue(socials.data ?? []) as SocialLink[],
+        content: normalizeMediaValue(contentMap) as Record<string, Record<string, any>>,
       };
     } catch (error) {
       console.error("[MENOVO] Supabase is unavailable; using static site defaults.", error);
