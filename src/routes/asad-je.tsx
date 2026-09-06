@@ -2,9 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, AtSign, Instagram, MessageCircle } from "lucide-react";
 import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
+import { SocialIcons } from "@/components/site/SocialIcons";
+import { siteDataQuery, useSite } from "@/lib/site-data";
 
-/** Only real, provided links are shown. Add Facebook / X / LinkedIn / GitHub here when available. */
-const socials = [
+/** Shown only when no social links are managed in the admin yet. */
+const fallbackSocials = [
   { label: "Instagram", href: "https://www.instagram.com/the_asad_je/", icon: Instagram },
   { label: "WhatsApp", href: "https://wa.me/251976367556", icon: MessageCircle },
   { label: "Threads", href: "https://www.threads.com/@the_asad_je", icon: AtSign },
@@ -12,6 +14,7 @@ const socials = [
 
 
 export const Route = createFileRoute("/asad-je")({
+  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "Asad JE — CEO & Founder of MENOVO" },
