@@ -14,33 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      admin_permissions: {
-        Row: {
-          created_at: string
-          granted: boolean
-          id: string
-          section: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          granted?: boolean
-          id?: string
-          section: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          granted?: boolean
-          id?: string
-          section?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       blog_posts: {
         Row: {
           author: string
@@ -223,6 +196,13 @@ export type Database = {
       }
       founder_profile: {
         Row: {
+          facebook_enabled: boolean;
+          github_enabled: boolean;
+          instagram_enabled: boolean;
+          linkedin_enabled: boolean;
+          threads_enabled: boolean;
+          twitter_enabled: boolean;
+          whatsapp_enabled: boolean;
           bio: string
           created_at: string
           facebook: string | null
@@ -239,6 +219,13 @@ export type Database = {
           whatsapp: string | null
         }
         Insert: {
+          facebook_enabled?: boolean;
+          github_enabled?: boolean;
+          instagram_enabled?: boolean;
+          linkedin_enabled?: boolean;
+          threads_enabled?: boolean;
+          twitter_enabled?: boolean;
+          whatsapp_enabled?: boolean;
           bio?: string
           created_at?: string
           facebook?: string | null
@@ -255,6 +242,13 @@ export type Database = {
           whatsapp?: string | null
         }
         Update: {
+          facebook_enabled?: boolean;
+          github_enabled?: boolean;
+          instagram_enabled?: boolean;
+          linkedin_enabled?: boolean;
+          threads_enabled?: boolean;
+          twitter_enabled?: boolean;
+          whatsapp_enabled?: boolean;
           bio?: string
           created_at?: string
           facebook?: string | null
@@ -499,7 +493,6 @@ export type Database = {
           platform: string
           show_contact: boolean
           show_footer: boolean
-          show_founder: boolean
           sort_order: number
           updated_at: string
           url: string
@@ -511,7 +504,6 @@ export type Database = {
           platform: string
           show_contact?: boolean
           show_footer?: boolean
-          show_founder?: boolean
           sort_order?: number
           updated_at?: string
           url?: string
@@ -523,7 +515,6 @@ export type Database = {
           platform?: string
           show_contact?: boolean
           show_footer?: boolean
-          show_founder?: boolean
           sort_order?: number
           updated_at?: string
           url?: string
