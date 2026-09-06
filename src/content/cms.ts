@@ -170,7 +170,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     title: "Book an appointment.",
     subtitle: "Pick a time that suits you and we'll meet on Zoom — the link is sent automatically.",
     calendlyUrl: "https://calendly.com/7menovo/30min",
-    calendlyNote: "Meetings are hosted on Zoom. You'll receive the link by email instantly.",
+    calendlyNote: "Choose a time on Calendly. Your Zoom meeting link is sent automatically by email.",
   },
   footer: {
     description:
@@ -314,16 +314,16 @@ export const IDENTITY_GROUP: CmsGroup = {
 export const BACKGROUNDS_GROUP: CmsGroup = {
   key: "backgrounds",
   label: "Page backgrounds",
-  description: "Leave empty to keep the built-in background.",
+  description: "Replace any page background with an uploaded Media Library file or any public image URL. Leave empty to keep the built-in background.",
   fields: [
     { name: "homeVideoUrl", label: "Home hero video URL", type: "url" },
-    { name: "homePosterUrl", label: "Home hero poster image", type: "url" },
-    { name: "aboutImageUrl", label: "About header image", type: "url" },
-    { name: "servicesImageUrl", label: "Services header image", type: "url" },
-    { name: "portfolioImageUrl", label: "Portfolio header image", type: "url" },
-    { name: "blogImageUrl", label: "Blog header image", type: "url" },
-    { name: "faqImageUrl", label: "FAQ header image", type: "url" },
-    { name: "contactImageUrl", label: "Contact header image", type: "url" },
+    { name: "homePosterUrl", label: "Home hero poster image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "aboutImageUrl", label: "About header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "servicesImageUrl", label: "Services header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "portfolioImageUrl", label: "Portfolio header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "blogImageUrl", label: "Blog header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "faqImageUrl", label: "FAQ header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "contactImageUrl", label: "Contact header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
   ],
 };
 
