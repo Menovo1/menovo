@@ -581,7 +581,7 @@ export const listAdminsAndPermissions = createServerFn({ method: "GET" })
 
 /** List every account that currently holds the admin role. */
 export const adminTeam = createServerFn({ method: "GET" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .handler(async ({ context }) => {
     await assertAdmin(context.supabase, context.userId);
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -601,7 +601,7 @@ export const adminTeam = createServerFn({ method: "GET" })
 
 /** Grant admin access to an existing account by email. */
 export const adminGrant = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { email: string }) => ({ email: String(input.email).trim().toLowerCase() }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
@@ -620,7 +620,7 @@ export const adminGrant = createServerFn({ method: "POST" })
 
 /** Remove admin access from another account. */
 export const adminRevoke = createServerFn({ method: "POST" })
-  .middleware([requireSupabaseAuth])
+  .middleware([requireMenovoAuth])
   .inputValidator((input: { userId: string }) => ({ userId: String(input.userId) }))
   .handler(async ({ data, context }) => {
     await assertAdmin(context.supabase, context.userId);
