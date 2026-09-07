@@ -102,7 +102,7 @@ export type SiteData = {
 };
 
 /** One public read for every CMS-managed block on the website. */
-function fallbackSiteData(): SiteData {
+export function getFallbackSiteData(): SiteData {
   const defaults = CMS_DEFAULTS;
 
   return {
@@ -201,7 +201,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
       };
     } catch (error) {
       console.error("[MENOVO] Supabase is unavailable; using static site defaults.", error);
-      return fallbackSiteData();
+      return getFallbackSiteData();
     }
   },
 );

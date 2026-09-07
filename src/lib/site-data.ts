@@ -1,10 +1,16 @@
-import { queryOptions, useQuery, useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { getSiteData, type SiteData } from "@/lib/public-content.functions";
+import { getFallbackSiteData, getSiteData, type SiteData } from "@/lib/public-content.functions";
 
 export const siteDataQuery = queryOptions({
   queryKey: ["site-data"],
-  queryFn: () => getSiteData(),
+  queryFn: async () => {
+    try {
+      return await getSiteData();
+    } catch {
+      return getFallbackSiteData();
+    }
+  },
   // CMS changes should not sit in a 15-second client cache.
   staleTime: 0,
   refetchOnMount: "always",
@@ -58,10 +64,13 @@ function useLiveSiteRefresh() {
   }, [queryClient]);
 }
 
-/** For pages whose loader called ensureQueryData(siteDataQuery). */
+/** Render immediately from built-in defaults, then refresh CMS data in the background. */
 export function useSite(): SiteData {
   useLiveSiteRefresh();
-  return useSuspenseQuery(siteDataQuery).data;
+  const query = useQuery(siteDataQuery, {
+    initialData: getFallbackSiteData(),
+  });
+  return query.data ?? getFallbackSiteData();
 }
 
 /** For shared chrome (navbar/footer) that may render before the loader resolves. */
