@@ -4,11 +4,10 @@ import { Reveal } from "@/components/site/Reveal";
 import { HeroVideo } from "@/components/site/HeroVideo";
 import { site } from "@/content/site";
 import { cmsPairs, cmsText } from "@/content/cms";
-import { siteDataQuery, useSite } from "@/lib/site-data";
+import { useSite } from "@/lib/site-data";
 import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "Hotel Web Design Agency | MENOVO" },

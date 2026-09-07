@@ -7,11 +7,10 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { site, waDigits } from "@/content/site";
 import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
-import { siteDataQuery, useSite } from "@/lib/site-data";
+import { useSite } from "@/lib/site-data";
 import { Mail, MessageCircle, PhoneCall, Globe } from "lucide-react";
 
 export const Route = createFileRoute("/contact")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "Contact MENOVO | Hotel Web Design Agency" },

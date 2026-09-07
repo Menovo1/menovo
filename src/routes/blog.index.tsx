@@ -3,10 +3,9 @@ import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
-import { siteDataQuery, useSite } from "@/lib/site-data";
+import { useSite } from "@/lib/site-data";
 
 export const Route = createFileRoute("/blog/")({
-  loader: ({ context }) => context.queryClient.ensureQueryData(siteDataQuery),
   head: () => ({
     meta: [
       { title: "Hotel Web Design & SEO Insights | MENOVO" },
