@@ -20,7 +20,7 @@ function NotFoundComponent() {
     <div className="min-h-screen flex items-center justify-center px-4 bg-background">
       <div className="text-center max-w-md">
         <div className="text-8xl font-bold text-gradient-gold font-display">404</div>
-        <h1 className="mt-6 text-2xl font-semibold">This page has left the table.</h1>
+        <h1 className="mt-6 text-2xl font-semibold">This page has moved on.</h1>
         <p className="mt-3 text-muted-foreground">The page you're looking for doesn't exist.</p>
         <a href="/" className="mt-8 inline-flex items-center justify-center rounded-full btn-gold px-6 py-3">
           Return home
@@ -58,16 +58,16 @@ export const Route = createRootRouteWithContext()({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Digital Agency | MENOVO" },
-      { name: "description", content: "MENOVO is a digital agency creating premium, fast and mobile-friendly business websites for business businesses worldwide." },
+      { name: "description", content: "MENOVO is a digital agency creating premium, fast and mobile-friendly business websites for businesses worldwide." },
       { name: "author", content: "MENOVO" },
       { name: "theme-color", content: "#001229" },
       { business: "og:title", content: "Digital Agency | MENOVO" },
-      { business: "og:description", content: "MENOVO is a digital agency creating premium, fast and mobile-friendly business websites for business businesses worldwide." },
+      { business: "og:description", content: "MENOVO is a digital agency creating premium, fast and mobile-friendly business websites for businesses worldwide." },
       { business: "og:type", content: "website" },
       { business: "og:site_name", content: "MENOVO" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Digital Agency | MENOVO" },
-      { name: "twitter:description", content: "MENOVO is a digital agency creating premium, fast and mobile-friendly business websites for business businesses worldwide." },
+      { name: "twitter:description", content: "MENOVO is a digital agency creating premium, fast and mobile-friendly business websites for businesses worldwide." },
       { business: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/f711e788-f43d-4ca2-8db9-edd41b94341a" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/f711e788-f43d-4ca2-8db9-edd41b94341a" },
     ],
