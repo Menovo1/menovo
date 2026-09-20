@@ -44,7 +44,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     logoUrl: "",
     faviconUrl: "",
     metaDescription:
-      "MENOVO is a premium web-development agency specialized exclusively in hotel websites.",
+      "MENOVO is a premium digital agency creating distinctive websites and digital experiences for modern businesses.",
   },
   backgrounds: {
     homeVideoUrl: "",
@@ -100,14 +100,14 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     valuesTitle: "Values",
     values: [
       "Elegance | Restraint over decoration.",
-      "Clarity | Guests find what they need, fast.",
+      "Clarity | Customers find what they need, fast.",
       "Care | Every brand handled with attention.",
       "Impact | Design that lifts direct enquiries.",
     ],
     whyTitle: "Why businesses choose us",
     why: [
       "Industry-aware strategy | We adapt the digital experience to your market, audience and goals.",
-      "Luxury craftsmanship | Editorial type, whitespace, considered motion.",
+      "Thoughtful craftsmanship | Editorial type, whitespace, considered motion.",
       "Global service | We work with businesses and organizations across markets and industries.",
       "Long-term partnership | Support after launch, not a hand-off.",
     ],
@@ -131,10 +131,10 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     mission:
       "To help ambitious businesses become more visible, credible and effective online — with digital experiences that are elegant, fast and effortless to use.",
     vision:
-      "A future where no great HOTEL goes undiscovered, and where the global hotel industry is represented online with the same care it shows its guests.",
+      "A future where no great HOTEL goes undiscovered, and where the global business industry is represented online with the same care it shows its customers.",
     values: [
       "Elegance | Restraint over decoration.",
-      "Clarity | Guests find what they need, fast.",
+      "Clarity | Customers find what they need, fast.",
       "Care | Every brand handled with attention.",
       "Impact | Design that lifts direct enquiries.",
     ],
@@ -160,7 +160,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
       "Practical perspectives on websites, digital strategy, SEO, branding and customer experience.",
     emptyTitle: "The journal opens shortly.",
     emptyBody:
-      "We're preparing our first articles. In the meantime, we're happy to answer any question about your hotel's website directly.",
+      "We're preparing our first articles. In the meantime, we're happy to answer any question about your business's website directly.",
   },
   faq: {
     title: "Questions, answered.",
@@ -178,7 +178,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     founderLabel: "Founded by",
     founderName: "ASAD JE",
     services: [
-      "Hotel Website Development",
+      "Business Website Development",
       "Website Development",
       "Website Maintenance",
     ],
