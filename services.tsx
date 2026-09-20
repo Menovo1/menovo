@@ -8,19 +8,19 @@ import { useSite } from "@/lib/site-data";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Hotel Website Design & Development Services | MENOVO" },
+      { title: "Website Design & Development Services | MENOVO" },
       {
         name: "description",
         content:
-          "Professional hotel website design, hotel website development, SEO-ready websites and website maintenance for hotels and hospitality businesses worldwide.",
+          "Professional business website design, business website development, SEO-ready websites and website maintenance for businesses and business businesses worldwide.",
       },
-      { property: "og:title", content: "Services — Hotel Website Design & Development | MENOVO" },
+      { business: "og:title", content: "Services — Business Website Design & Development | MENOVO" },
       {
-        property: "og:description",
-        content: "Explore MENOVO hotel website design, development, SEO and maintenance services built for modern hospitality businesses.",
+        business: "og:description",
+        content: "Explore MENOVO business website design, development, SEO and maintenance services built for modern business businesses.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/services" },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/services" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/services" }],
@@ -47,7 +47,7 @@ function ServicesPage() {
             <div className="eyebrow">Coming soon</div>
             <h2 className="mt-5 font-display text-3xl sm:text-4xl">Our services are being published.</h2>
             <p className="mt-4 text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              Tell us about your property and we'll outline exactly what your hotel needs online.
+              Tell us about your business and we'll outline exactly what your business needs online.
             </p>
           </Reveal>
         ) : (
