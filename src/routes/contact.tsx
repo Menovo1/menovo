@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { SocialIcons } from "@/components/site/SocialIcons";
 import { Reveal } from "@/components/site/Reveal";
-import { CalendlyEmbed } from "@/components/site/CalendlyEmbed";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site, waDigits } from "@/content/site";
 import { pageBackground } from "@/lib/page-backgrounds";
@@ -37,7 +36,6 @@ function ContactPage() {
 
   const whatsapp = settings?.["whatsapp"] || site.whatsappNumber;
   const email = settings?.["email"] || site.email;
-  const calendlyUrl = cmsText(c, "contact", "calendlyUrl");
 
   return (
     <>
@@ -86,10 +84,8 @@ function ContactPage() {
               <li className="flex items-start gap-4">
                 <PhoneCall className="h-5 w-5 text-gold mt-0.5" />
                 <span>
-                  <span className="block text-sm font-medium">Appointments</span>
-                  <span className="block text-sm text-muted-foreground">
-                    {cmsText(c, "contact", "calendlyNote")}
-                  </span>
+                  <span className="block text-sm font-medium">Project enquiries</span>
+                  <span className="block text-sm text-muted-foreground">Tell us what you need and we’ll get back to you.</span>
                 </span>
               </li>
             </ul>
@@ -105,17 +101,17 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <CalendlyEmbed url={calendlyUrl} />
+            <div className="rounded-3xl border border-border bg-card/30 p-6 sm:p-8">
+              <div className="eyebrow">Start a conversation</div>
+              <h2 className="mt-3 font-display text-3xl">Tell us what you’re building.</h2>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">Share your details and a little about your project. We’ll review it and get back to you directly.</p>
+              <ContactForm />
+            </div>
             <SocialIcons links={data.socials} surface="contact" className="mt-8" />
           </Reveal>
         </div>
       </Section>
 
-      <Section className="bg-secondary" eyebrow="Or send a message" title="Tell us about your business.">
-        <div className="max-w-2xl">
-          <ContactForm />
-        </div>
-      </Section>
     </>
   );
 }
