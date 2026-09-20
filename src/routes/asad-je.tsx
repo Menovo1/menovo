@@ -20,13 +20,12 @@ export const Route = createFileRoute("/asad-je")({
         content:
           "Asad JE is the CEO and Founder of MENOVO, a digital agency. He is a web developer and entrepreneur focused on modern websites and digital products.",
       },
-      { business: "og:title", content: "Asad JE — CEO & Founder of MENOVO" },
-      {
-        business: "og:description",
+      { property: "og:title", content: "Asad JE — CEO & Founder of MENOVO" },
+      { property: "og:description",
         content:
           "CEO and Founder of MENOVO, web developer and entrepreneur building modern websites and digital experiences for businesses.",
       },
-      { business: "og:type", content: "profile" },
+      { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
