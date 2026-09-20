@@ -16,10 +16,10 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact MENOVO to discuss website design, development, redesigns, SEO and digital solutions for your business. Book a consultation or message us today.",
+          "Contact MENOVO to discuss website design, development, redesigns, SEO and digital solutions for your business. Send your project details and we’ll get back to you directly.",
       },
-      { property: "og:title", content: "Contact MENOVO — Book a Website Consultation" },
-      { property: "og:description", content: "Talk to MENOVO about your business website project and find the right digital solution for your business." },
+      { property: "og:title", content: "Contact MENOVO — Start Your Project" },
+      { property: "og:description", content: "Tell MENOVO about your business website project and we’ll help shape the right digital solution." },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.menovo.agency/contact" },
       { name: "twitter:card", content: "summary_large_image" },
