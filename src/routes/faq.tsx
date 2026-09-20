@@ -16,13 +16,12 @@ export const Route = createFileRoute("/faq")({
         content:
           "Answers to common questions about website design, development, SEO, mobile-friendly experiences, integrations, maintenance and working with MENOVO.",
       },
-      { business: "og:title", content: "FAQ — Business Website Development | MENOVO" },
-      {
-        business: "og:description",
+      { property: "og:title", content: "FAQ — Business Website Development | MENOVO" },
+      { property: "og:description",
         content: "Answers about business website design, development, SEO, bookings, maintenance and working with MENOVO.",
       },
-      { business: "og:type", content: "website" },
-      { business: "og:url", content: "https://www.menovo.agency/faq" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.menovo.agency/faq" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/faq" }],
