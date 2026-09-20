@@ -8,19 +8,19 @@ import { useSite } from "@/lib/site-data";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About MENOVO | Hotel Website Design Agency" },
+      { title: "About MENOVO | Digital Agency" },
       {
         name: "description",
         content:
-          "MENOVO exists to design and develop websites for hotels. Learn our story, philosophy, mission, vision and values as a hotel web design agency.",
+          "MENOVO exists to design and develop websites for businesses. Learn our story, philosophy, mission, vision and values as a digital agency.",
       },
-      { property: "og:title", content: "About MENOVO — Hotel Website Specialists" },
+      { business: "og:title", content: "About MENOVO — Digital Experience Studio" },
       {
-        property: "og:description",
-        content: "MENOVO is a hotel web design agency focused on premium website design, development, SEO and digital experiences for hospitality brands.",
+        business: "og:description",
+        content: "MENOVO is a digital agency focused on premium website design, development, SEO and digital experiences for business brands.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/about" },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/about" }],
@@ -61,20 +61,20 @@ function AboutPage() {
         </div>
       </Section>
 
-      <Section className="bg-secondary" eyebrow="Why hotels" title="Specialization beats generalization.">
+      <Section className="bg-secondary" eyebrow="Why businesses" title="Specialization beats generalization.">
         <div className="grid gap-10 sm:grid-cols-3">
           {[
             {
               t: "We know the journey",
-              b: "Guests compare, hesitate and decide on their phone. We design for exactly that behaviour.",
+              b: "Customers compare, hesitate and decide on their phone. We design for exactly that behaviour.",
             },
             {
               t: "We know the content",
-              b: "Rooms, rates, amenities, dining, location, policies — structured the way guests look for them.",
+              b: "Products, services, benefits, location, policies — structured the way customers look for them.",
             },
             {
               t: "We know the standard",
-              b: "A hotel's digital presence should feel as considered as its lobby.",
+              b: "A business's digital presence should feel as considered as its lobby.",
             },
           ].map((x, i) => (
             <Reveal key={x.t} delay={i * 90}>
@@ -114,7 +114,7 @@ function AboutPage() {
       <Section eyebrow="Our philosophy" title="How our approach is different">
         <div className="grid gap-px bg-border sm:grid-cols-2 border border-border">
           {[
-            { t: "Editorial, not template", b: "Layouts are composed for your property, not dropped into a theme." },
+            { t: "Editorial, not template", b: "Layouts are composed for your business, not dropped into a theme." },
             { t: "Restraint over decoration", b: "Whitespace, typography and photography carry the design." },
             { t: "Performance is design", b: "A slow beautiful site is not a beautiful site." },
             { t: "Partnership after launch", b: "We stay on to maintain, update and improve." },
