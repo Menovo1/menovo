@@ -28,6 +28,7 @@ import { isAdmin, claimAdmin } from "@/lib/bookings.functions";
 import { AdminButton, inputCls } from "@/components/admin/ui";
 import { HistoryBar } from "@/components/admin/HistoryBar";
 import adminBg from "@/assets/admin-bg.jpg";
+import { AnimatedBackground } from "@/components/site/AnimatedBackground";
 import logo from "@/assets/menovo-logo-2026.png";
 
 export const Route = createFileRoute("/admin")({
@@ -110,7 +111,7 @@ function AdminLayout() {
 
   return (
     <div
-      className="min-h-screen bg-[#00002B] text-white"
+      className="relative isolate min-h-screen overflow-x-clip bg-[#00002B] text-white"
       style={{
         backgroundImage: `linear-gradient(180deg, rgba(0,0,43,0.92), rgba(0,0,43,0.97)), url(${adminBg})`,
         backgroundSize: "cover",
@@ -118,15 +119,18 @@ function AdminLayout() {
         backgroundAttachment: "fixed",
       }}
     >
-      {!ready ? (
+      <AnimatedBackground opacityClassName="opacity-[0.34]" />
+      <div className="relative z-10 min-h-screen">
+        {!ready ? (
         <div className="flex min-h-screen items-center justify-center">
           <Loader2 className="h-6 w-6 animate-spin text-gold" />
         </div>
       ) : signedIn ? (
         <AdminGate />
-      ) : (
-        <SignIn />
-      )}
+        ) : (
+          <SignIn />
+        )}
+      </div>
     </div>
   );
 }
