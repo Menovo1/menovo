@@ -15,7 +15,7 @@ export type PageKey =
   | "faq"
   | "contact";
 
-/** Unique, bundled luxury-hospitality background per page. */
+/** Unique, bundled luxury-business background per page. */
 export const PAGE_BACKGROUNDS: Record<PageKey, string> = {
   home: bgHome,
   about: bgAbout,
