@@ -19,7 +19,7 @@ function Page() {
         { name: "category", label: "Category", type: "text" },
         { name: "sort_order", label: "Order", type: "number" },
         { name: "description", label: "Description", type: "textarea" },
-        { name: "cover_image_url", label: "Cover image URL", type: "url" },
+        { name: "cover_image_url", label: "Cover image", type: "image", help: "Upload a cover image or paste a direct image URL." },
         { name: "video_url", label: "Video URL", type: "url" },
         { name: "website_url", label: "Live website URL", type: "url" },
         { name: "featured", label: "Featured on home", type: "bool" },
