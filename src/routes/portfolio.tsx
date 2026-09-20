@@ -8,16 +8,16 @@ import { useSite } from "@/lib/site-data";
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
     meta: [
-      { title: "Hotel Website Design Portfolio | MENOVO" },
+      { title: "Digital Agency Portfolio | MENOVO" },
       {
         name: "description",
         content:
-          "Explore hotel website design and development projects by MENOVO, including premium hospitality websites built to look exceptional and convert visitors into guests.",
+          "Explore selected digital projects by MENOVO, from high-converting business websites to polished digital experiences built to look exceptional and perform.",
       },
-      { property: "og:title", content: "Selected Work — Hotel Websites | MENOVO" },
-      { property: "og:description", content: "See selected hotel website design and hospitality web development work by MENOVO." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/portfolio" },
+      { business: "og:title", content: "Selected Work — Digital Experiences | MENOVO" },
+      { business: "og:description", content: "See selected business website design and web development work by MENOVO." },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/portfolio" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/portfolio" }],
