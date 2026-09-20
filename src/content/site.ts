@@ -5,8 +5,8 @@
 
 export const site = {
   name: "MENOVO",
-  tagline: "From Table to Screen.",
-  positioning: "A premium web-development agency specialized exclusively in hotel websites.",
+  tagline: "From Idea to Impact.",
+  positioning: "A premium digital agency creating distinctive websites and digital experiences for modern businesses.",
   url: "https://menovo.lovable.app",
   email: "info@menovo.agency",
   whatsappNumber: "+251946471234",
@@ -14,10 +14,10 @@ export const site = {
   socialsComingSoon: true,
 } as const;
 
-export const whatsappLink = (message = "Hello MENOVO, I'd like to talk about a hotel website.") =>
+export const whatsappLink = (message = "Hello MENOVO, I'd like to talk about a website for my business.") =>
   `https://wa.me/${site.whatsappDigits}?text=${encodeURIComponent(message)}`;
 
-export const emailLink = (subject = "Hotel website enquiry") =>
+export const emailLink = (subject = "Website enquiry") =>
   `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;
 
 /** Hero background media. Swap `src` for any production video host later. */
@@ -45,7 +45,7 @@ export const waDigits = (value?: string | null) =>
 
 export const values = [
   { title: "Elegance", body: "Restraint over decoration." },
-  { title: "Clarity", body: "Guests find what they need, fast." },
+  { title: "Clarity", body: "Customers find what they need, fast." },
   { title: "Care", body: "Every brand handled with attention." },
   { title: "Impact", body: "Design that lifts direct enquiries." },
 ];
@@ -60,7 +60,7 @@ export const problems = [
 ];
 
 export const solutions = [
-  { title: "Hotel-first design", body: "Rooms, dining and amenities, the way guests browse." },
+  { title: "Business-first design", body: "Products, services and key offerings, presented the way customers choose." },
   { title: "Mobile-first build", body: "Designed for the phone, scaled up with intent." },
   { title: "Direct enquiries", body: "Forms and WhatsApp in one clear path." },
   { title: "Speed & SEO", body: "Fast, search-ready foundations." },
@@ -69,27 +69,27 @@ export const solutions = [
 ];
 
 export const whyMenovo = [
-  { title: "Hotel specialization", body: "Hotels only — the patterns are already solved." },
+  { title: "Hotel specialization", body: "Business-focused thinking — strategy, design and technology aligned to your goals." },
   { title: "Luxury craftsmanship", body: "Editorial type, whitespace, considered motion." },
-  { title: "Global service", body: "Independent hotels and groups worldwide." },
+  { title: "Global service", body: "Businesses and organizations worldwide." },
   { title: "Long-term partnership", body: "Support after launch, not a hand-off." },
 ];
 
 export const processSteps = [
-  { step: "01", title: "Discovery", body: "We learn your property, guests and goals." },
+  { step: "01", title: "Discovery", body: "We learn your business, audience and goals." },
   { step: "02", title: "Design", body: "Editorial layouts drawn from your identity." },
   { step: "03", title: "Development", body: "Fast, responsive, SEO-ready build." },
   { step: "04", title: "Launch & support", body: "Careful go-live, then ongoing care." },
 ];
 
 export const faqs = [
-  { q: "What hotels do you work with?", a: "Independent hotels, boutiques, resorts, guest houses and small groups." },
-  { q: "Do you only build hotel websites?", a: "Hotels are our specialization. We also build business websites as a secondary service." },
-  { q: "Do you use templates?", a: "No. Every site is designed for your property." },
+  { q: "What kinds of businesses do you work with?", a: "Businesses, organizations, startups, professional firms and growing brands." },
+  { q: "What industries do you work with?", a: "We work across industries — including hospitality, fashion, real estate, education, healthcare, restaurants, professional services and more." },
+  { q: "Do you use templates?", a: "No. Every site is designed around your brand, audience and goals." },
   { q: "Can you redesign an existing site?", a: "Yes — we keep what works and replace what doesn't." },
   { q: "Will it work on phones?", a: "Yes. We design mobile-first." },
   { q: "Can you add WhatsApp?", a: "Yes — one-tap enquiry buttons." },
-  { q: "Can guests request bookings?", a: "Yes. We build enquiry flows and can link your booking engine." },
+  { q: "Can customers request appointments or enquiries?", a: "Yes. We build clear enquiry, appointment and conversion flows around the tools your business already uses." },
   { q: "Do you offer maintenance?", a: "Yes — updates, upkeep and performance." },
   { q: "Do you work internationally?", a: "Yes, worldwide, in English." },
   { q: "How long does it take?", a: "It depends on size and content readiness. We confirm a schedule up front." },
