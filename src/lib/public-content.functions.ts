@@ -4,10 +4,17 @@ import { createClient } from "@supabase/supabase-js";
 import type { Database } from "@/integrations/supabase/types";
 import { CMS_DEFAULTS } from "@/content/cms";
 import { faqs as STATIC_FAQS } from "@/content/site";
+import {
+  SUPABASE_PROJECT_URL,
+  SUPABASE_PROJECT_PUBLISHABLE_KEY,
+} from "@/integrations/supabase/project-config";
 
 function publicClient() {
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
-  return createClient<Database>(process.env["SUPABASE_URL"]!, key, {
+  // Use the canonical public project so stale Vercel environment variables
+  // cannot route SSR reads to a different Supabase project.
+  const url = SUPABASE_PROJECT_URL;
+  const key = SUPABASE_PROJECT_PUBLISHABLE_KEY;
+  return createClient<Database>(url, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     global: {
       fetch: (input, init) => {
