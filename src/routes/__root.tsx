@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext()({
     ],
     scripts: [
       {
-        children: `(function(){try{var t=localStorage.getItem('menovo-theme');if(t!=='light'){document.documentElement.classList.add('dark')}}catch(e){document.documentElement.classList.add('dark')}})();`,
+        children: `(function(){try{document.documentElement.classList.add('dark')}catch(e){}})();`,
       },
       {
         src: "https://www.googletagmanager.com/gtag/js?id=G-MEEPRHCC73",
