@@ -51,12 +51,12 @@ export const values = [
 ];
 
 export const problems = [
-  { title: "Outdated design", body: "The site looks older than the property." },
-  { title: "Poor on mobile", body: "Most guests arrive on a phone — and leave." },
+  { title: "Outdated design", body: "The site looks older than the business." },
+  { title: "Poor on mobile", body: "Most customers arrive on a phone — and leave." },
   { title: "Hidden booking path", body: "Enquiries buried behind slow journeys." },
-  { title: "Generic templates", body: "Nothing sets the hotel apart." },
+  { title: "Generic templates", body: "Nothing sets the business apart." },
   { title: "Weak first impression", body: "Photos never show the real experience." },
-  { title: "Low visibility", body: "Search sends guests to third parties." },
+  { title: "Low visibility", body: "Search sends customers to third parties." },
 ];
 
 export const solutions = [
@@ -64,12 +64,12 @@ export const solutions = [
   { title: "Mobile-first build", body: "Designed for the phone, scaled up with intent." },
   { title: "Direct enquiries", body: "Forms and WhatsApp in one clear path." },
   { title: "Speed & SEO", body: "Fast, search-ready foundations." },
-  { title: "Visual storytelling", body: "Galleries that show the property at its best." },
+  { title: "Visual storytelling", body: "Galleries that show the business at its best." },
   { title: "Built to grow", body: "New pages and offers without a rebuild." },
 ];
 
 export const whyMenovo = [
-  { title: "Hotel specialization", body: "Business-focused thinking — strategy, design and technology aligned to your goals." },
+  { title: "Business specialization", body: "Business-focused thinking — strategy, design and technology aligned to your goals." },
   { title: "Luxury craftsmanship", body: "Editorial type, whitespace, considered motion." },
   { title: "Global service", body: "Businesses and organizations worldwide." },
   { title: "Long-term partnership", body: "Support after launch, not a hand-off." },
@@ -84,7 +84,7 @@ export const processSteps = [
 
 export const faqs = [
   { q: "What kinds of businesses do you work with?", a: "Businesses, organizations, startups, professional firms and growing brands." },
-  { q: "What industries do you work with?", a: "We work across industries — including hospitality, fashion, real estate, education, healthcare, restaurants, professional services and more." },
+  { q: "What industries do you work with?", a: "We work across industries — including business, fashion, real estate, education, healthcare, restaurants, professional services and more." },
   { q: "Do you use templates?", a: "No. Every site is designed around your brand, audience and goals." },
   { q: "Can you redesign an existing site?", a: "Yes — we keep what works and replace what doesn't." },
   { q: "Will it work on phones?", a: "Yes. We design mobile-first." },
