@@ -18,7 +18,7 @@ function Page() {
         { name: "sort_order", label: "Order", type: "number" },
         { name: "description", label: "Description", type: "textarea" },
         { name: "features", label: "Features", type: "list" },
-        { name: "image_url", label: "Image URL", type: "url" },
+        { name: "image_url", label: "Service image", type: "image", help: "Upload an image or paste a direct image URL. Google Drive links are converted automatically." },
         { name: "published", label: "Published", type: "bool" },
       ]}
     />
