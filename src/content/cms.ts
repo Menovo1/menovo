@@ -7,13 +7,14 @@
  * `cmsText(content, group, field)` so a value always exists.
  */
 
-export type CmsFieldType = "text" | "textarea" | "list" | "pairs" | "url";
+export type CmsFieldType = "text" | "textarea" | "list" | "pairs" | "url" | "select";
 
 export type CmsField = {
   name: string;
   label: string;
   type?: CmsFieldType;
   help?: string;
+  options?: Array<{ value: string; label: string }>;
 };
 
 export type CmsGroup = {
@@ -55,6 +56,9 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     blogImageUrl: "",
     faqImageUrl: "",
     contactImageUrl: "",
+  },
+  appearance: {
+    themeMode: "dark",
   },
   home: {
     heroEyebrow: "Digital Agency · Built for Growth",
@@ -185,6 +189,24 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
 };
 
 export const CMS_GROUPS: CmsGroup[] = [
+  {
+    key: "appearance",
+    label: "Appearance & theme",
+    description: "Control whether the public website stays dark or allows visitors to switch between the light and dark themes.",
+    fields: [
+      {
+        name: "themeMode",
+        label: "Frontend theme mode",
+        type: "select",
+        options: [
+          { value: "dark", label: "Dark only — keep the blue dark design" },
+          { value: "toggle", label: "Light + Dark — allow visitors to switch" },
+          { value: "light", label: "Light only — use the light theme" },
+        ],
+        help: "Save this section to apply the setting on the public website.",
+      },
+    ],
+  },
   {
     key: "home",
     label: "Home page",
