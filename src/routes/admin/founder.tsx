@@ -15,7 +15,7 @@ function Page() {
       fields={[
         { name: "name", label: "Name", type: "text" },
         { name: "title", label: "Title", type: "text" },
-        { name: "image_url", label: "Photo URL", type: "url" },
+        { name: "image_url", label: "Founder photo", type: "image", help: "Upload a photo or paste a direct image URL." },
         { name: "bio", label: "Biography", type: "textarea", rows: 10 },
         { name: "instagram", label: "Instagram", type: "url" },
         { name: "whatsapp", label: "WhatsApp", type: "url" },
