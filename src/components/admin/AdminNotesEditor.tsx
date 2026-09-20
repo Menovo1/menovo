@@ -41,25 +41,25 @@ export function AdminNotesEditor() {
         const defaultNotes: AdminNote[] = [
           {
             id: "1",
-            title: "Hotel Feature Comparison & Rates Note",
+            title: "Business Service Packages Note",
             category: "General",
             blocks: [
               {
                 type: "paragraph",
-                text: "Overview of standard amenities, suite packages, and direct booking benefits for client hotels.",
+                text: "Overview of common services, package options, and digital growth opportunities for clients.",
               },
               {
                 type: "table",
-                headers: ["Package Tier", "Includes", "Target Hotel Type"],
+                headers: ["Package Tier", "Includes", "Target Business Type"],
                 rows: [
-                  ["Boutique Essential", "Mobile site, 5 pages, Direct Enquiry", "Independent B&B"],
-                  ["Luxury Grand", "Full CMS, Dining, Suite Showcase, SEO", "5-Star Resorts"],
+                  ["Business Essential", "Mobile site, 5 pages, Direct Enquiry", "Independent Business"],
+                  ["Premium Growth", "Full CMS, Dining, Suite Showcase, SEO", "Premium Businesses"],
                 ],
               },
               {
                 type: "image",
-                url: "/hotel-website-visual.jpg",
-                alt: "Hotel Suite Showcase",
+                url: "/business-website-visual.jpg",
+                alt: "Business Suite Showcase",
                 caption: "Sample Luxury Suite Digital Showcase Interface",
               },
             ],
@@ -337,7 +337,7 @@ export function AdminNotesEditor() {
                         <div className="grid gap-3 sm:grid-cols-2">
                           <input
                             type="url"
-                            placeholder="Image URL (e.g. /hotel-website-visual.jpg)"
+                            placeholder="Image URL (e.g. /business-website-visual.jpg)"
                             className={inputCls}
                             value={block.url}
                             onChange={(e) => {
