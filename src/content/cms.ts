@@ -168,9 +168,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
   },
   contact: {
     title: "Let's build something that matters.",
-    subtitle: "Pick a time that suits you and we'll meet on Zoom — the link is sent automatically.",
-    calendlyUrl: "https://calendly.com/7menovo/30min",
-    calendlyNote: "Choose a time on Calendly. Your Zoom meeting link is sent automatically by email.",
+    subtitle: "Tell us about your goals, your business and what you want to build. We’ll get back to you directly.",
   },
   footer: {
     description:
