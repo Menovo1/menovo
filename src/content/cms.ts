@@ -57,7 +57,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     contactImageUrl: "",
   },
   home: {
-    heroEyebrow: "Digital Agency · Worldwide",
+    heroEyebrow: "Digital Agency · Built for Growth",
     heroLine1: "Digital experiences,",
     heroLine2: "designed to move business forward.",
     heroSubtitle:
@@ -81,15 +81,15 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     solutionSubtitle:
       "Every project is designed around how your audience discovers, evaluates and chooses your brand — and how you want to be remembered.",
     solutions: [
-      "Business-first design | Products, services and key offerings, presented the way customers choose.",
+      "Business-first design | Your products, services and value, presented with clarity and purpose.",
       "Mobile-first build | Designed for smaller screens first, then refined across every device.",
       "Clear conversion paths | Forms, WhatsApp, calls and appointments in one simple journey.",
       "Speed & SEO | Fast, search-ready foundations.",
-      "Visual storytelling | Images, motion and layout that make your brand memorable.",
+      "Visual storytelling | Images, motion and layout that make your brand impossible to ignore.",
       "Built to grow | New pages and offers without a rebuild.",
     ],
     ctaEyebrow: "Start a project",
-    ctaTitle: "Let's build a digital presence worthy of your brand.",
+    ctaTitle: "Let's build a digital presence your business can be proud of.",
     ctaBody: "Tell us about your business. We'll come back with a clear, considered plan.",
     missionTitle: "Our Mission",
     mission:
@@ -113,7 +113,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     ],
   },
   about: {
-    title: "We build digital experiences for businesses. Across industries.",
+    title: "Digital experiences built for brands ready to move forward.",
     subtitle:
       "MENOVO is a premium digital agency creating modern websites and digital experiences for businesses and organizations worldwide.",
     lead: "Every business has a story. Your digital presence should tell it with clarity, character and purpose.",
@@ -131,7 +131,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     mission:
       "To help ambitious businesses become more visible, credible and effective online — with digital experiences that are elegant, fast and effortless to use.",
     vision:
-      "A future where no great HOTEL goes undiscovered, and where the global business industry is represented online with the same care it shows its customers.",
+      "A future where great businesses are easier to discover, easier to trust, and impossible to overlook.",
     values: [
       "Elegance | Restraint over decoration.",
       "Clarity | Customers find what they need, fast.",
@@ -141,21 +141,21 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     founderButtonText: "Meet the Founder",
   },
   services: {
-    title: "Websites designed for ambitious businesses.",
+    title: "Digital work designed to move your business forward.",
     subtitle:
       "Strategy, design, development and ongoing care — everything your business needs online, handled end to end.",
     ctaTitle: "Tell us about your business.",
     ctaBody: "We'll reply with a clear plan and a realistic schedule.",
   },
   portfolio: {
-    title: "Selected work.",
+    title: "Work with purpose.",
     subtitle: "A closer look at the businesses, brands and organizations we build for.",
     emptyTitle: "New work, publishing soon.",
     emptyBody:
       "We're preparing our first published case studies. In the meantime we're happy to walk you through recent projects directly.",
   },
   blog: {
-    title: "Writing on business, technology and the web.",
+    title: "Ideas for building better digital brands.",
     subtitle:
       "Practical perspectives on websites, digital strategy, SEO, branding and customer experience.",
     emptyTitle: "The journal opens shortly.",
@@ -167,7 +167,7 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     subtitle: "Everything businesses usually ask before starting a digital project.",
   },
   contact: {
-    title: "Book an appointment.",
+    title: "Let's build something that matters.",
     subtitle: "Pick a time that suits you and we'll meet on Zoom — the link is sent automatically.",
     calendlyUrl: "https://calendly.com/7menovo/30min",
     calendlyNote: "Choose a time on Calendly. Your Zoom meeting link is sent automatically by email.",
@@ -227,7 +227,7 @@ export const CMS_GROUPS: CmsGroup[] = [
       { name: "lead", label: "Lead sentence", type: "textarea" },
       { name: "body", label: "Paragraph 1", type: "textarea" },
       { name: "body2", label: "Paragraph 2", type: "textarea" },
-      { name: "specialties", label: "What we specialize in", type: "list" },
+      { name: "specialties", label: "What we do", type: "list" },
       { name: "mission", label: "Mission", type: "textarea" },
       { name: "vision", label: "Vision", type: "textarea" },
       { name: "values", label: "Values", type: "pairs" },
