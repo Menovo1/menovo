@@ -17,6 +17,8 @@ export function Navbar() {
   const logo = cmsText(data?.content, "identity", "logoUrl") || FALLBACK_LOGO;
   const siteName = cmsText(data?.content, "identity", "siteName") || site.name;
   const tagline = cmsText(data?.content, "identity", "tagline") || site.tagline;
+  const themeMode = cmsText(data?.content, "appearance", "themeMode") || "dark";
+  const themeSwitchEnabled = themeMode === "toggle";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -94,7 +96,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          <ThemeToggle light={light} />
+          {themeSwitchEnabled && <ThemeToggle light={light} />}
           <Link
             to="/contact"
             className={`px-6 py-2.5 text-[13px] tracking-wide ${light ? "btn-light" : "btn-primary"}`}
