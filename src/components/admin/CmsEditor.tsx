@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Loader2 } from "lucide-react";
+import { ImagePlus, Loader2 } from "lucide-react";
 import { adminList, adminSave } from "@/lib/admin.functions";
 import { AdminButton, AdminCard, inputCls, labelCls } from "@/components/admin/ui";
 import { CMS_DEFAULTS, type CmsGroup } from "@/content/cms";
 import { broadcastSiteDataUpdate } from "@/lib/site-data";
+import { normalizeImageUrl, uploadPublicImage } from "@/lib/media-upload";
 
 type Block = { key: string; value: Record<string, unknown> };
 type Blocks = Record<string, Record<string, unknown>>;
@@ -104,9 +105,52 @@ export function CmsEditor({ groups }: { groups: CmsGroup[] }) {
                         value={(raw as string) ?? ""}
                         onChange={(e) => setField(g.key, f.name, e.target.value)}
                       />
+                    ) : f.type === "image" ? (
+                      <div className="space-y-3">
+                        <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2.5 text-xs text-gold hover:bg-gold/15">
+                          <ImagePlus className="h-3.5 w-3.5" /> Upload image
+                          <input
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={async (e) => {
+                              const file = e.target.files?.[0];
+                              e.currentTarget.value = "";
+                              if (!file) return;
+                              setError("");
+                              try {
+                                const url = await uploadPublicImage(file);
+                                setField(g.key, f.name, url);
+                                setNotice("Image uploaded. Save the section to publish it.");
+                              } catch (err) {
+                                setError(err instanceof Error ? err.message : "Image upload failed.");
+                              }
+                            }}
+                          />
+                        </label>
+                        <input
+                          className={inputCls}
+                          type="url"
+                          placeholder="Or paste a direct image URL"
+                          value={(raw as string) ?? ""}
+                          onChange={(e) => setField(g.key, f.name, normalizeImageUrl(e.target.value))}
+                        />
+                        {typeof raw === "string" && raw.trim() && (
+                          <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                            <img
+                              src={normalizeImageUrl(raw)}
+                              alt="Image preview"
+                              className="max-h-72 w-full object-cover"
+                              loading="lazy"
+                              onError={(e) => { e.currentTarget.style.opacity = "0.25"; }}
+                            />
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <input
                         className={inputCls}
+                        type={f.type === "url" ? "url" : "text"}
                         value={(raw as string) ?? ""}
                         onChange={(e) => setField(g.key, f.name, e.target.value)}
                       />
