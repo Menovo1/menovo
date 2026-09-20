@@ -96,7 +96,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          {themeSwitchEnabled && <ThemeToggle light={light} />}
+          {themeSwitchEnabled && {themeSwitchEnabled && <ThemeToggle light={light} />}}
           <Link
             to="/contact"
             className={`px-6 py-2.5 text-[13px] tracking-wide ${light ? "btn-light" : "btn-primary"}`}
