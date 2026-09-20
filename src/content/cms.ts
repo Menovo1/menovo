@@ -40,7 +40,7 @@ export const textToPairs = (text: string): Pair[] =>
 export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
   identity: {
     siteName: "MENOVO",
-    tagline: "From Table to Screen.",
+    tagline: "From Idea to Impact.",
     logoUrl: "",
     faviconUrl: "",
     metaDescription:
@@ -57,46 +57,46 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     contactImageUrl: "",
   },
   home: {
-    heroEyebrow: "Hotel Web Design Agency · Worldwide",
-    heroLine1: "Hotel websites,",
-    heroLine2: "designed differently.",
+    heroEyebrow: "Digital Agency · Worldwide",
+    heroLine1: "Digital experiences,",
+    heroLine2: "designed to move business forward.",
     heroSubtitle:
-      "We design and develop premium digital experiences for hotels — and nothing else.",
+      "We design and develop premium websites and digital experiences for ambitious brands — from local businesses to growing organizations.",
     heroPrimaryLabel: "Get Started",
     heroSecondaryLabel: "See Services",
     problemEyebrow: "The problem",
-    problemTitle: "Most hotel websites don't match the hotel.",
+    problemTitle: "Most business websites don't reflect the business behind them.",
     problemSubtitle:
-      "Guests judge a property in seconds. Too often the website is the weakest part of the experience.",
+      "People decide quickly whether to trust a brand. Your website should make that decision easy.",
     problems: [
-      "Outdated design | The site looks older than the property.",
-      "Poor on mobile | Most guests arrive on a phone — and leave.",
-      "Hidden booking path | Enquiries buried behind slow journeys.",
-      "Generic templates | Nothing sets the hotel apart.",
-      "Weak first impression | Photos never show the real experience.",
-      "Low visibility | Search sends guests to third parties.",
+      "Outdated design | Your digital presence no longer reflects your brand.",
+      "Poor on mobile | A difficult mobile experience sends people elsewhere.",
+      "Unclear customer journey | Important actions are buried behind unnecessary friction.",
+      "Generic templates | Your brand deserves a digital presence with character.",
+      "Weak first impression | Visitors should understand your value within seconds.",
+      "Low visibility | Great businesses lose attention when they are hard to find online.",
     ],
     solutionEyebrow: "The solution",
-    solutionTitle: "Premium websites, built exclusively for hotels.",
+    solutionTitle: "Premium digital experiences, built around your business.",
     solutionSubtitle:
-      "Every project is designed around how guests choose a hotel — and how a hotel wants to be remembered.",
+      "Every project is designed around how your audience discovers, evaluates and chooses your brand — and how you want to be remembered.",
     solutions: [
-      "Hotel-first design | Rooms, dining and amenities, the way guests browse.",
-      "Mobile-first build | Designed for the phone, scaled up with intent.",
-      "Direct enquiries | Forms and WhatsApp in one clear path.",
+      "Business-first design | Products, services and key offerings, presented the way customers choose.",
+      "Mobile-first build | Designed for smaller screens first, then refined across every device.",
+      "Clear conversion paths | Forms, WhatsApp, calls and appointments in one simple journey.",
       "Speed & SEO | Fast, search-ready foundations.",
-      "Visual storytelling | Galleries that show the property at its best.",
+      "Visual storytelling | Images, motion and layout that make your brand memorable.",
       "Built to grow | New pages and offers without a rebuild.",
     ],
     ctaEyebrow: "Start a project",
-    ctaTitle: "Let's give your hotel a website worthy of the stay.",
-    ctaBody: "Tell us about your property. We'll come back with a clear, considered plan.",
+    ctaTitle: "Let's build a digital presence worthy of your brand.",
+    ctaBody: "Tell us about your business. We'll come back with a clear, considered plan.",
     missionTitle: "Our Mission",
     mission:
-      "To make every HOTEL digitally visible — with websites that are elegant, fast and effortless for guests to use.",
+      "To help ambitious businesses become more visible, credible and effective online — with digital experiences that are elegant, fast and effortless to use.",
     visionTitle: "Our Vision",
     vision:
-      "A future where no great HOTEL goes undiscovered, and where every property has a digital presence as considered as its hospitality.",
+      "A future where great businesses are impossible to overlook, with digital presences as distinctive as the brands behind them.",
     valuesTitle: "Values",
     values: [
       "Elegance | Restraint over decoration.",
@@ -104,32 +104,32 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
       "Care | Every brand handled with attention.",
       "Impact | Design that lifts direct enquiries.",
     ],
-    whyTitle: "Why hotels choose us",
+    whyTitle: "Why businesses choose us",
     why: [
-      "Hotel specialization | Hotels only — the patterns are already solved.",
+      "Industry-aware strategy | We adapt the digital experience to your market, audience and goals.",
       "Luxury craftsmanship | Editorial type, whitespace, considered motion.",
-      "Global service | Independent hotels and groups worldwide.",
+      "Global service | We work with businesses and organizations across markets and industries.",
       "Long-term partnership | Support after launch, not a hand-off.",
     ],
   },
   about: {
-    title: "We build websites for hotels. Only hotels.",
+    title: "We build digital experiences for businesses. Across industries.",
     subtitle:
-      "MENOVO is a premium web-development agency specialized in hotel website design and development, working with properties worldwide.",
-    lead: "Hospitality is a craft of details. A website should be too.",
-    body: "MENOVO began with a simple observation: too many exceptional hotels are represented online by websites that undersell them. Slow pages, dated layouts, unclear room information and booking journeys that lose the guest before the enquiry is ever sent.",
+      "MENOVO is a premium digital agency creating modern websites and digital experiences for businesses and organizations worldwide.",
+    lead: "Every business has a story. Your digital presence should tell it with clarity, character and purpose.",
+    body: "MENOVO began with a simple observation: too many strong businesses are represented online by websites that undersell them. Slow pages, dated layouts, unclear messaging and complicated customer journeys can quietly cost attention and trust.",
     body2:
-      "So we narrowed our focus entirely. Instead of building anything for anyone, we build one thing exceptionally well — premium websites for hotels.",
+      "Our approach is simple: understand the business, clarify the message, design with intention, and build technology that supports real goals.",
     specialties: [
-      "Hotel website design",
-      "Hotel website development",
-      "Rooms, suites & amenity presentation",
-      "Enquiry and booking-request flows",
-      "Mobile-first guest experience",
+      "Business website design",
+      "Business website development",
+      "Products, services & key offerings",
+      "Enquiry and appointment flows",
+      "Mobile-first customer experience",
       "Ongoing website maintenance",
     ],
     mission:
-      "To make every HOTEL digitally visible — with websites that are elegant, fast and effortless for guests to use.",
+      "To help ambitious businesses become more visible, credible and effective online — with digital experiences that are elegant, fast and effortless to use.",
     vision:
       "A future where no great HOTEL goes undiscovered, and where the global hotel industry is represented online with the same care it shows its guests.",
     values: [
@@ -141,30 +141,30 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
     founderButtonText: "Meet the Founder",
   },
   services: {
-    title: "Websites designed for hotels.",
+    title: "Websites designed for ambitious businesses.",
     subtitle:
-      "Design, development and care — everything a hotel needs online, handled end to end.",
-    ctaTitle: "Tell us about your property.",
+      "Strategy, design, development and ongoing care — everything your business needs online, handled end to end.",
+    ctaTitle: "Tell us about your business.",
     ctaBody: "We'll reply with a clear plan and a realistic schedule.",
   },
   portfolio: {
     title: "Selected work.",
-    subtitle: "A closer look at the hotels and hospitality brands we build for.",
+    subtitle: "A closer look at the businesses, brands and organizations we build for.",
     emptyTitle: "New work, publishing soon.",
     emptyBody:
       "We're preparing our first published case studies. In the meantime we're happy to walk you through recent projects directly.",
   },
   blog: {
-    title: "Writing on hotels and the web.",
+    title: "Writing on business, technology and the web.",
     subtitle:
-      "Practical perspectives on hotel websites, direct bookings and digital guest experience.",
+      "Practical perspectives on websites, digital strategy, SEO, branding and customer experience.",
     emptyTitle: "The journal opens shortly.",
     emptyBody:
       "We're preparing our first articles. In the meantime, we're happy to answer any question about your hotel's website directly.",
   },
   faq: {
     title: "Questions, answered.",
-    subtitle: "Everything hotels usually ask before starting a website project.",
+    subtitle: "Everything businesses usually ask before starting a digital project.",
   },
   contact: {
     title: "Book an appointment.",
@@ -174,12 +174,12 @@ export const CMS_DEFAULTS: Record<string, Record<string, unknown>> = {
   },
   footer: {
     description:
-      "Premium websites built exclusively for hotels — elegant, fast, and made to turn visitors into guests.",
+      "Premium websites built for ambitious businesses — elegant, fast, and made to turn attention into action.",
     founderLabel: "Founded by",
     founderName: "ASAD JE",
     services: [
       "Hotel Website Development",
-      "Business Website Development",
+      "Website Development",
       "Website Maintenance",
     ],
     note: "",
