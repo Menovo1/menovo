@@ -50,7 +50,7 @@ export function ContactForm() {
           <input required type="email" className={field} value={form.email} onChange={set("email")} />
         </label>
         <label className="block text-sm">
-          Hotel / Company
+          Business / Company
           <input className={field} value={form.company} onChange={set("company")} />
         </label>
         <label className="block text-sm">
