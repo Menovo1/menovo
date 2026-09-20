@@ -269,7 +269,7 @@ function AdminGate() {
     <div className="mx-auto flex min-h-screen w-full max-w-[1400px]">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-72 shrink-0 border-r border-white/10 bg-[#00002B]/95 backdrop-blur-xl px-5 py-6 transition-transform lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 h-screen w-72 shrink-0 overflow-y-auto overscroll-contain border-r border-white/10 bg-[#00002B]/95 backdrop-blur-xl px-5 py-6 transition-transform lg:sticky lg:top-0 lg:translate-x-0 ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -283,7 +283,7 @@ function AdminGate() {
           </button>
         </div>
 
-        <nav className="mt-8 space-y-1">
+        <nav className="mt-8 space-y-1 pb-4">
           {NAV.map((item) => {
             const active = item.exact ? pathname === item.to : pathname.startsWith(item.to);
             const Icon = item.icon;
