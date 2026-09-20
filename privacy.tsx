@@ -7,10 +7,10 @@ export const Route = createFileRoute("/privacy")({
     meta: [
       { title: "Privacy Policy | MENOVO" },
       { name: "description", content: "Read the MENOVO privacy policy covering how information submitted through our website is collected, used and protected." },
-      { property: "og:title", content: "Privacy Policy — MENOVO" },
-      { property: "og:description", content: "How MENOVO collects, uses and protects information submitted through this website." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/privacy" },
+      { business: "og:title", content: "Privacy Policy — MENOVO" },
+      { business: "og:description", content: "How MENOVO collects, uses and protects information submitted through this website." },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/privacy" },
       { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/privacy" }],
@@ -22,7 +22,7 @@ export const Route = createFileRoute("/privacy")({
         <div className="max-w-3xl space-y-5 text-muted-foreground leading-relaxed">
           <p>
             MENOVO respects your privacy. We only collect information you voluntarily provide — such
-            as your name, hotel name, email address and message — in order to respond to your
+            as your name, business name, email address and message — in order to respond to your
             enquiry and deliver our services.
           </p>
           <p>
