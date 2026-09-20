@@ -15,7 +15,7 @@ function Page() {
       defaults={{ published: true, featured: false, sort_order: 0 }}
       fields={[
         { name: "title", label: "Title", type: "text" },
-        { name: "company", label: "Client / hotel", type: "text" },
+        { name: "company", label: "Client / business", type: "text" },
         { name: "category", label: "Category", type: "text" },
         { name: "sort_order", label: "Order", type: "number" },
         { name: "description", label: "Description", type: "textarea" },
