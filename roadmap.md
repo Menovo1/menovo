@@ -1,7 +1,7 @@
 # MENOVO update roadmap
 
 ## Phase 1 — Public site (in progress)
-- [x] Unique background image per page (hotels, pools, architecture, nature) + readable overlays, light/dark
+- [x] Unique background image per page (businesses, pools, architecture, nature) + readable overlays, light/dark
 - [x] Glassmorphism design system (cards, nav, buttons, forms)
 - [x] Blog redesign: glass cards + `/blog/$slug` detail page
 - [x] WhatsApp +251946471234, email info@menovo.agency everywhere
