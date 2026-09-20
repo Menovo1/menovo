@@ -9,7 +9,6 @@ export const Route = createFileRoute("/admin/media")({ component: Page });
 type Item = { name: string; url: string };
 
 const BUCKET = "media";
-const YEAR = 60 * 60 * 24 * 365;
 
 function Page() {
   const [items, setItems] = useState<Item[] | null>(null);
@@ -28,13 +27,11 @@ function Page() {
       return;
     }
     const files = (data ?? []).filter((f) => f.id);
-    const signed = await Promise.all(
-      files.map(async (f) => {
-        const { data: s } = await supabase.storage.from(BUCKET).createSignedUrl(f.name, YEAR);
-        return { name: f.name, url: s?.signedUrl ?? "" };
-      }),
-    );
-    setItems(signed);
+    const publicFiles = files.map((f) => {
+      const { data } = supabase.storage.from(BUCKET).getPublicUrl(f.name);
+      return { name: f.name, url: data.publicUrl };
+    });
+    setItems(publicFiles);
   }, []);
 
   useEffect(() => {
@@ -56,7 +53,7 @@ function Page() {
 
   return (
     <div>
-      <AdminHeading title="Media library" subtitle="Upload images and videos, then paste the link into any page." />
+      <AdminHeading title="Media library" subtitle="Upload images and videos. Images can be uploaded directly from the content editors and are served from a public CDN-backed media bucket." />
 
       <label className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-xs font-medium text-[#00002B]">
         {busy ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
