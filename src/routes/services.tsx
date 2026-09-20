@@ -14,13 +14,12 @@ export const Route = createFileRoute("/services")({
         content:
           "Professional business website design, business website development, SEO-ready websites and website maintenance for businesses and organizations worldwide.",
       },
-      { business: "og:title", content: "Services — Business Website Design & Development | MENOVO" },
-      {
-        business: "og:description",
+      { property: "og:title", content: "Services — Business Website Design & Development | MENOVO" },
+      { property: "og:description",
         content: "Explore MENOVO website design, development, SEO and digital growth services built for modern businesses and organizations.",
       },
-      { business: "og:type", content: "website" },
-      { business: "og:url", content: "https://www.menovo.agency/services" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.menovo.agency/services" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/services" }],
