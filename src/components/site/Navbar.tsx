@@ -45,7 +45,7 @@ export function Navbar() {
         <Link to="/" className="flex items-center gap-3 shrink-0 min-w-0">
           <img
             src={logo}
-            alt={`${siteName} — hotel web design agency`}
+            alt={`${siteName} — digital agency`}
             width={40}
             height={40}
             className="h-10 w-10 object-contain shrink-0"
