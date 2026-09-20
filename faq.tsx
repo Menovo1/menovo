@@ -10,19 +10,19 @@ import { Plus } from "lucide-react";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Hotel Website Design FAQ | MENOVO" },
+      { title: "Website Design FAQ | MENOVO" },
       {
         name: "description",
         content:
-          "Answers to common questions about hotel website design, hotel website development, SEO, mobile-friendly websites, booking features, maintenance and working with MENOVO.",
+          "Answers to common questions about business website design, business website development, SEO, mobile-friendly websites, booking features, maintenance and working with MENOVO.",
       },
-      { property: "og:title", content: "FAQ — Hotel Website Development | MENOVO" },
+      { business: "og:title", content: "FAQ — Business Website Development | MENOVO" },
       {
-        property: "og:description",
-        content: "Answers about hotel website design, development, SEO, bookings, maintenance and working with MENOVO.",
+        business: "og:description",
+        content: "Answers about business website design, development, SEO, bookings, maintenance and working with MENOVO.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/faq" },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/faq" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/faq" }],
@@ -79,7 +79,7 @@ function FaqPage() {
         </div>
 
         <Reveal delay={150} className="mt-14 max-w-3xl">
-          <p className="text-muted-foreground">Still have a question about your property?</p>
+          <p className="text-muted-foreground">Still have a question about your business?</p>
           <div className="mt-5 flex flex-wrap gap-3">
             <Link to="/contact" className="btn-primary px-9 py-4 text-sm tracking-wide">
               Get Started
