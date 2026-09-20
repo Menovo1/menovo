@@ -7,10 +7,10 @@ export const Route = createFileRoute("/terms")({
     meta: [
       { title: "Terms of Service | MENOVO" },
       { name: "description", content: "Read the MENOVO terms of service covering website projects, deliverables, timelines, payments, maintenance and client agreements." },
-      { property: "og:title", content: "Terms of Service — MENOVO" },
-      { property: "og:description", content: "Terms covering MENOVO website projects, services and client engagements." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/terms" },
+      { business: "og:title", content: "Terms of Service — MENOVO" },
+      { business: "og:description", content: "Terms covering MENOVO website projects, services and client engagements." },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/terms" },
       { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/terms" }],
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/terms")({
             timelines and costs are confirmed in writing before work begins.
           </p>
           <p>
-            All designs and code produced remain the property of the client upon full payment.
+            All designs and code produced remain the business of the client upon full payment.
             MENOVO retains the right to display finished work in its portfolio unless otherwise
             agreed.
           </p>
