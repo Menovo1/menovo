@@ -14,13 +14,12 @@ export const Route = createFileRoute("/about")({
         content:
           "MENOVO exists to help businesses build a stronger digital presence through thoughtful design, modern development, strategy and ongoing support.",
       },
-      { business: "og:title", content: "About MENOVO — Digital Experience Studio" },
-      {
-        business: "og:description",
+      { property: "og:title", content: "About MENOVO — Digital Experience Studio" },
+      { property: "og:description",
         content: "MENOVO is a digital agency focused on premium website design, development, SEO and digital experiences for business brands.",
       },
-      { business: "og:type", content: "website" },
-      { business: "og:url", content: "https://www.menovo.agency/about" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.menovo.agency/about" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/about" }],
