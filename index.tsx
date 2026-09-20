@@ -10,20 +10,20 @@ import { ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hotel Web Design Agency | MENOVO" },
+      { title: "Digital Agency | MENOVO" },
       {
         name: "description",
         content:
-          "MENOVO is a premium web-development agency specialized exclusively in hotel websites. Elegant, mobile-first digital experiences for hotels worldwide.",
+          "MENOVO is a premium web-development agency specialized exclusively in business websites. Elegant, mobile-first digital experiences for businesses worldwide.",
       },
-      { property: "og:title", content: "MENOVO — Hotel Web Design & Development Agency" },
+      { business: "og:title", content: "MENOVO — Business Web Design & Development Agency" },
       {
-        property: "og:description",
+        business: "og:description",
         content:
-          "Premium websites designed and developed exclusively for hotels. From Table to Screen.",
+          "Premium websites designed and developed exclusively for businesses. From Table to Screen.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/" },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/" }],
@@ -35,12 +35,12 @@ export const Route = createFileRoute("/")({
           "@type": "ProfessionalService",
           name: "MENOVO",
           description:
-            "Premium web-development agency specialized exclusively in hotel websites.",
+            "Premium web-development agency specialized exclusively in business websites.",
           url: "https://www.menovo.agency",
           email: "info@menovo.agency",
           telephone: "+251946471234",
           areaServed: "Worldwide",
-          serviceType: "Hotel website design and development",
+          serviceType: "Business website design and development",
         }),
       },
     ],
