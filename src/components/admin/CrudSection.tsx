@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Loader2, Plus, Pencil, Trash2, X } from "lucide-react";
+import { ImagePlus, Loader2, Plus, Pencil, Trash2, X } from "lucide-react";
 import { adminList, adminSave, adminDelete } from "@/lib/admin.functions";
 import { AdminButton, AdminCard, AdminHeading, inputCls, labelCls } from "@/components/admin/ui";
 import { broadcastSiteDataUpdate } from "@/lib/site-data";
+import { normalizeImageUrl, uploadPublicImage } from "@/lib/media-upload";
 
 export type FieldType = "text" | "textarea" | "url" | "bool" | "number" | "list" | "image" | "date";
 
@@ -52,6 +53,7 @@ export function CrudSection({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
+  const [uploadingField, setUploadingField] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -152,10 +154,59 @@ export function CrudSection({
               >
                 {draft[f.name] ? "Yes" : "No"}
               </button>
+            ) : f.type === "image" ? (
+              <div className="space-y-3">
+                <div className="flex flex-wrap gap-2">
+                  <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2.5 text-xs text-gold hover:bg-gold/15">
+                    {uploadingField === f.name ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />}
+                    {uploadingField === f.name ? "Uploading…" : "Upload image"}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      disabled={uploadingField === f.name}
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        e.currentTarget.value = "";
+                        if (!file) return;
+                        setUploadingField(f.name);
+                        setError("");
+                        try {
+                          const url = await uploadPublicImage(file);
+                          setValue(f.name, url);
+                          setNotice("Image uploaded. Save changes to publish it.");
+                        } catch (err) {
+                          setError(err instanceof Error ? err.message : "Image upload failed.");
+                        } finally {
+                          setUploadingField("");
+                        }
+                      }}
+                    />
+                  </label>
+                </div>
+                <input
+                  className={inputCls}
+                  type="url"
+                  placeholder="Or paste a public image URL"
+                  value={(draft[f.name] as string) ?? ""}
+                  onChange={(e) => setValue(f.name, normalizeImageUrl(e.target.value))}
+                />
+                {typeof draft[f.name] === "string" && draft[f.name].trim() && (
+                  <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+                    <img
+                      src={normalizeImageUrl(draft[f.name] as string)}
+                      alt="Image preview"
+                      className="max-h-72 w-full object-cover"
+                      loading="lazy"
+                      onError={(e) => { e.currentTarget.style.opacity = "0.25"; }}
+                    />
+                  </div>
+                )}
+              </div>
             ) : (
               <input
                 className={inputCls}
-                type={f.type === "number" ? "number" : f.type === "date" ? "date" : "text"}
+                type={f.type === "number" ? "number" : f.type === "date" ? "date" : f.type === "url" ? "url" : "text"}
                 value={(draft[f.name] as string | number) ?? ""}
                 onChange={(e) =>
                   setValue(f.name, f.type === "number" ? Number(e.target.value) : e.target.value)
