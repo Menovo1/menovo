@@ -84,7 +84,19 @@ export function CmsEditor({ groups }: { groups: CmsGroup[] }) {
                 return (
                   <div key={f.name} className={wide ? "sm:col-span-2" : ""}>
                     <label className={labelCls}>{f.label}</label>
-                    {f.type === "list" || f.type === "pairs" ? (
+                    {f.type === "select" ? (
+                      <select
+                        className={inputCls}
+                        value={(raw as string) ?? ""}
+                        onChange={(event) => setField(g.key, f.name, event.target.value)}
+                      >
+                        {(f.options ?? []).map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    ) : f.type === "list" || f.type === "pairs" ? (
                       <textarea
                         rows={f.type === "pairs" ? 6 : 4}
                         placeholder={f.type === "pairs" ? "Title | Description (one per line)" : "One item per line"}
