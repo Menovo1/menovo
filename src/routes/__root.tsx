@@ -21,13 +21,14 @@ function NotFoundComponent() {
     <div className="relative isolate min-h-screen overflow-hidden bg-background">
       <AnimatedBackground />
       <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
-      <div className="text-center max-w-md">
-        <div className="text-8xl font-bold text-gradient-gold font-display">404</div>
-        <h1 className="mt-6 text-2xl font-semibold">This page has moved on.</h1>
-        <p className="mt-3 text-muted-foreground">The page you're looking for doesn't exist.</p>
-        <a href="/" className="mt-8 inline-flex items-center justify-center rounded-full btn-gold px-6 py-3">
-          Return home
-        </a>
+        <div className="text-center max-w-md">
+          <div className="text-8xl font-bold text-gradient-gold font-display">404</div>
+          <h1 className="mt-6 text-2xl font-semibold">This page has moved on.</h1>
+          <p className="mt-3 text-muted-foreground">The page you're looking for doesn't exist.</p>
+          <a href="/" className="mt-8 inline-flex items-center justify-center rounded-full btn-gold px-6 py-3">
+            Return home
+          </a>
+        </div>
       </div>
     </div>
   );
