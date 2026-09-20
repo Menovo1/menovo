@@ -15,6 +15,8 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { AnimatedBackground } from "@/components/site/AnimatedBackground";
+import { useSite } from "@/lib/site-data";
+import { cmsText } from "@/content/cms";
 
 function NotFoundComponent() {
   return (
@@ -80,7 +82,7 @@ export const Route = createRootRouteWithContext()({
     ],
     scripts: [
       {
-        children: `(function(){try{var t=localStorage.getItem('menovo-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})();`,
+        children: `(function(){try{var t=localStorage.getItem('menovo-theme');if(t!=='light'){document.documentElement.classList.add('dark')}}catch(e){document.documentElement.classList.add('dark')}})();`,
       },
       {
         src: "https://www.googletagmanager.com/gtag/js?id=G-MEEPRHCC73",
@@ -120,8 +122,28 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const [queryClient] = useState(() => new QueryClient());
+  const site = useSite();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isAdmin = pathname.startsWith("/admin");
+  const themeMode = cmsText(site.content, "appearance", "themeMode") || "dark";
+
+  useEffect(() => {
+    if (isAdmin) return;
+    const root = document.documentElement;
+    if (themeMode === "dark") {
+      root.classList.add("dark");
+      root.classList.remove("light");
+      try { localStorage.setItem("menovo-theme", "dark"); } catch {}
+    } else if (themeMode === "light") {
+      root.classList.remove("dark");
+      root.classList.add("light");
+      try { localStorage.setItem("menovo-theme", "light"); } catch {}
+    } else {
+      root.classList.remove("light");
+      const stored = (() => { try { return localStorage.getItem("menovo-theme"); } catch { return null; } })();
+      root.classList.toggle("dark", stored !== "light");
+    }
+  }, [isAdmin, themeMode]);
 
   useEffect(() => {
     if (isAdmin) return;
