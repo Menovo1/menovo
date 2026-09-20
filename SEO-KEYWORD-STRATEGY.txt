@@ -1,28 +1,49 @@
 MENOVO SEO KEYWORD STRATEGY
+
+Positioning:
+MENOVO is a modern digital agency creating premium websites, digital experiences and growth-focused solutions for businesses across industries.
+
 Primary commercial intent:
+web design agency
+website design agency
+website development agency
+business website design
+business website development
+professional website design
+custom website design
+website redesign services
+digital agency
+digital marketing agency
+
+Industry-specific supporting terms:
 hotel website design
-hotel web design
-hotel website development
-hotel web design agency
-hotel website design agency
-hospitality web design
 hospitality website design
-hotel website design company
-hotel website redesign
-custom hotel website
+fashion website design
+tailoring website design
+real estate website design
+education website design
+healthcare website design
+restaurant website design
+cafe website design
+company website design
+corporate website design
 
-Supporting terms:
-hotel website designer
-hotel website development services
-hotel website design services
-hotel SEO
-hotel website SEO
-direct booking website
-hotel digital marketing
-hotel website maintenance
-mobile-friendly hotel website
-luxury hotel website design
-boutique hotel website design
-resort website design
+Supporting service terms:
+responsive website design
+mobile-first website design
+SEO-ready website development
+website maintenance
+website redesign
+landing page design
+business branding
+digital strategy
+conversion-focused web design
+WhatsApp website integration
+appointment booking integration
+lead generation website
+content management system
 
-Use one primary intent per page and related terms naturally. Avoid keyword stuffing.
+Content direction:
+Create pages and articles around the specific industries MENOVO serves, while keeping the core agency positioning broad.
+Use one primary search intent per page and related terms naturally.
+Avoid keyword stuffing. Prioritize clear language, strong user intent, useful content and excellent page experience.
