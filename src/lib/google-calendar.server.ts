@@ -115,11 +115,11 @@ export async function createCalendarEvent(
   const endTime = addMinutes(startTime, 45);
 
   const body = {
-    summary: `MENOVO — Hotel Website Consultation — ${booking.company || booking.full_name}`,
+    summary: `MENOVO — Website Consultation — ${booking.company || booking.full_name}`,
     description: [
       `Booking ID: ${booking.booking_ref}`,
       `Client: ${booking.full_name}`,
-      `Hotel / Company: ${booking.company ?? "—"}`,
+      `Business / Organization: ${booking.company ?? "—"}`,
       `Email: ${booking.email}`,
       `WhatsApp / Phone: ${booking.phone}`,
       `Client time zone: ${booking.time_zone}`,
