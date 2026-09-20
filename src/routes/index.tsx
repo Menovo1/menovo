@@ -17,14 +17,13 @@ export const Route = createFileRoute("/")({
         content:
           "MENOVO is a premium web-development agency specialized exclusively in business websites. Elegant, mobile-first digital experiences for businesses worldwide.",
       },
-      { business: "og:title", content: "MENOVO — Business Web Design & Development Agency" },
-      {
-        business: "og:description",
+      { property: "og:title", content: "MENOVO — Business Web Design & Development Agency" },
+      { property: "og:description",
         content:
           "Premium websites designed and developed exclusively for businesses. From Table to Screen.",
       },
-      { business: "og:type", content: "website" },
-      { business: "og:url", content: "https://www.menovo.agency/" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.menovo.agency/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/" }],
