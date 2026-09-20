@@ -123,20 +123,22 @@ function RootComponent() {
     );
   }, [pathname, isAdmin]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      {isAdmin ? (
+  if (isAdmin) {
+    return (
+      <QueryClientProvider client={queryClient}>
         <Outlet />
-      ) : (
-        <div className="min-h-screen flex flex-col bg-background text-foreground">
-          <Navbar />
-          <main className="flex-1">
-            <Outlet />
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
-      )}
-    </QueryClientProvider>
+      </QueryClientProvider>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-background text-foreground">
+      <Navbar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </div>
   );
 }
