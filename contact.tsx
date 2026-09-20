@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader, Section } from "@/components/site/Section";
 import { SocialIcons } from "@/components/site/SocialIcons";
 import { Reveal } from "@/components/site/Reveal";
-import { CalendlyEmbed } from "@/components/site/CalendlyEmbed";
 import { ContactForm } from "@/components/site/ContactForm";
 import { site, waDigits } from "@/content/site";
 import { pageBackground } from "@/lib/page-backgrounds";
@@ -19,10 +18,10 @@ export const Route = createFileRoute("/contact")({
         content:
           "Contact MENOVO to discuss business website design, business website development, redesigns and digital solutions for your business. Book a consultation or message us today.",
       },
-      { business: "og:title", content: "Contact MENOVO — Book a Business Website Consultation" },
-      { business: "og:description", content: "Talk to MENOVO about your business website project and find the right digital solution for your business." },
-      { business: "og:type", content: "website" },
-      { business: "og:url", content: "https://www.menovo.agency/contact" },
+      { property: "og:title", content: "Contact MENOVO — Start Your Project" },
+      { property: "og:description", content: "Talk to MENOVO about your business website project and find the right digital solution for your business." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.menovo.agency/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/contact" }],
@@ -37,7 +36,6 @@ function ContactPage() {
 
   const whatsapp = settings?.["whatsapp"] || site.whatsappNumber;
   const email = settings?.["email"] || site.email;
-  const calendlyUrl = cmsText(c, "contact", "calendlyUrl");
 
   return (
     <>
@@ -105,7 +103,7 @@ function ContactPage() {
           </Reveal>
 
           <Reveal delay={120}>
-            <CalendlyEmbed url={calendlyUrl} />
+            <div className="rounded-3xl border border-border bg-card/30 p-6 sm:p-8"><div className="eyebrow">Start a conversation</div><h2 className="mt-3 font-display text-3xl">Tell us what you’re building.</h2><p className="mt-3 text-sm leading-7 text-muted-foreground">Share your details and a little about your project. We’ll review it and get back to you directly.</p><ContactForm /></div>
             <SocialIcons links={data.socials} surface="contact" className="mt-8" />
           </Reveal>
         </div>
