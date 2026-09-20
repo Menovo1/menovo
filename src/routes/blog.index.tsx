@@ -8,19 +8,19 @@ import { useSite } from "@/lib/site-data";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "Hotel Web Design & SEO Insights | MENOVO" },
+      { title: "Digital Strategy & Growth Insights | MENOVO" },
       {
         name: "description",
         content:
-          "Hotel website design, hotel SEO, direct bookings, hospitality marketing and digital guest experience insights from MENOVO.",
+          "Web design, SEO, digital marketing, branding and customer experience insights from MENOVO.",
       },
-      { property: "og:title", content: "Journal — Hotel Website Insights | MENOVO" },
+      { business: "og:title", content: "Journal — Digital Experience Insights | MENOVO" },
       {
-        property: "og:description",
-        content: "Practical insights on hotel website design, SEO, direct bookings and digital marketing for hospitality businesses.",
+        business: "og:description",
+        content: "Practical insights on web design, SEO, branding, digital marketing, technology and customer experience for modern businesses.",
       },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/blog" },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/blog" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/blog" }],
