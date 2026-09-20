@@ -18,7 +18,9 @@ import { AnimatedBackground } from "@/components/site/AnimatedBackground";
 
 function NotFoundComponent() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
+    <div className="relative isolate min-h-screen overflow-hidden bg-background">
+      <AnimatedBackground />
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
       <div className="text-center max-w-md">
         <div className="text-8xl font-bold text-gradient-gold font-display">404</div>
         <h1 className="mt-6 text-2xl font-semibold">This page has moved on.</h1>
@@ -38,8 +40,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
-      <div className="text-center max-w-md">
+    <div className="relative isolate min-h-screen overflow-hidden bg-background">
+      <AnimatedBackground />
+      <div className="relative z-10 flex min-h-screen items-center justify-center px-4">
+        <div className="text-center max-w-md">
         <h1 className="text-2xl font-semibold">Something went wrong</h1>
         <p className="mt-3 text-muted-foreground">Please try again.</p>
         <button
@@ -48,6 +52,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         >
           Try again
         </button>
+        </div>
       </div>
     </div>
   );
