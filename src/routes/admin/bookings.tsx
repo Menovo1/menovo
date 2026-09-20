@@ -106,7 +106,7 @@ function Page() {
       ) : !data.connected ? (
         <AdminCard>
           <p className="text-sm text-white/70">
-            Calendly is not reachable right now. Guests can still book — meetings will appear here
+            Calendly is not reachable right now. Clients can still schedule — meetings will appear here
             once the connection is restored.
           </p>
           {data.error && <p className="mt-3 text-xs text-red-300">{data.error}</p>}
