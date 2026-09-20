@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { AnimatedBackground } from "@/components/site/AnimatedBackground";
 
 function NotFoundComponent() {
   return (
@@ -132,13 +133,16 @@ function RootComponent() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <Navbar />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-      <WhatsAppButton />
+    <div className="relative isolate min-h-screen overflow-x-clip bg-background text-foreground">
+      <AnimatedBackground />
+      <div className="relative z-10 flex min-h-screen flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <Footer />
+        <WhatsAppButton />
+      </div>
     </div>
   );
 }
