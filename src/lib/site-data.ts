@@ -1,21 +1,14 @@
-import { queryOptions, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getFallbackSiteData, getSiteData, type SiteData } from "@/lib/public-content.functions";
 
-export const siteDataQuery = queryOptions({
-  queryKey: ["site-data"],
-  queryFn: async () => {
-    try {
-      return await getSiteData();
-    } catch {
-      return getFallbackSiteData();
-    }
-  },
-  // CMS changes should not sit in a 15-second client cache.
-  staleTime: 0,
-  refetchOnMount: "always",
-  refetchOnWindowFocus: true,
-});
+/**
+ * Public site data is intentionally kept independent from React Query during SSR.
+ * This avoids coupling the public marketing pages to a request-scoped QueryClient
+ * while still refreshing CMS data in the browser after the fallback HTML renders.
+ */
+export const siteDataQuery = {
+  queryKey: ["site-data"] as const,
+};
 
 /** Notify open website tabs that the CMS changed. */
 export function broadcastSiteDataUpdate() {
@@ -35,20 +28,28 @@ export function broadcastSiteDataUpdate() {
   }
 }
 
-function useLiveSiteRefresh() {
-  const queryClient = useQueryClient();
+async function loadSiteData(setData: (data: SiteData) => void) {
+  try {
+    const data = await getSiteData();
+    setData(data);
+  } catch {
+    // Keep the built-in fallback if the CMS is unavailable.
+  }
+}
+
+/** Render immediately from built-in defaults, then refresh CMS data in the background. */
+export function useSite(): SiteData {
+  const [data, setData] = useState<SiteData>(() => getFallbackSiteData());
 
   useEffect(() => {
-    const refresh = () => {
-      void queryClient.invalidateQueries({ queryKey: ["site-data"] });
-    };
+    void loadSiteData(setData);
 
+    const refresh = () => void loadSiteData(setData);
     const onStorage = (event: StorageEvent) => {
       if (event.key === "menovo-site-data-updated") refresh();
     };
 
     window.addEventListener("storage", onStorage);
-
     let channel: BroadcastChannel | null = null;
     try {
       channel = new BroadcastChannel("menovo-site-data");
@@ -61,20 +62,18 @@ function useLiveSiteRefresh() {
       window.removeEventListener("storage", onStorage);
       channel?.close();
     };
-  }, [queryClient]);
+  }, []);
+
+  return data;
 }
 
-/** Render immediately from built-in defaults, then refresh CMS data in the background. */
-export function useSite(): SiteData {
-  useLiveSiteRefresh();
-  const query = useQuery(siteDataQuery, {
-    initialData: getFallbackSiteData(),
-  });
-  return query.data ?? getFallbackSiteData();
-}
-
-/** For shared chrome (navbar/footer) that may render before the loader resolves. */
+/** For shared chrome that may render before the CMS request resolves. */
 export function useSiteOptional(): SiteData | undefined {
-  useLiveSiteRefresh();
-  return useQuery(siteDataQuery).data;
+  const [data, setData] = useState<SiteData | undefined>(undefined);
+
+  useEffect(() => {
+    void loadSiteData(setData);
+  }, []);
+
+  return data;
 }
