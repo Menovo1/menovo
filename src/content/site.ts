@@ -52,11 +52,11 @@ export const values = [
 
 export const problems = [
   { title: "Outdated design", body: "The site looks older than the business." },
-  { title: "Poor on mobile", body: "Most customers arrive on a phone — and leave." },
-  { title: "Hidden booking path", body: "Enquiries buried behind slow journeys." },
+  { title: "Poor on mobile", body: "A difficult mobile experience sends people elsewhere." },
+  { title: "Unclear customer journey", body: "Important actions buried behind unnecessary friction." },
   { title: "Generic templates", body: "Nothing sets the business apart." },
-  { title: "Weak first impression", body: "Photos never show the real experience." },
-  { title: "Low visibility", body: "Search sends customers to third parties." },
+  { title: "Weak first impression", body: "Your brand should look as compelling online as it does in real life." },
+  { title: "Low visibility", body: "Great businesses lose attention when they are hard to find online." },
 ];
 
 export const solutions = [
@@ -64,13 +64,13 @@ export const solutions = [
   { title: "Mobile-first build", body: "Designed for the phone, scaled up with intent." },
   { title: "Direct enquiries", body: "Forms and WhatsApp in one clear path." },
   { title: "Speed & SEO", body: "Fast, search-ready foundations." },
-  { title: "Visual storytelling", body: "Galleries that show the business at its best." },
+  { title: "Visual storytelling", body: "Visuals that present your brand at its best." },
   { title: "Built to grow", body: "New pages and offers without a rebuild." },
 ];
 
 export const whyMenovo = [
   { title: "Business specialization", body: "Business-focused thinking — strategy, design and technology aligned to your goals." },
-  { title: "Luxury craftsmanship", body: "Editorial type, whitespace, considered motion." },
+  { title: "Thoughtful craftsmanship", body: "Editorial type, whitespace, considered motion." },
   { title: "Global service", body: "Businesses and organizations worldwide." },
   { title: "Long-term partnership", body: "Support after launch, not a hand-off." },
 ];
