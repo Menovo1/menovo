@@ -13,16 +13,16 @@ import { Mail, MessageCircle, PhoneCall, Globe } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact MENOVO | Hotel Web Design Agency" },
+      { title: "Contact MENOVO | Digital Agency" },
       {
         name: "description",
         content:
-          "Contact MENOVO to discuss hotel website design, hotel website development, redesigns and digital solutions for your hotel. Book a consultation or message us today.",
+          "Contact MENOVO to discuss business website design, business website development, redesigns and digital solutions for your business. Book a consultation or message us today.",
       },
-      { property: "og:title", content: "Contact MENOVO — Book a Hotel Website Consultation" },
-      { property: "og:description", content: "Talk to MENOVO about your hotel website project and find the right digital solution for your property." },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.menovo.agency/contact" },
+      { business: "og:title", content: "Contact MENOVO — Book a Business Website Consultation" },
+      { business: "og:description", content: "Talk to MENOVO about your business website project and find the right digital solution for your business." },
+      { business: "og:type", content: "website" },
+      { business: "og:url", content: "https://www.menovo.agency/contact" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/contact" }],
@@ -80,7 +80,7 @@ function ContactPage() {
                 <Globe className="h-5 w-5 text-gold mt-0.5" />
                 <span>
                   <span className="block text-sm font-medium">Working worldwide</span>
-                  <span className="block text-sm text-muted-foreground">Hotels internationally · English</span>
+                  <span className="block text-sm text-muted-foreground">Businesses internationally · English</span>
                 </span>
               </li>
               <li className="flex items-start gap-4">
@@ -111,7 +111,7 @@ function ContactPage() {
         </div>
       </Section>
 
-      <Section className="bg-secondary" eyebrow="Or send a message" title="Tell us about your property.">
+      <Section className="bg-secondary" eyebrow="Or send a message" title="Tell us about your business.">
         <div className="max-w-2xl">
           <ContactForm />
         </div>
