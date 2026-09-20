@@ -317,13 +317,13 @@ export const BACKGROUNDS_GROUP: CmsGroup = {
   description: "Replace any page background with an uploaded Media Library file or any public image URL. Leave empty to keep the built-in background.",
   fields: [
     { name: "homeVideoUrl", label: "Home hero video URL", type: "url" },
-    { name: "homePosterUrl", label: "Home hero poster image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
-    { name: "aboutImageUrl", label: "About header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
-    { name: "servicesImageUrl", label: "Services header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
-    { name: "portfolioImageUrl", label: "Portfolio header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
-    { name: "blogImageUrl", label: "Blog header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
-    { name: "faqImageUrl", label: "FAQ header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
-    { name: "contactImageUrl", label: "Contact header image", type: "url", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "homePosterUrl", label: "Home hero poster image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "aboutImageUrl", label: "About header image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "servicesImageUrl", label: "Services header image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "portfolioImageUrl", label: "Portfolio header image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "blogImageUrl", label: "Blog header image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "faqImageUrl", label: "FAQ header image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
+    { name: "contactImageUrl", label: "Contact header image", type: "image", help: "Paste a public image URL or a link copied from Admin → Media." },
   ],
 };
 
