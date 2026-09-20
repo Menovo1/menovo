@@ -14,13 +14,12 @@ export const Route = createFileRoute("/blog/")({
         content:
           "Web design, SEO, digital marketing, branding and customer experience insights from MENOVO.",
       },
-      { business: "og:title", content: "Journal — Digital Experience Insights | MENOVO" },
-      {
-        business: "og:description",
+      { property: "og:title", content: "Journal — Digital Experience Insights | MENOVO" },
+      { property: "og:description",
         content: "Practical insights on web design, SEO, branding, digital marketing, technology and customer experience for modern businesses.",
       },
-      { business: "og:type", content: "website" },
-      { business: "og:url", content: "https://www.menovo.agency/blog" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.menovo.agency/blog" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://www.menovo.agency/blog" }],
