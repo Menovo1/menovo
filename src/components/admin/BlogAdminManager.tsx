@@ -21,7 +21,7 @@ type BlogPostRow = {
 const emptyPost: BlogPostRow = {
   title: "",
   slug: "",
-  category: "Hotels & Tech",
+  category: "Business & Tech",
   author: "MENOVO",
   excerpt: "",
   content: "",
@@ -162,7 +162,7 @@ export function BlogAdminManager() {
               <input
                 type="text"
                 className={inputCls}
-                placeholder="e.g. 5 Design Principles Every Luxury Hotel Needs Online"
+                placeholder="e.g. 5 Design Principles Every Modern Business Needs Online"
                 value={draft.title}
                 onChange={(e) => handleTitleChange(e.target.value)}
               />
@@ -173,7 +173,7 @@ export function BlogAdminManager() {
               <input
                 type="text"
                 className={inputCls}
-                placeholder="hotel-design-principles"
+                placeholder="business-design-principles"
                 value={draft.slug}
                 onChange={(e) => setDraft({ ...draft, slug: e.target.value })}
               />
@@ -184,7 +184,7 @@ export function BlogAdminManager() {
               <input
                 type="text"
                 className={inputCls}
-                placeholder="Hotels & Tech"
+                placeholder="Business & Tech"
                 value={draft.category}
                 onChange={(e) => setDraft({ ...draft, category: e.target.value })}
               />
