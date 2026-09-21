@@ -3,9 +3,11 @@ import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
+import { getSiteData } from "@/lib/public-content.functions";
 import { useSite } from "@/lib/site-data";
 
 export const Route = createFileRoute("/blog/")({
+  loader: async () => ({ siteData: await getSiteData() }),
   head: () => ({
     meta: [
       { title: "Digital Strategy & Growth Insights | MENOVO" },
@@ -31,7 +33,8 @@ const fmt = (value: string | null) =>
   value ? new Date(value).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
 
 function BlogPage() {
-  const data = useSite();
+  const { siteData } = Route.useLoaderData();
+  const data = useSite(siteData);
   const c = data.content;
 
   return (
