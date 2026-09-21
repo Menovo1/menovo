@@ -179,8 +179,9 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
           .order("sort_order"),
         supabase
           .from("blog_posts")
-          .select("id, title, slug, excerpt, category, featured_image_url, author, published_at")
+          .select("id, title, slug, excerpt, category, featured_image_url, author, published_at, sort_order")
           .eq("published", true)
+          .order("sort_order", { ascending: true })
           .order("published_at", { ascending: false }),
         supabase.from("faqs").select("id, question, answer").eq("published", true).order("sort_order"),
         supabase
