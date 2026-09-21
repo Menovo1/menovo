@@ -38,8 +38,8 @@ async function loadSiteData(setData: (data: SiteData) => void) {
 }
 
 /** Render immediately from built-in defaults, then refresh CMS data in the background. */
-export function useSite(): SiteData {
-  const [data, setData] = useState<SiteData>(() => getFallbackSiteData());
+export function useSite(initialData?: SiteData): SiteData {
+  const [data, setData] = useState<SiteData>(() => initialData ?? getFallbackSiteData());
 
   useEffect(() => {
     void loadSiteData(setData);
