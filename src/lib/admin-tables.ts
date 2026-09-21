@@ -17,7 +17,7 @@ export const TABLE_ORDER: Record<AdminTable, { column: string; ascending: boolea
   messages: { column: "created_at", ascending: false },
   services: { column: "sort_order", ascending: true },
   portfolio_projects: { column: "sort_order", ascending: true },
-  blog_posts: { column: "created_at", ascending: false },
+  blog_posts: { column: "sort_order", ascending: true },
   faqs: { column: "sort_order", ascending: true },
   founder_profile: { column: "created_at", ascending: true },
   settings: { column: "created_at", ascending: true },
