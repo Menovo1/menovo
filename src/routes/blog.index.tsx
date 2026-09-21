@@ -61,19 +61,19 @@ function BlogPage() {
             </div>
           </Reveal>
         ) : (
-          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {data.posts.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80}>
+              <Reveal key={p.id} delay={i * 90} className="h-full">
                 <Link
                   to="/blog/$slug"
                   params={{ slug: p.slug }}
-                  className="glass-card group block h-full overflow-hidden rounded-3xl p-8 transition-transform duration-300 hover:-translate-y-1"
+                  className="glass-card group block h-full overflow-hidden rounded-[2rem] border border-white/10 p-5 transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl hover:shadow-black/20"
                 >
                 {p.featured_image_url && (
                   <img
                     src={p.featured_image_url}
                     alt={p.title}
-                    className="mb-6 aspect-[4/3] w-full object-cover"
+                    className="mb-6 aspect-[4/3] w-full rounded-[1.5rem] object-cover transition-transform duration-700 group-hover:scale-[1.045]"
                     loading="lazy"
                   />
                 )}
