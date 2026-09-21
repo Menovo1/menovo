@@ -263,7 +263,7 @@ export function CrudSection({
 
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             {rows.map((r) => (
-              <AdminCard key={r[pk] as string} className="overflow-hidden p-0">
+              <AdminCard key={r[pk] as string} className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-0 shadow-xl shadow-black/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.065] hover:shadow-2xl">
                 {"cover_image_url" in r && r["cover_image_url"] ? (
                   <div className="aspect-[16/9] overflow-hidden border-b border-white/10 bg-white/5">
                     <img
