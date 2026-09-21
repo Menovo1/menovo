@@ -91,6 +91,7 @@ export type SiteData = {
     website_url: string | null;
     category: string | null;
     featured: boolean;
+    sort_order: number;
   }>;
   posts: Array<{
     id: string;
@@ -98,6 +99,7 @@ export type SiteData = {
     slug: string;
     excerpt: string;
     category: string | null;
+    sort_order: number;
     featured_image_url: string | null;
     author: string;
     published_at: string | null;
@@ -174,7 +176,7 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
           .order("sort_order"),
         supabase
           .from("portfolio_projects")
-          .select("id, title, company, description, cover_image_url, video_url, website_url, category, featured")
+          .select("id, title, company, description, cover_image_url, video_url, website_url, category, featured, sort_order")
           .eq("published", true)
           .order("sort_order"),
         supabase
