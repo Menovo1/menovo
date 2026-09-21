@@ -96,7 +96,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
-          {themeSwitchEnabled && {themeSwitchEnabled && <ThemeToggle light={light} />}}
+          {themeSwitchEnabled && <ThemeToggle light={light} />}
           <Link
             to="/contact"
             className={`px-6 py-2.5 text-[13px] tracking-wide ${light ? "btn-light" : "btn-primary"}`}
@@ -106,7 +106,7 @@ export function Navbar() {
         </div>
 
         <div className="lg:hidden flex items-center gap-2">
-          <ThemeToggle light={light} />
+          {themeSwitchEnabled && <ThemeToggle light={light} />}
           <button
             className={`p-2 ${light ? "text-white" : "text-foreground"}`}
             onClick={() => setOpen((v) => !v)}
