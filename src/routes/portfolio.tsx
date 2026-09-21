@@ -3,9 +3,11 @@ import { PageHeader, Section } from "@/components/site/Section";
 import { Reveal } from "@/components/site/Reveal";
 import { pageBackground } from "@/lib/page-backgrounds";
 import { cmsText } from "@/content/cms";
+import { getSiteData } from "@/lib/public-content.functions";
 import { useSite } from "@/lib/site-data";
 
 export const Route = createFileRoute("/portfolio")({
+  loader: async () => ({ siteData: await getSiteData() }),
   head: () => ({
     meta: [
       { title: "Digital Agency Portfolio | MENOVO" },
@@ -26,7 +28,8 @@ export const Route = createFileRoute("/portfolio")({
 });
 
 function PortfolioPage() {
-  const data = useSite();
+  const { siteData } = Route.useLoaderData();
+  const data = useSite(siteData);
   const c = data.content;
 
   return (
@@ -58,7 +61,8 @@ function PortfolioPage() {
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {data.portfolio.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80} className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-xl shadow-black/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.065] hover:shadow-2xl">
+              <Reveal key={p.id} delay={i * 80} className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-xl shadow-black/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.065] hover:shadow-2xl">
+                <div className="absolute left-4 top-4 z-10 rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">#{p.sort_order}</div>
                 {p.video_url ? (
                   <video
                     className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.045]"
