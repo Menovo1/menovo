@@ -29,7 +29,7 @@ const emptyPost: BlogPostRow = {
   featured_image_url: "",
   published: false,
   published_at: null,
-  sort_order: 0,
+  sort_order: 1,
 };
 
 export function BlogAdminManager() {
@@ -197,11 +197,11 @@ export function BlogAdminManager() {
               <label className={labelCls}>Priority</label>
               <select
                 className={inputCls}
-                value={String(draft.sort_order)}
+                value={String(draft.sort_order || 1)}
                 onChange={(e) => setDraft({ ...draft, sort_order: Number(e.target.value) })}
               >
                 {Array.from({ length: 50 }, (_, index) => (
-                  <option key={index} value={index}>
+                  <option key={index} value={index + 1}>
                     {index + 1} — {index === 0 ? "First" : index === 1 ? "Second" : "Position " + (index + 1)}
                   </option>
                 ))}
@@ -293,7 +293,7 @@ export function BlogAdminManager() {
                 {post.featured_image_url ? (
                   <div className="relative overflow-hidden border-b border-white/10">
                     <img src={post.featured_image_url} alt={post.title} className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.045]" loading="lazy" />
-                    <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">#{index + 1}</div>
+                    <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">#{post.sort_order}</div>
                   </div>
                 ) : (
                   <div className="relative aspect-[16/10] border-b border-white/10 bg-white/[0.04]">
@@ -314,7 +314,7 @@ export function BlogAdminManager() {
                   </div>
                   <p className="mt-3 text-xs leading-relaxed text-white/50 line-clamp-3">{post.excerpt || post.content}</p>
                   <div className="mt-5 flex items-center justify-between gap-3">
-                    <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-gold">Priority {post.sort_order + 1}</span>
+                    <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-gold">Priority {post.sort_order}</span>
                     <div className="flex items-center gap-2">
                       <AdminButton variant="ghost" onClick={() => setDraft({ ...post })}>Edit</AdminButton>
                       {post.id && <button onClick={() => void handleDelete(post.id!)} className="rounded-full p-2 text-white/40 transition-colors hover:bg-red-500/10 hover:text-red-400" title="Delete Post"><Trash2 className="h-4 w-4" /></button>}
