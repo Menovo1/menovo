@@ -92,6 +92,10 @@ function AdminLayout() {
     let cancelled = false;
 
     void (async () => {
+      const navigation = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming | undefined;
+      if (navigation?.type === "reload") {
+        await supabase.auth.signOut();
+      }
       const { data } = await supabase.auth.getSession();
       if (!cancelled) {
         setSignedIn(Boolean(data.session));
