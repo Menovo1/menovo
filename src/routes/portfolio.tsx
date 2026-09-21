@@ -56,12 +56,12 @@ function PortfolioPage() {
             </div>
           </Reveal>
         ) : (
-          <div className="grid gap-10 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
             {data.portfolio.map((p, i) => (
-              <Reveal key={p.id} delay={i * 80} className="card-editorial overflow-hidden">
+              <Reveal key={p.id} delay={i * 80} className="card-editorial group overflow-hidden rounded-[2rem] border border-white/10 transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl hover:shadow-black/20">
                 {p.video_url ? (
                   <video
-                    className="aspect-[16/10] w-full object-cover"
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.045]"
                     src={p.video_url}
                     poster={p.cover_image_url ?? undefined}
                     muted
