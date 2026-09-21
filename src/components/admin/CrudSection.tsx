@@ -6,7 +6,7 @@ import { AdminButton, AdminCard, AdminHeading, inputCls, labelCls } from "@/comp
 import { broadcastSiteDataUpdate } from "@/lib/site-data";
 import { normalizeImageUrl, uploadPublicImage } from "@/lib/media-upload";
 
-export type FieldType = "text" | "textarea" | "url" | "bool" | "number" | "list" | "image" | "date";
+export type FieldType = "text" | "textarea" | "url" | "bool" | "number" | "list" | "image" | "date" | "select";
 
 export type Field = {
   name: string;
@@ -14,6 +14,7 @@ export type Field = {
   type: FieldType;
   help?: string;
   rows?: number;
+  options?: Array<{ value: string; label: string }>;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -143,6 +144,18 @@ export function CrudSection({
                   )
                 }
               />
+            ) : f.type === "select" ? (
+              <select
+                className={inputCls}
+                value={(draft[f.name] as string) ?? ""}
+                onChange={(e) => setValue(f.name, e.target.value)}
+              >
+                {(f.options ?? []).map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             ) : f.type === "bool" ? (
               <button
                 onClick={() => setValue(f.name, !draft[f.name])}
