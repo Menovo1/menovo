@@ -12,7 +12,7 @@ function Page() {
       titleField="title"
       subtitleField="description"
       addLabel="Add project"
-      defaults={{ published: true, featured: false, sort_order: 0, category: "Hotels & Hospitality" }}
+      defaults={{ published: true, featured: false, sort_order: 1, category: "Hotels & Hospitality" }}
       fields={[
         { name: "title", label: "Title", type: "text" },
         { name: "company", label: "Client / business", type: "text" },
@@ -36,11 +36,11 @@ function Page() {
           name: "sort_order",
           label: "Priority",
           type: "select",
-          options: Array.from({ length: 20 }, (_, index) => ({
-            value: String(index),
+          options: Array.from({ length: 50 }, (_, index) => ({
+            value: String(index + 1),
             label: index === 0 ? "1 — First" : index === 1 ? "2 — Second" : `${index + 1} — Position ${index + 1}`,
           })),
-          help: "Choose 1 for the first project, 2 for the second, and so on.",
+          help: "Choose 1 for the first project, 2 for the second, and so on. Positions are unique and shift automatically.",
         },
         { name: "description", label: "Description", type: "textarea" },
         { name: "cover_image_url", label: "Cover image", type: "image", help: "Upload a cover image or paste a direct image URL." },
