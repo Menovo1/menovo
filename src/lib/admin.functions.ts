@@ -176,6 +176,33 @@ export const adminSave = createServerFn({ method: "POST" })
     }
     await assertPermission(context.supabase, context.userId, section);
 
+    // Portfolio and Blog priorities are 1-based and unique. Moving a record
+    // into an occupied position shifts the existing records down automatically.
+    if ((data.table === "portfolio_projects" || data.table === "blog_posts") && data.row) {
+      const requested = Math.max(1, Number(data.row.sort_order) || 1);
+      const pk = TABLE_PK[data.table];
+      const currentId = data.row[pk] ? String(data.row[pk]) : null;
+      const { data: occupants, error: occupantError } = await db(context.supabase)
+        .from(data.table)
+        .select(`${pk}, sort_order`)
+        .gte("sort_order", requested)
+        .order("sort_order", { ascending: false });
+      if (occupantError) throw new Error(occupantError.message);
+
+      for (const occupant of occupants ?? []) {
+        const occupantId = String((occupant as Row)[pk]);
+        if (currentId && occupantId === currentId) continue;
+        const occupantOrder = Number((occupant as Row).sort_order) || requested;
+        const { error: shiftError } = await db(context.supabase)
+          .from(data.table)
+          .update({ sort_order: occupantOrder + 1 })
+          .eq(pk, occupantId);
+        if (shiftError) throw new Error(shiftError.message);
+      }
+
+      data.row.sort_order = requested;
+    }
+
     const result = await writeRow(context.supabase, data.table, data.row);
     await recordRevision(context.supabase, context.userId, {
       table: data.table,
