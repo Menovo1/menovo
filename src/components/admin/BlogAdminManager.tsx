@@ -16,6 +16,7 @@ type BlogPostRow = {
   published: boolean;
   published_at: string | null;
   created_at?: string;
+  sort_order: number;
 };
 
 const emptyPost: BlogPostRow = {
@@ -28,6 +29,7 @@ const emptyPost: BlogPostRow = {
   featured_image_url: "",
   published: false,
   published_at: null,
+  sort_order: 0,
 };
 
 export function BlogAdminManager() {
@@ -181,13 +183,30 @@ export function BlogAdminManager() {
 
             <div>
               <label className={labelCls}>Category</label>
-              <input
-                type="text"
+              <select
                 className={inputCls}
-                placeholder="Business & Tech"
                 value={draft.category}
                 onChange={(e) => setDraft({ ...draft, category: e.target.value })}
-              />
+              >
+                {["Business & Tech", "Web Design", "SEO & Marketing", "Branding", "Technology", "Hospitality", "Real Estate", "Fashion", "Education", "Healthcare", "Restaurants & Cafés", "Other"].map((category) => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className={labelCls}>Priority</label>
+              <select
+                className={inputCls}
+                value={String(draft.sort_order)}
+                onChange={(e) => setDraft({ ...draft, sort_order: Number(e.target.value) })}
+              >
+                {Array.from({ length: 50 }, (_, index) => (
+                  <option key={index} value={index}>
+                    {index + 1} — {index === 0 ? "First" : index === 1 ? "Second" : "Position " + (index + 1)}
+                  </option>
+                ))}
+              </select>
+              <p className="mt-2 text-[11px] text-white/40">Choose 1 for the first post, 2 for the second, and so on.</p>
             </div>
 
             <div>
@@ -254,56 +273,59 @@ export function BlogAdminManager() {
         </AdminCard>
       )}
 
-      {/* Posts Table */}
-      <AdminCard>
+      {/* Posts Grid */}
+      <div>
         {loading ? (
           <div className="flex items-center justify-center p-8 text-gold">
             <Loader2 className="h-6 w-6 animate-spin" />
           </div>
         ) : posts.length === 0 ? (
-          <div className="p-8 text-center text-white/50 text-sm">
+          <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-8 text-center text-white/50 text-sm backdrop-blur-xl">
             No blog posts published yet. Click "New Post" above to write an article.
           </div>
         ) : (
-          <div className="divide-y divide-white/10">
-            {posts.map((post) => (
-              <div key={post.id} className="flex flex-wrap items-center justify-between gap-4 py-4">
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <h4 className="font-display text-base text-white truncate">{post.title}</h4>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {posts.map((post, index) => (
+              <AdminCard
+                key={post.id}
+                className="group overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-0 shadow-xl shadow-black/10 backdrop-blur-xl transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:bg-white/[0.065] hover:shadow-2xl"
+              >
+                {post.featured_image_url ? (
+                  <div className="relative overflow-hidden border-b border-white/10">
+                    <img src={post.featured_image_url} alt={post.title} className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.045]" loading="lazy" />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">#{index + 1}</div>
+                  </div>
+                ) : (
+                  <div className="relative aspect-[16/10] border-b border-white/10 bg-white/[0.04]">
+                    <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">#{index + 1}</div>
+                  </div>
+                )}
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h4 className="font-display text-lg text-white line-clamp-2">{post.title}</h4>
+                      <p className="mt-1 text-xs text-white/45">{post.category}</p>
+                    </div>
                     {post.published ? (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/30">
-                        <CheckCircle className="h-3 w-3" /> Published Live
-                      </span>
+                      <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-300 border border-emerald-500/30"><CheckCircle className="h-3 w-3" /> Live</span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-medium text-amber-300 border border-amber-500/30">
-                        <Clock className="h-3 w-3" /> Draft
-                      </span>
+                      <span className="shrink-0 inline-flex items-center gap-1 rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-medium text-amber-300 border border-amber-500/30"><Clock className="h-3 w-3" /> Draft</span>
                     )}
                   </div>
-                  <p className="text-xs text-white/50 truncate mt-1">{post.excerpt || post.content}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-white/50 line-clamp-3">{post.excerpt || post.content}</p>
+                  <div className="mt-5 flex items-center justify-between gap-3">
+                    <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5 text-[10px] uppercase tracking-widest text-gold">Priority {post.sort_order + 1}</span>
+                    <div className="flex items-center gap-2">
+                      <AdminButton variant="ghost" onClick={() => setDraft({ ...post })}>Edit</AdminButton>
+                      {post.id && <button onClick={() => void handleDelete(post.id!)} className="rounded-full p-2 text-white/40 transition-colors hover:bg-red-500/10 hover:text-red-400" title="Delete Post"><Trash2 className="h-4 w-4" /></button>}
+                    </div>
+                  </div>
                 </div>
-
-                <div className="flex items-center gap-2">
-                  <AdminButton variant="ghost" onClick={() => setDraft({ ...post })}>
-                    Edit
-                  </AdminButton>
-
-                  {post.id && (
-                    <button
-                      onClick={() => void handleDelete(post.id!)}
-                      className="p-2 text-white/40 hover:text-red-400 transition-colors"
-                      title="Delete Post"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
-              </div>
+              </AdminCard>
             ))}
           </div>
         )}
-      </AdminCard>
+      </div>
     </div>
   );
 }
