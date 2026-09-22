@@ -47,9 +47,19 @@ function ContactPage() {
       />
 
       <Section>
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr]">
+        <div className="space-y-14">
+          <Reveal delay={120}>
+            <div className="mx-auto w-full max-w-6xl rounded-3xl border border-border bg-card/30 p-8 sm:p-10 lg:p-12">
+              <div className="eyebrow">Start a conversation</div>
+              <h2 className="mt-3 font-display text-4xl sm:text-5xl">Tell us what you’re building.</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-muted-foreground">Answer seven quick questions about your project. We’ll review your answers and get back to you directly.</p>
+              <ContactForm />
+            </div>
+          </Reveal>
+
           <Reveal>
-            <div className="eyebrow">Direct contact</div>
+            <div className="mx-auto w-full max-w-6xl">
+              <div className="eyebrow">Direct contact</div>
             <ul className="mt-6 space-y-5">
               <li>
                 <a
@@ -100,13 +110,7 @@ function ContactPage() {
             </a>
           </Reveal>
 
-          <Reveal delay={120}>
-            <div className="rounded-3xl border border-border bg-card/30 p-6 sm:p-8">
-              <div className="eyebrow">Start a conversation</div>
-              <h2 className="mt-3 font-display text-3xl">Tell us what you’re building.</h2>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">Answer seven quick questions about your project. We’ll review your answers and get back to you directly.</p>
-              <ContactForm />
-            </div>
+          <Reveal>
             <SocialIcons links={data.socials} surface="contact" className="mt-8" />
           </Reveal>
         </div>
