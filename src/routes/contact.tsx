@@ -104,7 +104,7 @@ function ContactPage() {
             <div className="rounded-3xl border border-border bg-card/30 p-6 sm:p-8">
               <div className="eyebrow">Start a conversation</div>
               <h2 className="mt-3 font-display text-3xl">Tell us what you’re building.</h2>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">Share your details and a little about your project. We’ll review it and get back to you directly.</p>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">Answer seven quick questions about your project. We’ll review your answers and get back to you directly.</p>
               <ContactForm />
             </div>
             <SocialIcons links={data.socials} surface="contact" className="mt-8" />
