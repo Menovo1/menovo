@@ -108,6 +108,7 @@ function ContactPage() {
             >
               Message us on WhatsApp
             </a>
+            </div>
           </Reveal>
 
           <Reveal>
