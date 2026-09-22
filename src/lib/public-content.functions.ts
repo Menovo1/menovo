@@ -218,8 +218,8 @@ export const getSiteData = createServerFn({ method: "GET" }).handler(
 
 const messageSchema = z.object({
   name: z.string().trim().min(2).max(100),
-  email: z.string().trim().email().max(255),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
+  email: z.string().trim().email().max(255).optional().or(z.literal("")),
+  phone: z.string().trim().max(80).optional().or(z.literal("")),
   company: z.string().trim().max(120).optional().or(z.literal("")),
   message: z.string().trim().min(2).max(3000),
 });
@@ -230,7 +230,7 @@ export const submitMessage = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { error } = await supabaseAdmin.from("messages").insert({
       name: data.name,
-      email: data.email,
+      email: data.email || null,
       phone: data.phone || null,
       company: data.company || null,
       message: data.message,
