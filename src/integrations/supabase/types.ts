@@ -284,7 +284,7 @@ export type Database = {
         Insert: {
           company?: string | null
           created_at?: string
-          email: string | null
+          email?: string | null
           id?: string
           message: string
           name: string
