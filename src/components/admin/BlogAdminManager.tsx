@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { CheckCircle, Clock, FileText, Loader2, Plus, Send, Trash2, X } from "lucide-react";
+import { CheckCircle, Clock, FileText, ImagePlus, Loader2, Plus, Send, Trash2, X } from "lucide-react";
+import { normalizeImageUrl, uploadPublicImage } from "@/lib/media-upload";
 import { adminDelete, adminList, adminSave } from "@/lib/admin.functions";
 import { AdminButton, AdminCard, AdminHeading, inputCls, labelCls } from "@/components/admin/ui";
 
@@ -41,6 +42,7 @@ export function BlogAdminManager() {
   const [draft, setDraft] = useState<BlogPostRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
 
@@ -221,14 +223,64 @@ export function BlogAdminManager() {
             </div>
 
             <div>
-              <label className={labelCls}>Cover Image URL</label>
+              <label className={labelCls}>Cover Image</label>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-2.5 text-xs text-gold transition-colors hover:bg-gold/15">
+                  {uploadingImage ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <ImagePlus className="h-3.5 w-3.5" />}
+                  {uploadingImage ? "Uploading…" : draft.featured_image_url ? "Replace image" : "Upload image"}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    disabled={uploadingImage}
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      e.currentTarget.value = "";
+                      if (!file) return;
+                      setUploadingImage(true);
+                      setError("");
+                      try {
+                        const url = await uploadPublicImage(file);
+                        setDraft((current) => current ? { ...current, featured_image_url: url } : current);
+                        setNotice("Image uploaded. Save the post to publish it.");
+                      } catch (err) {
+                        setError(err instanceof Error ? err.message : "Image upload failed.");
+                      } finally {
+                        setUploadingImage(false);
+                      }
+                    }}
+                  />
+                </label>
+                {draft.featured_image_url && (
+                  <button
+                    type="button"
+                    onClick={() => setDraft((current) => current ? { ...current, featured_image_url: "" } : current)}
+                    className="rounded-full border border-red-400/25 px-4 py-2.5 text-xs text-red-300 transition-colors hover:bg-red-500/10"
+                  >
+                    Remove image
+                  </button>
+                )}
+              </div>
               <input
                 type="url"
-                className={inputCls}
-                placeholder="https://..."
+                className={inputCls + " mt-3"}
+                placeholder="Or paste a public image URL"
                 value={draft.featured_image_url}
-                onChange={(e) => setDraft({ ...draft, featured_image_url: e.target.value })}
+                onChange={(e) => setDraft({ ...draft, featured_image_url: normalizeImageUrl(e.target.value) })}
               />
+              {draft.featured_image_url && (
+                <div className="mt-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
+                  <img
+                    src={normalizeImageUrl(draft.featured_image_url)}
+                    alt="Blog cover preview"
+                    className="max-h-64 w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => { e.currentTarget.style.opacity = "0.25"; }}
+                  />
+                </div>
+              )}
+              <p className="mt-2 text-[11px] text-white/40">Upload a new cover, replace the current one, or remove it. Changes apply when you save the post.</p>
             </div>
 
             <div className="sm:col-span-2">
