@@ -17,19 +17,24 @@ function Page() {
   const [copied, setCopied] = useState("");
 
   const load = useCallback(async () => {
-    const { data, error: err } = await supabase.storage.from(BUCKET).list("", {
-      limit: 200,
-      sortBy: { column: "created_at", order: "desc" },
-    });
+    const storage = supabase.storage.from(BUCKET);
+    const [rootResult, imagesResult] = await Promise.all([
+      storage.list("", { limit: 200, sortBy: { column: "created_at", order: "desc" } }),
+      storage.list("images", { limit: 200, sortBy: { column: "created_at", order: "desc" } }),
+    ]);
+    const err = rootResult.error ?? imagesResult.error;
     if (err) {
       setError(err.message);
       setItems([]);
       return;
     }
-    const files = (data ?? []).filter((f) => f.id);
+    const files = [
+      ...(rootResult.data ?? []).filter((f) => f.id).map((f) => ({ ...f, path: f.name })),
+      ...(imagesResult.data ?? []).filter((f) => f.id).map((f) => ({ ...f, path: `images/${f.name}` })),
+    ];
     const publicFiles = files.map((f) => {
-      const { data } = supabase.storage.from(BUCKET).getPublicUrl(f.name);
-      return { name: f.name, url: data.publicUrl };
+      const { data } = storage.getPublicUrl(f.path);
+      return { name: f.path, url: data.publicUrl };
     });
     setItems(publicFiles);
   }, []);
