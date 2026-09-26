@@ -140,6 +140,15 @@ export function CmsEditor({ groups }: { groups: CmsGroup[] }) {
                             }}
                           />
                         </label>
+                        {typeof raw === "string" && raw.trim() && (
+                          <button
+                            type="button"
+                            onClick={() => setField(g.key, f.name, "")}
+                            className="ml-2 rounded-full border border-red-400/25 px-4 py-2.5 text-xs text-red-300 transition-colors hover:bg-red-500/10"
+                          >
+                            Remove image
+                          </button>
+                        )}
                         <input
                           className={inputCls}
                           type="url"
@@ -154,6 +163,7 @@ export function CmsEditor({ groups }: { groups: CmsGroup[] }) {
                               alt="Image preview"
                               className="max-h-72 w-full object-cover"
                               loading="lazy"
+                              decoding="async"
                               onError={(e) => { e.currentTarget.style.opacity = "0.25"; }}
                             />
                           </div>
